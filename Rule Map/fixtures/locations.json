@@ -1,0 +1,163 @@
+{
+  "ABS": {
+    "project": "Jaipur-Sheodaspura",
+    "locations": [
+      {
+        "id": "L01",
+        "col": "C",
+        "name": "Jaipur JN",
+        "dp": 4,
+        "ts": 2
+      },
+      {
+        "id": "L02",
+        "col": "D",
+        "name": "ALH-1",
+        "dp": 24,
+        "ts": 24
+      },
+      {
+        "id": "L03",
+        "col": "E",
+        "name": "Durgapura",
+        "dp": 16,
+        "ts": 12
+      },
+      {
+        "id": "L04",
+        "col": "F",
+        "name": "Sanganer",
+        "dp": 16,
+        "ts": 12
+      },
+      {
+        "id": "L05",
+        "col": "G",
+        "name": "ALH-2",
+        "dp": 40,
+        "ts": 40
+      },
+      {
+        "id": "L06",
+        "col": "H",
+        "name": "ALH-3",
+        "dp": 40,
+        "ts": 40
+      },
+      {
+        "id": "L07",
+        "col": "I",
+        "name": "ALH-4",
+        "dp": 32,
+        "ts": 32
+      },
+      {
+        "id": "L08",
+        "col": "J",
+        "name": "Sheodaspura",
+        "dp": 4,
+        "ts": 2
+      }
+    ],
+    "totalDP": 176,
+    "totalTS": 164
+  },
+  "Yard": {
+    "project": "Jaipur to Sawai",
+    "locations": [
+      {
+        "id": "L01",
+        "col": "C",
+        "name": "Chaksu",
+        "dp": 31,
+        "ts": 25
+      },
+      {
+        "id": "L02",
+        "col": "D",
+        "name": "Channani",
+        "dp": 30,
+        "ts": 25
+      },
+      {
+        "id": "L03",
+        "col": "E",
+        "name": "Banasthali",
+        "dp": 39,
+        "ts": 31
+      },
+      {
+        "id": "L04",
+        "col": "F",
+        "name": "Sirsa",
+        "dp": 30,
+        "ts": 25
+      },
+      {
+        "id": "L05",
+        "col": "G",
+        "name": "Irsada",
+        "dp": 39,
+        "ts": 31
+      },
+      {
+        "id": "L06",
+        "col": "H",
+        "name": "Chauth",
+        "dp": 31,
+        "ts": 25
+      },
+      {
+        "id": "L07",
+        "col": "I",
+        "name": "Devpura Acc-1",
+        "dp": 22,
+        "ts": 16
+      },
+      {
+        "id": "L08",
+        "col": "J",
+        "name": "Devpura Acc-2",
+        "dp": 29,
+        "ts": 24
+      },
+      {
+        "id": "L09",
+        "col": "K",
+        "name": "Snaganer Acc-1",
+        "dp": 21,
+        "ts": 16
+      },
+      {
+        "id": "L10",
+        "col": "L",
+        "name": "Devpura Acc-2",
+        "dp": 27,
+        "ts": 22
+      },
+      {
+        "id": "L11",
+        "col": "M",
+        "name": "Sheodaspura",
+        "dp": 30,
+        "ts": 25
+      },
+      {
+        "id": "L12",
+        "col": "N",
+        "name": "Durgapur Acc-1",
+        "dp": 19,
+        "ts": 15
+      },
+      {
+        "id": "L13",
+        "col": "O",
+        "name": "Durgapur Acc-2",
+        "dp": 26,
+        "ts": 23
+      }
+    ],
+    "totalDP": 374,
+    "totalTS": 303
+  }
+}

@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-4ee47595-c64d-4a1c-b405-0ecdb0df1002/styles.css">
+<script src="_ds/industry-4ee47595-c64d-4a1c-b405-0ecdb0df1002/_ds_bundle.js"></script>
+<style>
+html{height:100%;margin:0;overflow-x:auto;overflow-y:hidden}
+body{height:100%;margin:0;min-width:1440px;overflow:hidden}
+body{font-size:13px;-webkit-font-smoothing:antialiased}
+@keyframes bomflash{0%{background:#fdf0d0}100%{background:transparent}}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-thumb{background:#b7b7ba;border:3px solid #f2f2f3}
+::-webkit-scrollbar-track{background:#f2f2f3}
+a{color:#416180}a:hover{color:#5980a6}
+input[type=number]::-webkit-inner-spin-button{opacity:0;width:0}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;min-width:1440px;background:#f2f2f3;color:#1d1f20;font-family:Barlow,system-ui,sans-serif">
+
+  <header style="display:flex;align-items:stretch;height:46px;flex:none;background:#e9e9ea;border-bottom:1px solid rgba(29,31,32,.22)">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 14px;border-right:1px solid rgba(29,31,32,.16)">
+      <div style="width:15px;height:15px;border:1.5px solid #5980a6;position:relative"><i style="position:absolute;left:4px;top:4px;width:5px;height:5px;background:#5980a6"></i></div>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap">BOM Calculator</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:0 14px;flex:1;min-width:0">
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5d5d60">TDR-2026-0114</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Jaipur–Sawai Madhopur · Axle Counter Renewal</span>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;padding:2px 6px;border:1px solid rgba(29,31,32,.28);color:#5d5d60;white-space:nowrap">REV {{ rev }} · DRAFT</span>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#a33a2a;white-space:nowrap">{{ unresolvedLabel }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;padding:0 12px;border-left:1px solid rgba(29,31,32,.16)">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Project value</span>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:500">{{ grandTotal }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;padding:0 12px;border-left:1px solid rgba(29,31,32,.16)">
+      <button class="btn btn-secondary" style="height:28px;font-size:12px;padding:0 9px" onClick="{{ onExport }}">Export XLSX</button>
+      <button class="btn btn-primary" style="height:28px;font-size:12px;padding:0 9px" onClick="{{ onIssue }}">Issue revision</button>
+      <button class="btn btn-secondary" style="height:28px;width:28px;padding:0;font-size:13px" title="Glossary" onClick="{{ toggleGloss }}">?</button>
+    </div>
+  </header>
+
+  <div style="display:flex;flex:1;min-height:0;min-width:1440px">
+
+    <nav style="width:208px;flex:none;background:#eeeeef;border-right:1px solid rgba(29,31,32,.18);display:flex;flex-direction:column">
+      <sc-for list="{{ nav }}" as="it" hint-placeholder-count="6">
+        <button data-k="{{ it.k }}" onClick="{{ goScreen }}" style="all:unset;display:flex;gap:9px;align-items:flex-start;padding:8px 11px 8px 9px;cursor:pointer;border-bottom:1px solid rgba(29,31,32,.09);border-left:3px solid {{ it.edge }};background:{{ it.bg }}">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#98989b;padding-top:2px">{{ it.n }}</span>
+          <span style="display:flex;flex:1;flex-direction:column;gap:1px;min-width:0">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.01em;color:{{ it.fg }};white-space:nowrap">{{ it.t }}</span>
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:{{ it.sc }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ it.s }}</span>
+          </span>
+        </button>
+      </sc-for>
+      <div style="flex:1"></div>
+      <div style="padding:10px 11px;border-top:1px solid rgba(29,31,32,.14);display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#7a7a7d">Provenance key</span>
+        <sc-for list="{{ legend }}" as="g" hint-placeholder-count="5">
+          <span style="display:flex;align-items:center;gap:7px">
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;width:13px;height:13px;display:flex;align-items:center;justify-content:center;color:#f2f2f3;background:{{ g.c }}">{{ g.l }}</span>
+            <span style="font-size:11px;color:#424244;white-space:nowrap">{{ g.n }}</span>
+            <span style="flex:1"></span>
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#7a7a7d">{{ g.count }}</span>
+          </span>
+        </sc-for>
+      </div>
+    </nav>
+
+    <main style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden">
+
+      <sc-if value="{{ isBoq }}" hint-placeholder-val="{{ true }}">
+        <div data-screen-label="03 Generated BoQ" style="display:flex;flex-direction:column;height:100%;min-height:0">
+
+          <div style="flex:none;padding:11px 16px 9px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">03 · BILL OF QUANTITIES</span>
+              <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Generated BoQ</h2>
+            </div>
+            <span style="font-size:11.5px;color:#5d5d60;max-width:38ch;min-width:26ch;line-height:1.35;padding-bottom:2px">{{ boqRowCount }} lines from {{ ruleFiredCount }} rules over 18 locations. Nothing here was typed unless it says so.</span>
+            <div style="flex:1"></div>
+            <div style="display:flex;gap:0;align-items:stretch;border:1px solid rgba(29,31,32,.2)">
+              <sc-for list="{{ boqStats }}" as="s" hint-placeholder-count="4">
+                <span style="display:flex;flex-direction:column;gap:0;padding:4px 11px;border-right:1px solid rgba(29,31,32,.14)">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#7a7a7d;white-space:nowrap">{{ s.k }}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:{{ s.c }};white-space:nowrap">{{ s.v }}</span>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ delta.show }}" hint-placeholder-val="{{ false }}">
+            <div style="flex:none;display:flex;align-items:center;gap:12px;padding:6px 16px;background:#eef6ff;border-bottom:1px solid #94bce3">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;background:#5980a6;color:#f2f2f3;padding:2px 6px">RECALC</span>
+              <span style="font-size:12px">{{ delta.text }}</span>
+              <span style="flex:1"></span>
+              <button class="btn btn-ghost" style="font-size:11.5px;height:22px" onClick="{{ dismissDelta }}">Dismiss</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hasUnresolved }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:none;margin:10px 16px 0;border:1px solid #a33a2a;background:#fdf3f1">
+              <div style="display:flex;align-items:center;gap:10px;padding:5px 10px;border-bottom:1px solid rgba(163,58,42,.3)">
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;background:#a33a2a;color:#f2f2f3;padding:2px 6px">UNRESOLVED · {{ unresolved.length }}</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:13.5px;font-weight:600;white-space:nowrap">These lines belong in the BoQ but no rule can produce a quantity</span>
+                <span style="flex:1"></span>
+                <span style="font-size:11px;color:#7a7a7d">Blank, never zero. They will block the issue.</span>
+              </div>
+              <sc-for list="{{ unresolved }}" as="u" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 10px;border-bottom:1px solid rgba(163,58,42,.12);font-size:12px">
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;width:150px;flex:none;color:#a33a2a">{{ u.code }}</span>
+                  <span style="width:74px;flex:none;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#7a7a7d">{{ u.g }}</span>
+                  <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ u.why }}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60;white-space:nowrap">{{ u.hint }}</span>
+                  <button class="btn btn-secondary" style="height:20px;font-size:11px;padding:0 7px;white-space:nowrap;flex:none" data-code="{{ u.code }}" onClick="{{ onWriteRule }}">Write rule</button>
+                  <button class="btn btn-secondary" style="height:20px;font-size:11px;padding:0 7px;white-space:nowrap;flex:none" data-code="{{ u.code }}" onClick="{{ onEnterManual }}">Enter manually</button>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <div style="flex:1;min-height:0;overflow:auto;padding:10px 16px 0">
+            <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+              <thead>
+                <tr style="position:sticky;top:0;z-index:2;background:#e9e9ea">
+                  <th style="width:24px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);padding:0"></th>
+                  <th style="width:166px;text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Part code</th>
+                  <th style="text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Description</th>
+                  <th style="width:44px;text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">UOM</th>
+                  <th style="width:112px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Qty</th>
+                  <th style="width:86px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Unit rate</th>
+                  <th style="width:108px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Line total</th>
+                  <th style="width:190px;text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60;font-weight:600;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)">Provenance</th>
+                  <th style="width:22px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);padding:0"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ boqFlat }}" as="r" hint-placeholder-count="24">
+                  <sc-if value="{{ r.isGroup }}" hint-placeholder-val="{{ false }}">
+                    <tr style="height:26px;background:#e4e4e6">
+                      <td colspan="9" style="padding:0;border-bottom:1px solid rgba(29,31,32,.22);border-top:1px solid rgba(29,31,32,.22);border-left:3px solid rgba(29,31,32,.35)">
+                        <div style="display:flex;align-items:center;gap:10px;padding:0 8px">
+                          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">{{ r.g }}</span>
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#7a7a7d;white-space:nowrap">{{ r.gMeta }}</span>
+                          <span style="flex:1;height:1px;background:rgba(29,31,32,.14)"></span>
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#424244">{{ r.gSub }}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </sc-if>
+                  <sc-if value="{{ r.isPart }}" hint-placeholder-val="{{ true }}">
+                    <tr data-id="{{ r.key }}" onClick="{{ onRowClick }}" tabindex="0" style="height:{{ rowH }};cursor:pointer;background:{{ r.rowBg }}">
+                      <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);border-left:3px solid {{ r.edge }}">
+                        <span style="display:flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:3px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;font-weight:700;color:{{ r.glyphFg }};background:{{ r.glyphBg }};border:1px solid {{ r.glyphBd }}">{{ r.glyph }}</span>
+                      </td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11.5px;white-space:nowrap">{{ r.code }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:0">{{ r.desc }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ r.uom }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;animation:{{ r.anim }}">
+                        <span style="color:#98989b;text-decoration:line-through;font-size:10.5px;margin-right:5px">{{ r.origText }}</span><span style="font-size:12.5px;font-weight:{{ r.qtyW }};color:{{ r.qtyC }};background:{{ r.qtyBg }};padding:1px 3px">{{ r.qtyText }}</span>
+                      </td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ r.rateText }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:{{ r.totC }}">{{ r.totText }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08)">
+                        <span style="display:inline-flex;align-items:center;gap:5px">
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;color:{{ r.tagFg }};background:{{ r.tagBg }};border:1px solid {{ r.tagBd }}">{{ r.tag }}</span>
+                          <span style="font-size:10.5px;color:#7a7a7d;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.provNote }}</span>
+                        </span>
+                      </td>
+                      <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);text-align:center;font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#98989b">{{ r.chev }}</td>
+                    </tr>
+                  </sc-if>
+                  <sc-if value="{{ r.isOpen }}" hint-placeholder-val="{{ false }}">
+                    <tr>
+                      <td colspan="9" style="padding:0;border-bottom:1px solid rgba(29,31,32,.2);border-left:3px solid {{ r.edge }};background:#e9e9ea">
+                        <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:0;border-top:1px solid rgba(29,31,32,.12)">
+                          <div style="padding:11px 14px;border-right:1px solid rgba(29,31,32,.12);display:flex;flex-direction:column;gap:9px">
+                            <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Derivation</span>
+                            <div style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.65;color:#1d1f20">{{ exp.arith }}</div>
+                            <div style="display:grid;grid-template-columns:78px 1fr;gap:3px 10px;font-size:11.5px">
+                              <sc-for list="{{ exp.facts }}" as="f" hint-placeholder-count="4">
+                                <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#7a7a7d">{{ f.k }}</span>
+                                <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#1d1f20">{{ f.v }}</span>
+                              </sc-for>
+                            </div>
+                            <sc-if value="{{ exp.hasNote }}" hint-placeholder-val="{{ false }}">
+                              <div style="padding:7px 9px;border:1px solid {{ exp.noteBd }};background:{{ exp.noteBg }};font-size:11.5px;line-height:1.45;color:#2b2b2d">{{ exp.note }}</div>
+                            </sc-if>
+                            <div style="display:flex;gap:5px;margin-top:2px">
+                              <button class="btn btn-secondary" style="height:24px;font-size:11.5px;padding:0 9px" data-code="{{ exp.code }}" onClick="{{ onOverride }}">Override quantity</button>
+                              <button class="btn btn-secondary" style="height:24px;font-size:11.5px;padding:0 9px" data-code="{{ exp.code }}" onClick="{{ onGotoRule }}">Open rule</button>
+                              <sc-if value="{{ exp.canConfirm }}" hint-placeholder-val="{{ false }}">
+                                <button class="btn btn-primary" style="height:24px;font-size:11.5px;padding:0 9px" data-code="{{ exp.code }}" onClick="{{ onConfirmStale }}">Confirm against new input</button>
+                              </sc-if>
+                              <sc-if value="{{ exp.canRevert }}" hint-placeholder-val="{{ false }}">
+                                <button class="btn btn-secondary" style="height:24px;font-size:11.5px;padding:0 9px" data-code="{{ exp.code }}" onClick="{{ onRevert }}">Revert to derived</button>
+                              </sc-if>
+                            </div>
+                          </div>
+                          <div style="padding:11px 14px;display:flex;flex-direction:column;gap:7px;min-width:0">
+                            <div style="display:flex;align-items:baseline;gap:9px">
+                              <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Per location</span>
+                              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#98989b">{{ exp.perLocMeta }}</span>
+                            </div>
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px;max-height:172px;overflow:auto">
+                              <sc-for list="{{ exp.perLoc }}" as="p" hint-placeholder-count="9">
+                                <span style="display:flex;align-items:center;gap:6px;height:20px;border-bottom:1px solid rgba(29,31,32,.07);font-size:11.5px">
+                                  <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.n }}</span>
+                                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#98989b">{{ p.d }}</span>
+                                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;width:34px;text-align:right">{{ p.q }}</span>
+                                </span>
+                              </sc-for>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </sc-if>
+                </sc-for>
+                <tr style="height:32px;position:sticky;bottom:0;background:#dfdfe1">
+                  <td colspan="4" style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Project total · {{ boqRowCount }} lines</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ totalQtyNote }}</td>
+                  <td style="border-top:1px solid rgba(29,31,32,.4)"></td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:500">{{ grandTotal }}</td>
+                  <td colspan="2" style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);font-size:10.5px;color:#a33a2a;font-family:ui-monospace,Menlo,monospace;white-space:nowrap">{{ totalCaveat }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="01 Project setup" style="display:flex;flex-direction:column;height:100%;min-height:0">
+          <div style="flex:none;padding:11px 16px 9px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">01 · IMPORT & DECLARATIONS</span>
+              <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Project setup</h2>
+            </div>
+            <span style="font-size:11.5px;color:#5d5d60;max-width:46ch;line-height:1.35;padding-bottom:2px">The Bid Process Sheet supplies quantities. The declarations on the right decide which derivation rules are allowed to fire.</span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:minmax(430px,1fr) minmax(480px,1fr);gap:0">
+
+            <section style="padding:14px 16px;border-right:1px solid rgba(29,31,32,.16);display:flex;flex-direction:column;gap:12px">
+              <div class="blueprint" style="position:relative;padding:16px;display:flex;gap:14px;align-items:center;background:#eeeeef;border-style:dashed;border-color:rgba(29,31,32,.3)">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <div style="width:46px;height:56px;border:1px solid rgba(29,31,32,.34);position:relative;flex:none;background:#f2f2f3">
+                  <div style="position:absolute;top:0;right:0;width:13px;height:13px;border-left:1px solid rgba(29,31,32,.34);border-bottom:1px solid rgba(29,31,32,.34);background:#e0e0e2"></div>
+                  <span style="position:absolute;bottom:5px;left:5px;font-family:ui-monospace,Menlo,monospace;font-size:8.5px;color:#5d5d60">XLSX</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px">BPS_JP-SWM_Rev-C.xlsx</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#5d5d60">imported 30 Jul 2026 · 09:14 · sheet “DP-TS Summary” · 1.2 MB</span>
+                  <span style="font-size:11.5px;color:#7a7a7d">Drop a replacement here to re-import. Overrides survive; their derived baselines do not.</span>
+                </div>
+                <div style="flex:1"></div>
+                <button class="btn btn-secondary" style="height:26px;font-size:11.5px;padding:0 9px;flex:none">Re-import</button>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:0">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d;margin-bottom:5px">Detected in sheet</span>
+                <sc-for list="{{ detected }}" as="d" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:10px;height:30px;border-bottom:1px solid rgba(29,31,32,.1)">
+                    <span style="width:190px;font-size:12.5px">{{ d.k }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:14px;width:66px;text-align:right">{{ d.v }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#98989b;width:46px">{{ d.u }}</span>
+                    <span style="flex:1;font-size:11px;color:#7a7a7d;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ d.src }}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="border:1px solid rgba(29,31,32,.24);background:#e9e9ea">
+                <div style="display:flex;align-items:center;gap:9px;padding:5px 10px;border-bottom:1px solid rgba(29,31,32,.16)">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Variance against NIT</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#7a7a7d">NIT Annexure-II, cl. 4.2</span>
+                </div>
+                <sc-for list="{{ variance }}" as="v" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:10px;height:28px;padding:0 10px;border-bottom:1px solid rgba(29,31,32,.08)">
+                    <span style="width:140px;font-size:12px">{{ v.k }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;width:56px;text-align:right;color:#5d5d60">{{ v.nit }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#98989b">→</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;width:56px;text-align:right">{{ v.ours }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;width:62px;text-align:right;color:{{ v.c }}">{{ v.d }}</span>
+                    <span style="flex:1;font-size:11px;color:#7a7a7d;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ v.note }}</span>
+                  </div>
+                </sc-for>
+                <div style="padding:6px 10px;font-size:11.5px;color:#2b2b2d;line-height:1.4">{{ varianceSummary }}</div>
+              </div>
+            </section>
+
+            <section style="padding:14px 16px;display:flex;flex-direction:column;gap:9px">
+              <div style="display:flex;align-items:baseline;gap:10px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Project declarations</span>
+                <span style="flex:1;height:1px;background:rgba(29,31,32,.14)"></span>
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#5d5d60">{{ declActiveLabel }}</span>
+              </div>
+              <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+                <thead>
+                  <tr>
+                    <th style="text-align:left;width:34px;padding:3px 4px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">On</th>
+                    <th style="text-align:left;padding:3px 6px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Declaration</th>
+                    <th style="text-align:left;width:184px;padding:3px 6px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Value</th>
+                    <th style="text-align:left;width:184px;padding:3px 6px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Affects</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ decls }}" as="d" hint-placeholder-count="11">
+                    <tr style="height:30px;background:{{ d.bg }}">
+                      <td style="padding:0 4px;border-bottom:1px solid rgba(29,31,32,.08);border-left:3px solid {{ d.edge }}">
+                        <span style="display:flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid {{ d.dotBd }};background:{{ d.dotBg }};font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#f2f2f3">{{ d.dot }}</span>
+                      </td>
+                      <td style="padding:0 6px;border-bottom:1px solid rgba(29,31,32,.08)">{{ d.k }}</td>
+                      <td style="padding:0 6px;border-bottom:1px solid rgba(29,31,32,.08)">
+                        <sc-if value="{{ d.isSelect }}" hint-placeholder-val="{{ true }}">
+                          <select class="input" data-k="{{ d.id }}" onChange="{{ onDecl }}" value="{{ d.v }}" style="height:22px;min-height:22px;padding:0 4px;font-size:12px;font-family:ui-monospace,Menlo,monospace;background:#f2f2f3;width:100%">
+                            <sc-for list="{{ d.opts }}" as="o" hint-placeholder-count="2">
+                              <option value="{{ o }}">{{ o }}</option>
+                            </sc-for>
+                          </select>
+                        </sc-if>
+                        <sc-if value="{{ d.isNum }}" hint-placeholder-val="{{ false }}">
+                          <span style="display:flex;align-items:center;gap:5px">
+                            <input class="input" type="number" data-k="{{ d.id }}" onChange="{{ onDecl }}" value="{{ d.v }}" style="height:22px;min-height:22px;padding:0 5px;font-size:12px;font-family:ui-monospace,Menlo,monospace;background:#f2f2f3;width:58px;text-align:right">
+                            <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#7a7a7d">%</span>
+                          </span>
+                        </sc-if>
+                      </td>
+                      <td style="padding:0 6px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:{{ d.affC }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:0">{{ d.aff }}</td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+              <div style="margin-top:2px;border:1px solid rgba(29,31,32,.2);padding:8px 10px;display:flex;flex-direction:column;gap:5px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Dormant rules</span>
+                <span style="font-size:11.5px;line-height:1.45;color:#2b2b2d">{{ dormantText }}</span>
+              </div>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isInput }}" hint-placeholder-val="{{ false }}"><div data-screen-label="02 Input table" style="display:flex;flex-direction:column;height:100%;min-height:0">
+          <div style="flex:none;padding:11px 16px 9px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">02 · LOCATIONS</span>
+              <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Input table</h2>
+            </div>
+            <span style="font-size:11.5px;color:#5d5d60;max-width:44ch;line-height:1.35;padding-bottom:2px">Entered columns are white and editable. Computed columns are shaded and locked. Change a figure and the BoQ recomputes on the spot.</span>
+            <div style="flex:1"></div>
+            <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#8a6011">{{ inputFlags }} validation flag · {{ mergedCount }} merged locations</span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:auto;padding:0 16px">
+            <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+              <thead>
+                <tr style="position:sticky;top:0;z-index:2;background:#e9e9ea">
+                  <th colspan="3" style="text-align:left;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Identity</th>
+                  <th colspan="2" style="text-align:center;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">DN line</th>
+                  <th colspan="2" style="text-align:center;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">UP line</th>
+                  <th colspan="2" style="text-align:center;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);background:#dfdfe1;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5d5d60">ƒ Main = DN + UP</th>
+                  <th colspan="2" style="text-align:center;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Redundant</th>
+                  <th style="border-bottom:1px solid rgba(29,31,32,.14);border-top:1px solid rgba(29,31,32,.3)"></th>
+                </tr>
+                <tr style="position:sticky;top:22px;z-index:2;background:#e9e9ea">
+                  <th style="width:132px;text-align:left;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Location</th>
+                  <th style="width:158px;text-align:left;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Block section</th>
+                  <th style="width:92px;text-align:left;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Application</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">DP</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">TS</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">DP</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">TS</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);background:#dfdfe1;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">DP</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);background:#dfdfe1;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">TS</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-left:1px solid rgba(29,31,32,.16);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">DP</th>
+                  <th style="width:66px;text-align:right;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#5d5d60">TS</th>
+                  <th style="text-align:left;padding:3px 8px;border-bottom:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Validation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ inputRows }}" as="r" hint-placeholder-count="18">
+                  <tr style="height:{{ rowH }};background:{{ r.bg }}">
+                    <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);border-left:3px solid {{ r.edge }};white-space:nowrap">{{ r.name }}</td>
+                    <td style="padding:0 6px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px">
+                      <sc-if value="{{ r.single }}" hint-placeholder-val="{{ true }}"><span>{{ r.bsA }}</span></sc-if>
+                      <sc-if value="{{ r.merged }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:flex;align-items:stretch;gap:5px">
+                          <span style="width:5px;border:1px solid #5980a6;border-right:none;flex:none"></span>
+                          <span style="display:flex;flex-direction:column;line-height:1.15;justify-content:center">
+                            <span>{{ r.bsA }}</span>
+                            <span>{{ r.bsB }}</span>
+                          </span>
+                          <span style="align-self:center;font-size:8.5px;letter-spacing:.08em;color:#416180;border:1px solid #94bce3;padding:0 3px">MERGED</span>
+                        </span>
+                      </sc-if>
+                    </td>
+                    <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-size:11.5px;color:#5d5d60">{{ r.app }}</td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);border-left:1px solid rgba(29,31,32,.1)">
+                      <input type="number" data-id="{{ r.id }}" data-f="dnDP" value="{{ r.dnDP }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#1d1f20">
+                    </td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08)">
+                      <input type="number" data-id="{{ r.id }}" data-f="dnTS" value="{{ r.dnTS }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#1d1f20">
+                    </td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);border-left:1px solid rgba(29,31,32,.1)">
+                      <input type="number" data-id="{{ r.id }}" data-f="upDP" value="{{ r.upDP }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#1d1f20">
+                    </td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08)">
+                      <input type="number" data-id="{{ r.id }}" data-f="upTS" value="{{ r.upTS }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#1d1f20">
+                    </td>
+                    <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);border-left:1px solid rgba(29,31,32,.1);background:#e7e7e9;text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#424244">{{ r.mainDP }}</td>
+                    <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);background:#e7e7e9;text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#424244">{{ r.mainTS }}</td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);border-left:1px solid rgba(29,31,32,.1);background:{{ r.redDPbg }}">
+                      <input type="number" data-id="{{ r.id }}" data-f="redDP" value="{{ r.redDP }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:{{ r.redDPc }}">
+                    </td>
+                    <td style="padding:0;border-bottom:1px solid rgba(29,31,32,.08);background:{{ r.redTSbg }}">
+                      <input type="number" data-id="{{ r.id }}" data-f="redTS" value="{{ r.redTS }}" onChange="{{ onCell }}" style="width:100%;height:26px;border:none;background:transparent;text-align:right;padding:0 8px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:{{ r.redTSc }}">
+                    </td>
+                    <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08)">
+                      <sc-if value="{{ r.hasErr }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:flex;align-items:center;gap:7px">
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;padding:1px 4px;background:#b07d17;color:#f2f2f3">FLAG</span>
+                          <span style="font-size:11.5px;color:#5d3f08">{{ r.err }}</span>
+                          <button class="btn btn-secondary" style="height:19px;font-size:10.5px;padding:0 6px" data-id="{{ r.id }}" onClick="{{ onMirror }}">Mirror main</button>
+                        </span>
+                      </sc-if>
+                    </td>
+                  </tr>
+                </sc-for>
+                <tr style="height:32px;position:sticky;bottom:0;background:#dfdfe1">
+                  <td colspan="3" style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Totals · 18 locations</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);border-left:1px solid rgba(29,31,32,.16);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.dnDP }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.dnTS }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);border-left:1px solid rgba(29,31,32,.16);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.upDP }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.upTS }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);border-left:1px solid rgba(29,31,32,.16);background:#d4d4d7;text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;font-weight:500">{{ inputTot.mainDP }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);background:#d4d4d7;text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;font-weight:500">{{ inputTot.mainTS }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);border-left:1px solid rgba(29,31,32,.16);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.redDP }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px">{{ inputTot.redTS }}</td>
+                  <td style="padding:0 8px;border-top:1px solid rgba(29,31,32,.4);font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">550 DP · 467 TS to BoQ</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="font-size:11.5px;color:#7a7a7d;margin:9px 0 14px;max-width:96ch;line-height:1.45">Merged locations are bracketed: the station sits on two block sections and is counted once. Redundant figures default to mirroring main; a figure that does not mirror is flagged in place and carried into the BoQ as entered — the tool does not correct it for you.</p>
+          </div>
+        </div></sc-if>
+      <sc-if value="{{ isRacks }}" hint-placeholder-val="{{ false }}"><div data-screen-label="04 Rack layout" style="display:flex;flex-direction:column;height:100%;min-height:0">
+          <div style="flex:none;padding:11px 16px 9px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">04 · RACK LAYOUT</span>
+              <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Rack layout</h2>
+            </div>
+            <span style="font-size:11.5px;color:#5d5d60;max-width:44ch;line-height:1.35;padding-bottom:2px">The step done by hand today. Each rack is an 84 TE budget; drag a backplane to another rack and the remainder repacks.</span>
+            <div style="flex:1"></div>
+            <button class="btn btn-secondary" style="height:26px;font-size:11.5px;padding:0 9px" onClick="{{ onAddRack }}">Add empty rack</button>
+            <button class="btn btn-secondary" style="height:26px;font-size:11.5px;padding:0 9px" onClick="{{ onResetPack }}">Reset to generated</button>
+          </div>
+          <div style="flex:1;min-height:0;display:flex;overflow:hidden">
+            <div style="width:206px;flex:none;border-right:1px solid rgba(29,31,32,.16);overflow:auto">
+              <div style="padding:6px 10px;font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d;border-bottom:1px solid rgba(29,31,32,.12)">Locations</div>
+              <sc-for list="{{ locList }}" as="l" hint-placeholder-count="18">
+                <button data-id="{{ l.id }}" onClick="{{ onSelLoc }}" style="all:unset;display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;padding:0 10px;height:28px;cursor:pointer;border-bottom:1px solid rgba(29,31,32,.07);border-left:3px solid {{ l.edge }};background:{{ l.bg }}">
+                  <span style="flex:1;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ l.name }}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#416180;white-space:nowrap;flex:none">{{ l.customMark }}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#98989b;white-space:nowrap;flex:none">{{ l.dp }} DP</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;width:22px;flex:none;text-align:right">{{ l.racks }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="flex:1;min-width:0;overflow:auto;padding:12px 16px 20px">
+              <div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:4px">
+                <h3 style="margin:0;font-size:21px">{{ sel.name }}</h3>
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#7a7a7d;padding-bottom:3px">{{ sel.bs }}</span>
+              </div>
+              <div style="display:flex;gap:0;border:1px solid rgba(29,31,32,.2);margin-bottom:12px;width:fit-content">
+                <sc-for list="{{ selStats }}" as="s" hint-placeholder-count="7">
+                  <span style="display:flex;flex-direction:column;padding:4px 12px;border-right:1px solid rgba(29,31,32,.14)">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#7a7a7d;white-space:nowrap">{{ s.k }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:{{ s.c }};white-space:nowrap">{{ s.v }}</span>
+                  </span>
+                </sc-for>
+              </div>
+              <sc-if value="{{ hasDragErr }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:10px;padding:5px 10px;border:1px solid #a33a2a;background:#fdf3f1;margin-bottom:10px">
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;background:#a33a2a;color:#f2f2f3;padding:2px 6px">NO FIT</span>
+                  <span style="font-size:12px">{{ dragErr }}</span>
+                </div>
+              </sc-if>
+              <div style="display:flex;flex-direction:column;gap:14px;max-width:1040px">
+                <sc-for list="{{ rackList }}" as="rk" hint-placeholder-count="4">
+                  <div onDragOver="{{ onDragOver }}" onDrop="{{ onDropRack }}" data-r="{{ rk.r }}" style="display:flex;flex-direction:column;gap:4px">
+                    <div style="display:flex;align-items:baseline;gap:10px">
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:500">{{ rk.idx }}</span>
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7a7a7d">BGT07 84TE</span>
+                      <span style="flex:1;height:1px;background:rgba(29,31,32,.12)"></span>
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7a7a7d">{{ rk.boards }}</span>
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ rk.te }}</span>
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;width:38px;text-align:right;color:{{ rk.utilC }}">{{ rk.util }}</span>
+                    </div>
+                    <div style="display:flex;height:58px;border:1px solid rgba(29,31,32,.34);background:#e9e9ea">
+                      <sc-for list="{{ rk.items }}" as="it" hint-placeholder-count="4">
+                        <div draggable="{{ it.draggable }}" data-r="{{ it.r }}" data-i="{{ it.j }}" onDragStart="{{ onDragStart }}" style="width:{{ it.w }};border-right:1px solid rgba(29,31,32,.2);background:{{ it.bg }};background-image:{{ it.hatch }};display:flex;flex-direction:column;justify-content:center;gap:1px;padding:0 6px;overflow:hidden;cursor:{{ it.cursor }};box-shadow:inset 0 0 0 1px {{ it.bd }}">
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ it.fg }}">{{ it.code }}</span>
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#5d5d60;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ it.sub }}</span>
+                          <span style="font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#7a7a7d">{{ it.teLabel }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;font-size:8.5px;color:#98989b">
+                      <span>0</span><span>12</span><span>24</span><span>36</span><span>48</span><span>60</span><span>72</span><span>84 TE</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="font-size:11.5px;color:#7a7a7d;margin:16px 0 0;max-width:88ch;line-height:1.45">{{ sel.summary }} — this is the layout the BoQ counts. Moving a backplane changes the rack count, the blanking plates and every line derived from them; the affected BoQ rows will show as recomputed, and any override on them will flag stale.</p>
+            </div>
+          </div>
+        </div></sc-if>
+      <sc-if value="{{ isRules }}" hint-placeholder-val="{{ false }}"><div data-screen-label="05 Rules editor" style="display:flex;flex-direction:column;height:100%;min-height:0">
+          <div style="flex:none;padding:11px 16px 9px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">05 · DERIVATION RULES</span>
+              <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Rules editor</h2>
+            </div>
+            <span style="font-size:11.5px;color:#5d5d60;max-width:46ch;line-height:1.35;padding-bottom:2px">Every quantity in the BoQ traces to one of these. Edit one and the impact is shown before anything is committed.</span>
+          </div>
+          <div style="flex:1;min-height:0;display:flex;overflow:hidden">
+            <div style="flex:1;min-width:0;overflow:auto;padding:0 16px 20px">
+              <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+                <thead>
+                  <tr style="position:sticky;top:0;z-index:2;background:#e9e9ea">
+                    <th style="width:50px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Rule</th>
+                    <th style="width:162px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Part</th>
+                    <th style="width:94px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Driver</th>
+                    <th style="width:132px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Expression</th>
+                    <th style="width:58px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Round</th>
+                    <th style="text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Condition</th>
+                    <th style="width:76px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Output</th>
+                    <th style="width:76px;text-align:right;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Now</th>
+                    <th style="width:56px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3)"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ ruleRows }}" as="r" hint-placeholder-count="28">
+                    <tr style="height:{{ rowH }};background:{{ r.bg }}">
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);border-left:3px solid {{ r.edge }};font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#416180">{{ r.id }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:0">{{ r.part }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-size:11.5px;color:#5d5d60">{{ r.driver }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px">{{ r.expr }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ r.round }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px;color:{{ r.stateC }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:0">{{ r.cond }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-size:11.5px;color:#5d5d60">{{ r.group }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:{{ r.qtyC }}">{{ r.qty }}</td>
+                      <td style="padding:0 6px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right">
+                        <button class="btn btn-secondary" style="height:19px;font-size:10.5px;padding:0 6px" data-id="{{ r.id }}" onClick="{{ onEditRule }}">Edit</button>
+                      </td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+
+            <aside style="width:368px;flex:none;border-left:1px solid rgba(29,31,32,.16);display:flex;flex-direction:column;overflow:auto">
+              <sc-if value="{{ hasDraft }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:12px 14px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;flex-direction:column;gap:9px;background:#e9e9ea">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em">{{ draft.title }}</span>
+                  <div style="display:grid;grid-template-columns:78px 1fr;gap:6px 9px;align-items:center">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Multiplier</span>
+                    <input class="input" type="number" data-f="mult" value="{{ draft.mult }}" onChange="{{ onDraft }}" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 6px;background:#f2f2f3">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Divisor</span>
+                    <input class="input" type="number" data-f="div" value="{{ draft.div }}" onChange="{{ onDraft }}" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 6px;background:#f2f2f3">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Driver</span>
+                    <select class="input" data-f="driver" value="{{ draft.driver }}" onChange="{{ onDraft }}" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 4px;background:#f2f2f3">
+                      <option value="DP">DP — per detection point</option>
+                      <option value="TS">TS — per track section</option>
+                      <option value="LOC">LOC — per location</option>
+                      <option value="RACK">RACK — per rack</option>
+                      <option value="CUB">CUB — per cubicle</option>
+                      <option value="PROJ">PROJ — per project</option>
+                      <option value="APP">APP — per application</option>
+                    </select>
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Rounding</span>
+                    <select class="input" data-f="round" value="{{ draft.round }}" onChange="{{ onDraft }}" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 4px;background:#f2f2f3">
+                      <option value="up">up</option><option value="down">down</option><option value="near">nearest</option><option value="none">none</option>
+                    </select>
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Scope</span>
+                    <select class="input" data-f="scope" value="{{ draft.scope }}" onChange="{{ onDraft }}" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 4px;background:#f2f2f3">
+                      <option value="project">round once on the project total</option>
+                      <option value="location">round per location, then sum</option>
+                    </select>
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Condition</span>
+                    <input class="input" data-f="cond" value="{{ draft.cond }}" onChange="{{ onDraft }}" placeholder="e.g. arch=Centralised" style="height:24px;min-height:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:0 6px;background:#f2f2f3">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a7a7d">Reads as</span>
+                    <input class="input" data-f="text" value="{{ draft.text }}" onChange="{{ onDraft }}" placeholder="plain-English statement of the rule" style="height:24px;min-height:24px;font-size:12px;padding:0 6px;background:#f2f2f3">
+                  </div>
+                </div>
+                <div style="padding:11px 14px;border-bottom:1px solid rgba(29,31,32,.16);display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:baseline;gap:9px">
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Impact before commit</span>
+                    <span style="flex:1;height:1px;background:rgba(29,31,32,.12)"></span>
+                  </div>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px">{{ impact.verdict }}</span>
+                  <div style="display:flex;flex-direction:column;max-height:200px;overflow:auto;border:1px solid rgba(29,31,32,.14)">
+                    <sc-for list="{{ impact.rows }}" as="im" hint-placeholder-count="3">
+                      <span style="display:flex;align-items:center;gap:8px;height:24px;padding:0 8px;border-bottom:1px solid rgba(29,31,32,.07);font-size:11.5px">
+                        <span style="flex:1;font-family:ui-monospace,Menlo,monospace;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ im.code }}</span>
+                        <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#98989b;text-decoration:line-through">{{ im.from }}</span>
+                        <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:{{ im.dirC }}">{{ im.dir }}</span>
+                        <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;width:52px;text-align:right">{{ im.to }}</span>
+                      </span>
+                    </sc-for>
+                  </div>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#5d5d60">Project value {{ impact.from }} → {{ impact.to }}</span>
+                  <div style="display:flex;gap:6px;margin-top:2px">
+                    <button class="btn btn-primary" style="height:26px;font-size:12px;padding:0 10px" onClick="{{ onCommit }}">Commit as v15</button>
+                    <button class="btn btn-secondary" style="height:26px;font-size:12px;padding:0 10px" onClick="{{ onCancelDraft }}">Discard</button>
+                  </div>
+                </div>
+              </sc-if>
+              <div style="padding:11px 14px;display:flex;flex-direction:column;gap:7px">
+                <div style="display:flex;align-items:baseline;gap:9px">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Version history</span>
+                  <span style="flex:1;height:1px;background:rgba(29,31,32,.12)"></span>
+                </div>
+                <sc-for list="{{ versions }}" as="v" hint-placeholder-count="5">
+                  <div style="display:flex;flex-direction:column;gap:2px;padding:7px 0;border-bottom:1px solid rgba(29,31,32,.08)">
+                    <span style="display:flex;align-items:baseline;gap:8px">
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#416180">{{ v.v }}</span>
+                      <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#98989b">{{ v.d }}</span>
+                      <span style="flex:1"></span>
+                      <span style="font-size:11px;color:#7a7a7d">{{ v.by }}</span>
+                    </span>
+                    <span style="font-size:11.5px;line-height:1.4">{{ v.what }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7a7a7d">{{ v.lines }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </aside>
+          </div>
+        </div></sc-if>
+      <sc-if value="{{ isLog }}" hint-placeholder-val="{{ false }}"><div data-screen-label="06 Override log" style="display:flex;flex-direction:column;height:100%;min-height:0">
+          <div style="flex:none;padding:14px 16px 12px;border-bottom:1px solid rgba(29,31,32,.16)">
+            <div style="display:flex;align-items:flex-end;gap:16px">
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;color:#7a7a7d">06 · CROSS-PROJECT RECORD</span>
+                <h2 style="margin:0;font-size:24px;letter-spacing:-.01em">Override log</h2>
+              </div>
+              <div style="flex:1"></div>
+              <select class="input" value="{{ logFilter }}" onChange="{{ onLogFilter }}" style="width:172px;height:26px;min-height:26px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:0 6px;background:#f2f2f3">
+                <sc-for list="{{ logProjects }}" as="p" hint-placeholder-count="7"><option value="{{ p }}">{{ p }}</option></sc-for>
+              </select>
+            </div>
+            <p style="margin:10px 0 0;max-width:104ch;font-size:15px;line-height:1.5;font-family:'Barlow Condensed',sans-serif;font-weight:400;letter-spacing:.005em">Every quantity an engineer has had to type by hand, across every project. Each line is a rule the tool does not yet have — the log is how the missing rules get found, and the argument for writing them.</p>
+            <div style="display:flex;gap:0;border:1px solid rgba(29,31,32,.24);margin-top:11px;width:fit-content">
+              <sc-for list="{{ logStats }}" as="s" hint-placeholder-count="5">
+                <span style="display:flex;flex-direction:column;padding:6px 16px;border-right:1px solid rgba(29,31,32,.14)">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#7a7a7d;white-space:nowrap">{{ s.k }}</span>
+                  <span style="font-family:ui-monospace,Menlo,monospace;font-size:19px;line-height:1.25">{{ s.v }}</span>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;display:flex;overflow:hidden">
+            <div style="flex:1;min-width:0;overflow:auto;padding:0 16px 20px">
+              <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+                <thead>
+                  <tr style="position:sticky;top:0;z-index:2;background:#e9e9ea">
+                    <th style="width:112px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Project</th>
+                    <th style="width:158px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Part</th>
+                    <th style="width:84px;text-align:right;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Original</th>
+                    <th style="width:96px;text-align:right;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Overridden to</th>
+                    <th style="text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Reason</th>
+                    <th style="width:82px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Engineer</th>
+                    <th style="width:88px;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(29,31,32,.3);border-top:1px solid rgba(29,31,32,.3);font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#5d5d60">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ logRows }}" as="o" hint-placeholder-count="14">
+                    <tr style="height:{{ rowH }}">
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);border-left:3px solid {{ o.edge }};font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60;white-space:nowrap">{{ o.p }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11.5px;white-space:nowrap">{{ o.part }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:{{ o.oC }}">{{ o.o }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);text-align:right;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;font-weight:500">{{ o.n }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:0">{{ o.r }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-size:11.5px;color:#5d5d60">{{ o.by }}</td>
+                      <td style="padding:0 8px;border-bottom:1px solid rgba(29,31,32,.08);font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60">{{ o.d }}</td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+            <aside style="width:352px;flex:none;border-left:1px solid rgba(29,31,32,.16);overflow:auto;padding:12px 14px 20px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:baseline;gap:9px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7d">Missing rules, by frequency</span>
+                <span style="flex:1;height:1px;background:rgba(29,31,32,.12)"></span>
+              </div>
+              <sc-for list="{{ candidates }}" as="cd" hint-placeholder-count="5">
+                <div style="display:flex;flex-direction:column;gap:5px;padding:9px 0;border-bottom:1px solid rgba(29,31,32,.1)">
+                  <span style="display:flex;align-items:baseline;gap:8px">
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#98989b">{{ cd.rank }}</span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:nowrap">{{ cd.part }}</span>
+                    <span style="flex:1"></span>
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#5d5d60;white-space:nowrap">{{ cd.n }}× · {{ cd.projs }} proj</span>
+                  </span>
+                  <span style="display:block;height:5px;background:#dcdcde"><span style="display:block;height:5px;width:{{ cd.w }};background:#5980a6"></span></span>
+                  <span style="display:flex;align-items:baseline;gap:8px">
+                    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7a7a7d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">typed: {{ cd.vals }}</span>
+                    <span style="flex:1"></span>
+                    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:#416180;white-space:nowrap">{{ cd.verdict }}</span>
+                  </span>
+                </div>
+              </sc-for>
+              <p style="margin:4px 0 0;font-size:11.5px;line-height:1.5;color:#5d5d60">Four parts have been typed by hand on three or more projects. Each is a rule waiting to be written — and roughly a day of bid-engineer time per tender until it is.</p>
+            </aside>
+          </div>
+        </div></sc-if>
+
+    </main>
+
+    <sc-if value="{{ gloss }}" hint-placeholder-val="{{ false }}">
+      <aside style="width:314px;flex:none;background:#e9e9ea;border-left:1px solid rgba(29,31,32,.22);display:flex;flex-direction:column;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid rgba(29,31,32,.16)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Glossary</span>
+          <span style="flex:1"></span>
+          <button class="btn btn-secondary" style="height:22px;width:22px;padding:0;font-size:12px" onClick="{{ toggleGloss }}">×</button>
+        </div>
+        <div style="flex:1;overflow:auto;padding:4px 12px 14px">
+          <sc-for list="{{ glossary }}" as="g" hint-placeholder-count="10">
+            <div style="padding:8px 0;border-bottom:1px solid rgba(29,31,32,.09);display:flex;flex-direction:column;gap:2px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#416180">{{ g.t }}</span>
+              <span style="font-size:11.5px;line-height:1.45;color:#2b2b2d">{{ g.d }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </aside>
+    </sc-if>
+
+  </div>
+
+  <footer style="display:flex;align-items:center;gap:0;height:26px;flex:none;overflow:hidden;background:#e0e0e2;border-top:1px solid rgba(29,31,32,.22);padding:0 12px">
+    <sc-for list="{{ shortcuts }}" as="s" hint-placeholder-count="7">
+      <span style="display:flex;align-items:center;gap:5px;padding-right:14px">
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;padding:1px 4px;background:#f2f2f3;border:1px solid rgba(29,31,32,.28);color:#2b2b2d">{{ s.k }}</span>
+        <span style="font-size:10.5px;color:#5d5d60;white-space:nowrap">{{ s.d }}</span>
+      </span>
+    </sc-for>
+    <span style="flex:1"></span>
+    <span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#7a7a7d">{{ statusLine }}</span>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1560,&quot;height&quot;:900},&quot;currency&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;EUR&quot;,&quot;INR&quot;,&quot;USD&quot;],&quot;default&quot;:&quot;INR&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Commercial&quot;},&quot;rowHeight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:24,&quot;max&quot;:36,&quot;step&quot;:2,&quot;default&quot;:28,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Density&quot;},&quot;blankAsZero&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Provenance&quot;}}">
+class Component extends DCLogic {
+  LOCS = [
+    {id:'L01',name:'Jaipur JN',bs:['JP–DPA'],app:'ST',dnDP:1,dnTS:1,upDP:1,upTS:0,redTS:0},
+    {id:'L02',name:'Bais Godam',bs:['JP–DPA','DPA–SNGN'],app:'ST',dnDP:2,dnTS:2,upDP:1,upTS:1},
+    {id:'L03',name:'Durgapura',bs:['DPA–SNGN'],app:'ST',dnDP:14,dnTS:11,upDP:13,upTS:10},
+    {id:'L04',name:'Sanganer',bs:['SNGN–VTK'],app:'ST',dnDP:12,dnTS:9,upDP:11,upTS:9},
+    {id:'L05',name:'Bhankrota',bs:['SNGN–VTK','VTK–SDSP'],app:'BW',dnDP:3,dnTS:3,upDP:3,upTS:3},
+    {id:'L06',name:'Vatika',bs:['VTK–SDSP'],app:'ST',dnDP:9,dnTS:8,upDP:8,upTS:7},
+    {id:'L07',name:'Shivdaspura',bs:['SDSP–CKS'],app:'ST',dnDP:7,dnTS:6,upDP:7,upTS:6},
+    {id:'L08',name:'Chaksu',bs:['SDSP–CKS','CKS–BNLE'],app:'ST',dnDP:17,dnTS:13,upDP:14,upTS:12},
+    {id:'L09',name:'Chandlai',bs:['CKS–BNLE'],app:'BW',dnDP:3,dnTS:3,upDP:3,upTS:2},
+    {id:'L10',name:'Banasthali',bs:['CKS–BNLE','BNLE–NWI'],app:'ST',dnDP:22,dnTS:17,upDP:17,upTS:14},
+    {id:'L11',name:'Padampura',bs:['BNLE–NWI'],app:'ST',dnDP:8,dnTS:7,upDP:8,upTS:6},
+    {id:'L12',name:'Newai',bs:['BNLE–NWI'],app:'ST',dnDP:11,dnTS:9,upDP:10,upTS:8},
+    {id:'L13',name:'ALH-1',bs:['NWI–ISA'],app:'BW',dnDP:6,dnTS:6,upDP:6,upTS:6},
+    {id:'L14',name:'ALH-2',bs:['NWI–ISA'],app:'BW',dnDP:10,dnTS:10,upDP:10,upTS:10},
+    {id:'L15',name:'Isarda',bs:['ISA–MLZ'],app:'ST',dnDP:6,dnTS:5,upDP:6,upTS:5},
+    {id:'L16',name:'ALH-3',bs:['ISA–MLZ'],app:'BW',dnDP:6,dnTS:6,upDP:6,upTS:6},
+    {id:'L17',name:'Malarna',bs:['MLZ–SWM'],app:'ST',dnDP:5,dnTS:5,upDP:5,upTS:4},
+    {id:'L18',name:'Kanakpura',bs:['MLZ–SWM'],app:'BW',dnDP:2,dnTS:2,upDP:2,upTS:2}
+  ];
+
+  RULES = [
+    {id:'R01',part:'RSR180-001 GS05',driver:'DP',mult:1,div:1,round:'up',scope:'project',cond:'',group:'Outdoor',text:'One wheel sensor per detection point'},
+    {id:'R02',part:'FMA-001',driver:'DP',mult:1,div:1,round:'up',scope:'project',cond:'',group:'Outdoor',text:'One mounting claw per wheel sensor'},
+    {id:'R03',part:'TB-OD-12',driver:'DP',mult:1,div:2,round:'up',scope:'location',cond:'',group:'Outdoor',text:'One 12-way terminal box serves two detection points'},
+    {id:'R04',part:'AEB101 GS07',driver:'DP',mult:1,div:1,round:'up',scope:'project',cond:'',group:'Indoor',text:'AEB equals wheel sensor count'},
+    {id:'R05',part:'IO-EXB101',driver:'TS',mult:1,div:2,round:'up',scope:'location',cond:'',group:'Indoor',text:'One I/O board drives two track sections'},
+    {id:'R06',part:'BGT07 84TE',driver:'RACK',pack:'racks',group:'Indoor',text:'One rack per packed 84 TE budget'},
+    {id:'R07',part:'BP-PWR101-8',driver:'RACK',pack:'pwr',group:'Indoor',text:'One power/evaluation backplane per rack'},
+    {id:'R08',part:'BP-EXB101-2',driver:'RACK',pack:'exb2',group:'Indoor',text:'16 TE backplanes taken from the packing'},
+    {id:'R09',part:'BP-EXB101-1',driver:'RACK',pack:'exb1',group:'Indoor',text:'8 TE backplanes taken from the packing'},
+    {id:'R10',part:'BLP-01TE',driver:'RACK',pack:'blank',group:'Indoor',text:'Blanking plate per leftover TE'},
+    {id:'R11',part:'PSU-24V-10A',driver:'RACK',pack:'pwr',group:'Indoor',text:'One PSU per power backplane'},
+    {id:'R12',part:'RSTBOXV01',driver:'TS',mult:1,div:1,round:'none',scope:'project',cond:'arch=Centralised',group:'Reset',text:'One reset box per track section, centralised only'},
+    {id:'R13',part:'RSTKEY-01',driver:'TS',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Reset',text:'One key switch per reset box'},
+    {id:'R14',part:'ETH-SW-8P',driver:'LOC',mult:2,div:1,round:'none',scope:'project',cond:'comms=Fibre ring (OFC)',group:'Switch',text:'Two managed switches per location on a fibre ring'},
+    {id:'R15',part:'SFP-LC-1G',driver:'LOC',mult:4,div:1,round:'none',scope:'project',cond:'comms=Fibre ring (OFC)',group:'Switch',text:'Four SFPs per location — two per switch'},
+    {id:'R16',part:'SW-MNT-01',driver:'LOC',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Switch',text:'One switch mounting kit per location'},
+    {id:'R17',part:'LBL-ENG-01',driver:'RACK',pack:'racks',group:'Misc',text:'One engraved label set per rack'},
+    {id:'R18',part:'SURGE-24V',driver:'DP',mult:1,div:1,round:'up',scope:'project',cond:'',group:'Misc',text:'One surge module per detection point'},
+    {id:'R19',part:'DOC-FDS',driver:'PROJ',mult:1,div:1,round:'none',scope:'project',cond:'fds=Yes',group:'Misc',text:'One FDS per project when the tender demands it'},
+    {id:'R20',part:'FTS-KIT-01',driver:'APP',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Tools',text:'One adjustment kit per application'},
+    {id:'R21',part:'SVC-INST',driver:'LOC',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Services',text:'Installation & commissioning per location'},
+    {id:'R22',part:'SVC-SAT',driver:'LOC',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Services',text:'Site acceptance test per location'},
+    {id:'R23',part:'RSR180-001 GS05 SP',driver:'REF',ref:'RSR180-001 GS05',round:'up',group:'Outdoor',text:'Spares percentage of the effective sensor quantity'},
+    {id:'R24',part:'AEB101 GS07 SP',driver:'REF',ref:'AEB101 GS07',round:'up',group:'Indoor',text:'Spares percentage of the evaluation board quantity'},
+    {id:'R25',part:'IO-EXB101 SP',driver:'REF',ref:'IO-EXB101',round:'up',group:'Indoor',text:'Spares percentage of the I/O board quantity'},
+    {id:'R26',part:'CBL-4C-1.5',driver:'CABLE',group:'Outdoor',cond:'cable=Yes',text:'Cable length is only derivable when the tender states run lengths'},
+    {id:'R27',part:'CUB-FAN-01',driver:'CUB',mult:2,div:1,round:'none',scope:'project',cond:'',group:'Cubical',text:'Two fan units per cubicle'},
+    {id:'R28',part:'CUB-EARTH-01',driver:'CUB',mult:1,div:1,round:'none',scope:'project',cond:'',group:'Cubical',text:'One earth bar per cubicle'}
+  ];
+
+  PARTS = [
+    {g:'Outdoor',code:'RSR180-001 GS05',desc:'Wheel sensor RSR180, 5 m tail cable',uom:'pcs',rate:412,rule:'R01'},
+    {g:'Outdoor',code:'RSR180-001 GS10',desc:'Wheel sensor RSR180, 10 m tail cable',uom:'pcs',rate:438,rule:null,manual:181},
+    {g:'Outdoor',code:'FMA-001',desc:'Wheel sensor mounting claw, 60 kg UIC profile',uom:'pcs',rate:96.5,rule:'R02'},
+    {g:'Outdoor',code:'TB-OD-12',desc:'Outdoor terminal box, 12-way, IP65',uom:'pcs',rate:184,rule:'R03'},
+    {g:'Outdoor',code:'CBL-4C-1.5',desc:'Signalling cable, 4C × 1.5 mm², armoured',uom:'m',rate:3.9,rule:'R26'},
+    {g:'Outdoor',code:'RSR180-001 GS05 SP',desc:'Wheel sensor RSR180 5 m — project spares',uom:'pcs',rate:412,rule:'R23'},
+    {g:'Indoor',code:'AEB101 GS07',desc:'Evaluation board AEB101',uom:'pcs',rate:1240,rule:'R04'},
+    {g:'Indoor',code:'AEB101 GS07 SP',desc:'Evaluation board AEB101 — project spares',uom:'pcs',rate:1240,rule:'R24'},
+    {g:'Indoor',code:'IO-EXB101',desc:'In-/Output board IO-EXB101',uom:'pcs',rate:690,rule:'R05'},
+    {g:'Indoor',code:'IO-EXB101 SP',desc:'In-/Output board — project spares',uom:'pcs',rate:690,rule:'R25'},
+    {g:'Indoor',code:'BGT07 84TE',desc:'Board rack BGT07, 84 TE, 3 U',uom:'pcs',rate:385,rule:'R06'},
+    {g:'Indoor',code:'BP-PWR101-8',desc:'Backplane, power supply + evaluation, 42 TE',uom:'pcs',rate:520,rule:'R07'},
+    {g:'Indoor',code:'BP-EXB101-2',desc:'Backplane BP-EXB101-2, 2 × I/O, 16 TE',uom:'pcs',rate:310,rule:'R08'},
+    {g:'Indoor',code:'BP-EXB101-1',desc:'Backplane BP-EXB101-1, 1 × I/O, 8 TE',uom:'pcs',rate:220,rule:'R09'},
+    {g:'Indoor',code:'BLP-01TE',desc:'Blanking plate, 1 TE',uom:'pcs',rate:8.4,rule:'R10'},
+    {g:'Indoor',code:'PSU-24V-10A',desc:'Power supply unit, 24 V DC / 10 A',uom:'pcs',rate:465,rule:'R11'},
+    {g:'Cubical',code:'FAR-002 35U',desc:'Axle counter cubicle FAR-002, 35 U, floor standing',uom:'pcs',rate:3850,rule:null},
+    {g:'Cubical',code:'CUB-FAN-01',desc:'Cubicle fan unit with thermostat',uom:'pcs',rate:212,rule:'R27'},
+    {g:'Cubical',code:'CUB-EARTH-01',desc:'Cubicle earth bar assembly',uom:'pcs',rate:88,rule:'R28'},
+    {g:'Reset',code:'RSTBOXV01',desc:'Reset box RSTBOXV01, 2-key',uom:'pcs',rate:148,rule:'R12'},
+    {g:'Reset',code:'RSTKEY-01',desc:'Reset key switch, lockable',uom:'pcs',rate:62,rule:'R13'},
+    {g:'Reset',code:'ONDLY-230',desc:'ON Delay Timer, 230 V AC, 0.1–10 s',uom:'pcs',rate:74,rule:null},
+    {g:'Switch',code:'ETH-SW-8P',desc:'Ethernet switch, 8-port managed, DIN rail',uom:'pcs',rate:940,rule:'R14'},
+    {g:'Switch',code:'SFP-LC-1G',desc:'SFP module, 1 G single-mode LC',uom:'pcs',rate:118,rule:'R15'},
+    {g:'Switch',code:'SW-MNT-01',desc:'Switch mounting kit and patch set',uom:'set',rate:64,rule:'R16'},
+    {g:'Misc',code:'LBL-ENG-01',desc:'Engraved label set, per rack',uom:'set',rate:26,rule:'R17'},
+    {g:'Misc',code:'SURGE-24V',desc:'Surge protection module, 24 V, plug-in',uom:'pcs',rate:58,rule:'R18'},
+    {g:'Misc',code:'DOC-FDS',desc:'Functional Design Specification, issued for approval',uom:'no',rate:9500,rule:'R19'},
+    {g:'Tools',code:'FTS-KIT-01',desc:'Wheel sensor adjustment kit FTS',uom:'pcs',rate:1850,rule:'R20'},
+    {g:'Tools',code:'FDT-SW',desc:'Diagnostic software licence, 3-year',uom:'pcs',rate:2400,rule:null,manual:2},
+    {g:'Services',code:'SVC-INST',desc:'Installation & commissioning',uom:'loc',rate:1650,rule:'R21'},
+    {g:'Services',code:'SVC-SAT',desc:'Site acceptance test and joint measurement',uom:'loc',rate:980,rule:'R22'},
+    {g:'Services',code:'SVC-TRN',desc:'Operator and maintainer training',uom:'day',rate:1200,rule:null,manual:5}
+  ];
+
+  NORULE_NOTE = {
+    'FAR-002 35U':{why:'Cubicle count is a layout decision, not a quantity in the sheet',hint:'22 on TDR-2025-0088'},
+    'ONDLY-230':{why:'Timer count depends on the relay interface schedule, not supplied',hint:'606 on TDR-2025-0088'},
+    'CBL-4C-1.5':{why:'Tender does not state cable run lengths — declaration is set to No',hint:'no precedent'},
+    'CUB-FAN-01':{why:'Driver blocked: needs cubicle count, which has no rule',hint:'2 × cubicles'},
+    'CUB-EARTH-01':{why:'Driver blocked: needs cubicle count, which has no rule',hint:'1 × cubicles'}
+  };
+
+  DECL_DEFS = [
+    {id:'appType',k:'Application type',opts:['Block working + station','Block working only','Station only'],aff:'—'},
+    {id:'detection',k:'Detection mode',opts:['Dual','Single'],aff:'redundant columns, R01–R05'},
+    {id:'profile',k:'Rail profile',opts:['Indian Railway 60 kg UIC','Metro 54 kg','Metro UIC 60'],aff:'R02 claw variant'},
+    {id:'iface',k:'Interface type',opts:['Vital relay, potential-free','Serial SCI','Ethernet SafeNet'],aff:'R05 I/O board type'},
+    {id:'arch',k:'Architecture',opts:['Centralised','Decentralised'],aff:'R12 reset boxes'},
+    {id:'sup',k:'Supervisory track section',opts:['Yes','No'],aff:'R05 TS driver'},
+    {id:'comms',k:'Communication media',opts:['Fibre ring (OFC)','Quad cable','Radio'],aff:'R14, R15'},
+    {id:'fds',k:'FDS required',opts:['Yes','No'],aff:'R19'},
+    {id:'cable',k:'Cable length stated in tender',opts:['No','Yes'],aff:'R26 — dormant'},
+    {id:'spares',k:'Spares',num:true,aff:'R23, R24, R25'},
+    {id:'slotSpare',k:'Spare slots in rack',num:true,aff:'R06–R11 packing'}
+  ];
+
+  GLOSSARY = [
+    {t:'DP — detection point',d:'One wheel sensor position on the rail. Main plus redundant detection points are counted separately.'},
+    {t:'TS — track section',d:'The length of track between two detection points that the system reports clear or occupied.'},
+    {t:'TE — Teilungseinheit',d:'Horizontal pitch unit of a 19-inch subrack. One board rack BGT07 offers an 84 TE budget.'},
+    {t:'AEB — Achszähl-Elektronik-Baugruppe',d:'Evaluation board. One board per wheel sensor input.'},
+    {t:'BGT — Baugruppenträger',d:'Board rack, i.e. the 3 U subrack the backplanes bolt into.'},
+    {t:'NIT — Notice Inviting Tender',d:'The tender notice. Its annexure carries the quantities the customer believes are needed.'},
+    {t:'FDS — Functional Design Specification',d:'Deliverable document describing the signalling function. Priced as a service line when the tender asks for it.'},
+    {t:'BPS — Bid Process Sheet',d:'The spreadsheet the bid department circulates with location, block section and DP/TS counts.'},
+    {t:'Provenance',d:'Where a quantity came from: a rule, a hand edit, or nowhere. Every BoQ line carries one.'},
+    {t:'Stale',d:'A hand-entered quantity whose underlying derived value has moved since it was entered.'}
+  ];
+
+  OVLOG = [
+    {p:'TDR-2026-0114',part:'RSR180-001 GS05',o:550,n:369,r:'Only 369 runs are within 5 m; balance split to the 10 m variant',d:'2026-07-14',by:'R. Menon',cand:true},
+    {p:'TDR-2026-0114',part:'RSTBOXV01',o:460,n:315,r:'Customer supplies reset boxes at three stations',d:'2026-07-11',by:'R. Menon',cand:false},
+    {p:'TDR-2026-0091',part:'RSR180-001 GS05',o:412,n:288,r:'5 m / 10 m tail split, same as JP–SWM',d:'2026-05-22',by:'A. Iyer',cand:true},
+    {p:'TDR-2026-0091',part:'FAR-002 35U',o:null,n:17,r:'No rule — one cubicle per station, two at junctions',d:'2026-05-22',by:'A. Iyer',cand:true},
+    {p:'TDR-2026-0091',part:'ONDLY-230',o:null,n:498,r:'No rule — two timers per relay group',d:'2026-05-20',by:'A. Iyer',cand:true},
+    {p:'TDR-2026-0077',part:'FAR-002 35U',o:null,n:9,r:'No rule — cubicle per interlocking room',d:'2026-03-09',by:'R. Menon',cand:true},
+    {p:'TDR-2026-0077',part:'BGT07 84TE',o:31,n:34,r:'Client asked for one spare rack per four',d:'2026-03-11',by:'S. Kulkarni',cand:false},
+    {p:'TDR-2026-0077',part:'ONDLY-230',o:null,n:212,r:'No rule — copied from the 0091 ratio',d:'2026-03-09',by:'R. Menon',cand:true},
+    {p:'TDR-2025-0088',part:'FAR-002 35U',o:null,n:22,r:'No rule — 35 U cubicle per location, ALHs share',d:'2025-11-28',by:'A. Iyer',cand:true},
+    {p:'TDR-2025-0088',part:'ONDLY-230',o:null,n:606,r:'No rule — relay schedule from the interlocking data',d:'2025-11-28',by:'A. Iyer',cand:true},
+    {p:'TDR-2025-0088',part:'IO-EXB101',o:244,n:252,r:'Supervisory sections added after issue',d:'2025-12-02',by:'S. Kulkarni',cand:false},
+    {p:'TDR-2025-0064',part:'CBL-4C-1.5',o:null,n:41500,r:'No rule — measured off the cable plan by hand',d:'2025-08-14',by:'R. Menon',cand:true},
+    {p:'TDR-2025-0064',part:'FAR-002 35U',o:null,n:12,r:'No rule',d:'2025-08-14',by:'R. Menon',cand:true},
+    {p:'TDR-2025-0031',part:'CBL-4C-1.5',o:null,n:28900,r:'No rule — hand measured',d:'2025-04-02',by:'A. Iyer',cand:true}
+  ];
+
+  VERSIONS = [
+    {v:'v14',d:'2026-07-28 16:02',by:'R. Menon',what:'R05 divisor 2 → 2, scope changed project → location',lines:'1 line, 275 → 234'},
+    {v:'v13',d:'2026-07-21 11:40',by:'S. Kulkarni',what:'R14 multiplier 1 → 2 for fibre ring redundancy',lines:'2 lines, 18 → 36'},
+    {v:'v12',d:'2026-06-30 09:15',by:'R. Menon',what:'Added R23–R25 spares family',lines:'3 lines added'},
+    {v:'v11',d:'2026-06-12 14:51',by:'A. Iyer',what:'R12 condition arch=Centralised added',lines:'1 line, dormant when decentralised'},
+    {v:'v10',d:'2026-05-04 10:22',by:'S. Kulkarni',what:'Rack packing moved from per-cubicle to 84 TE budget',lines:'6 lines'}
+  ];
+
+  state = {
+    screen:'boq', gloss:false, open:null, locs:this.LOCS.map(l=>({...l})), packs:{}, rev:'02',
+    decl:{appType:'Block working + station',detection:'Dual',profile:'Indian Railway 60 kg UIC',iface:'Vital relay, potential-free',arch:'Centralised',sup:'Yes',comms:'Fibre ring (OFC)',fds:'Yes',cable:'No',spares:5,slotSpare:0},
+    rules:this.RULES.map(r=>({...r})),
+    overrides:{
+      'RSR180-001 GS05':{qty:369,base:550,reason:'Only 369 runs are within 5 m; balance split to the 10 m variant',by:'R. Menon',at:'2026-07-14'},
+      'RSTBOXV01':{qty:315,base:460,reason:'Customer supplies reset boxes at three stations',by:'R. Menon',at:'2026-07-11'}
+    },
+    manual:{}, delta:null, selLoc:'L14', draftRule:null, ruleFilter:'', logFilter:'All projects', dragErr:null, toast:null
+  };
+
+  componentDidMount(){
+    this._key = (e)=>{
+      const map={'1':'setup','2':'input','3':'boq','4':'racks','5':'rules','6':'log'};
+      if(e.altKey && map[e.key]){ e.preventDefault(); this.setState({screen:map[e.key],open:null}); }
+      else if(e.key==='?'){ this.setState(s=>({gloss:!s.gloss})); }
+      else if(e.key==='Escape'){ this.setState({gloss:false,open:null,draftRule:null}); }
+    };
+    window.addEventListener('keydown',this._key);
+  }
+  componentWillUnmount(){ window.removeEventListener('keydown',this._key); }
+
+  cur(){ return {EUR:['€','en-GB'],INR:['₹','en-IN'],USD:['$','en-US']}[this.props.currency||'EUR']; }
+  fmt(n){ return n==null?'—':n.toLocaleString('en-GB'); }
+  eur(n){ const[c,l]=this.cur(); return n==null?'—':c+n.toLocaleString(l,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  eur0(n){ const[c,l]=this.cur(); return n==null?'—':c+Math.round(n).toLocaleString(l); }
+  rnd(v,mode){ return mode==='up'?Math.ceil(v):mode==='down'?Math.floor(v):mode==='near'?Math.round(v):Math.round(v*100)/100; }
+
+  packLoc(dp,ts,slotSpare){
+    const aebNeed = Math.ceil(dp*(1+(slotSpare||0)/100));
+    const ioNeed = Math.ceil(ts/2);
+    const racks=[]; let aebLeft=aebNeed, ioLeft=ioNeed, guard=0;
+    while((aebLeft>0||ioLeft>0) && guard++<200){
+      const items=[]; let te=0;
+      if(aebLeft>0){ const n=Math.min(10,aebLeft); items.push({t:'PWR',code:'BP-PWR101-8',te:42,aeb:n,io:0}); te+=42; aebLeft-=n; }
+      while(ioLeft>0 && te+16<=84){ const n=Math.min(2,ioLeft); items.push({t:'EXB2',code:'BP-EXB101-2',te:16,aeb:0,io:n}); te+=16; ioLeft-=n; }
+      if(ioLeft>0 && te+8<=84){ items.push({t:'EXB1',code:'BP-EXB101-1',te:8,aeb:0,io:1}); te+=8; ioLeft-=1; }
+      racks.push({items});
+    }
+    if(!racks.length) racks.push({items:[]});
+    return racks;
+  }
+  rackTE(r){ return r.items.reduce((a,b)=>a+b.te,0); }
+
+  condOk(rule,decl){
+    if(!rule.cond) return true;
+    const [k,v]=rule.cond.split('=');
+    return String(decl[k])===v;
+  }
+
+  compute(st){
+    const s = st||this.state, d = s.decl, dual = d.detection==='Dual';
+    const locs = s.locs.map(l=>{
+      const mainDP=(+l.dnDP||0)+(+l.upDP||0), mainTS=(+l.dnTS||0)+(+l.upTS||0);
+      const redDP = dual ? (l.redDP==null?mainDP:+l.redDP) : 0;
+      const redTS = dual ? (l.redTS==null?mainTS:+l.redTS) : 0;
+      const errs=[];
+      if(dual && redDP!==mainDP) errs.push('Redundant DP '+redDP+' does not mirror Main DP '+mainDP);
+      if(dual && redTS!==mainTS) errs.push('Redundant TS '+redTS+' does not mirror Main TS '+mainTS);
+      return {...l,mainDP,mainTS,redDP,redTS,totDP:mainDP+redDP,totTS:mainTS+redTS,errs,err:errs[0]||null};
+    });
+    const packs={}; const pk={racks:0,pwr:0,exb2:0,exb1:0,blank:0,used:0,cap:0};
+    locs.forEach(l=>{
+      const sig=l.totDP+'/'+l.totTS+'/'+d.slotSpare;
+      const saved=s.packs[l.id];
+      const p = (saved && saved.sig===sig) ? saved.racks : this.packLoc(l.totDP,l.totTS,d.slotSpare);
+      packs[l.id]={racks:p,sig};
+      pk.racks+=p.length;
+      p.forEach(r=>{ const te=this.rackTE(r); pk.used+=te; pk.cap+=84; pk.blank+=84-te;
+        r.items.forEach(it=>{ if(it.t==='PWR')pk.pwr++; else if(it.t==='EXB2')pk.exb2++; else if(it.t==='EXB1')pk.exb1++; }); });
+    });
+    const totDP=locs.reduce((a,b)=>a+b.totDP,0), totTS=locs.reduce((a,b)=>a+b.totTS,0);
+    const drivers={DP:totDP,TS:totTS,LOC:locs.length,RACK:pk.racks,PROJ:1,APP:2,CUB:null,CABLE:null};
+    const byId={}; s.rules.forEach(r=>byId[r.id]=r);
+
+    const derived={}, blocked={};
+    const evalRule=(r)=>{
+      if(!this.condOk(r,d)) return {q:null,reason:'condition not met'};
+      if(r.driver==='RACK') return {q:pk[r.pack]};
+      if(r.driver==='CUB'||r.driver==='CABLE') return {q:null,reason:'driver unavailable'};
+      if(r.driver==='REF') return {q:null,reason:'ref'};
+      const dv=drivers[r.driver];
+      if(dv==null) return {q:null,reason:'driver unavailable'};
+      if(r.scope==='location'){
+        const per = r.driver==='DP'?'totDP':r.driver==='TS'?'totTS':null;
+        if(per) return {q:locs.reduce((a,l)=>a+this.rnd(l[per]*r.mult/r.div,r.round),0)};
+      }
+      return {q:this.rnd(dv*r.mult/r.div,r.round)};
+    };
+    s.rules.forEach(r=>{ const e=evalRule(r); derived[r.part]=e.q; if(e.q==null) blocked[r.part]=e.reason; });
+
+    const eff={};
+    const resolve=(p)=>{
+      const dv = p.rule ? derived[p.code] : null;
+      const ov = s.overrides[p.code];
+      const mn = s.manual[p.code]!=null ? s.manual[p.code] : p.manual;
+      if(mn!=null) return {st:'manual',q:mn,dv:null};
+      if(!p.rule) return {st:'norule',q:null,dv:null};
+      if(ov){ if(ov.base!==dv) return {st:'stale',q:ov.qty,dv,ovBase:ov.base,ov}; return {st:'override',q:ov.qty,dv,ov}; }
+      if(dv==null) return {st:'norule',q:null,dv:null,blocked:blocked[p.code]};
+      return {st:'derived',q:dv,dv};
+    };
+    this.PARTS.forEach(p=>{ const r=resolve(p); eff[p.code]=r.q; });
+    s.rules.filter(r=>r.driver==='REF').forEach(r=>{
+      const base=eff[r.ref];
+      derived[r.part] = (base==null||!d.spares) ? null : Math.ceil(base*d.spares/100);
+      if(derived[r.part]==null) blocked[r.part]= d.spares? 'driver unavailable':'spares set to 0%';
+    });
+    const rows = this.PARTS.map(p=>{ const r=resolve(p); return {...p,...r,total:r.q==null?null:r.q*p.rate}; });
+    rows.forEach(r=>{ eff[r.code]=r.q; });
+    return {locs,packs,pk,totDP,totTS,drivers,derived,blocked,rows,byId,
+      grand:rows.reduce((a,b)=>a+(b.total||0),0),
+      counts:rows.reduce((a,b)=>{a[b.st]=(a[b.st]||0)+1;return a;},{})};
+  }
+
+  setLocs(fn){
+    this.setState(s=>{
+      const before=this.compute(s);
+      const locs=fn(s.locs.map(l=>({...l})));
+      const ns={...s,locs};
+      const after=this.compute(ns);
+      const changed=[], staled=[];
+      after.rows.forEach(r=>{ const b=before.rows.find(x=>x.code===r.code); if(!b) return;
+        if(b.q!==r.q) changed.push(r.code);
+        if(r.st==='stale' && b.st!=='stale') staled.push(r.code); });
+      this._flash=changed;
+      const bits=[];
+      bits.push(changed.length+' line'+(changed.length===1?'':'s')+' recomputed');
+      if(staled.length) bits.push(staled.length+' override now stale — '+staled.join(', '));
+      bits.push('total '+this.eur0(before.grand)+' → '+this.eur0(after.grand));
+      return {locs,delta:{show:true,text:bits.join(' · ')}};
+    });
+  }
+
+  renderVals(){
+    const s=this.state, c=this.compute();
+    const P={derived:'#b7b7ba',override:'#5980a6',manual:'#2b2b2d',stale:'#b07d17',norule:'#a33a2a'};
+    const G={derived:'D',override:'O',manual:'M',stale:'S',norule:'—'};
+    const T={derived:'Derived',override:'Overridden',manual:'Manual',stale:'Stale',norule:'No rule'};
+    const flash=this._flash||[];
+
+    const groups=['Outdoor','Indoor','Cubical','Reset','Switch','Misc','Tools','Services'];
+    const boqFlat=[];
+    groups.forEach(g=>{
+      const rows=c.rows.filter(r=>r.g===g);
+      const sub=rows.reduce((a,b)=>a+(b.total||0),0);
+      const miss=rows.filter(r=>r.q==null).length;
+      boqFlat.push({key:'g-'+g,isGroup:true,isPart:false,isOpen:false,span:9,h:'26px',cursor:'default',rowBg:'#e4e4e6',edge:'rgba(29,31,32,.35)',rule:'rgba(29,31,32,.22)',
+        g:g,gMeta:rows.length+' lines'+(miss?' · '+miss+' blank':''),gSub:this.eur(sub)});
+      rows.forEach(r=>{
+        const isOv=r.st==='override'||r.st==='stale';
+        boqFlat.push({key:r.code,isGroup:false,isPart:true,span:1,h:'28px',cursor:'pointer',
+          rowBg: s.open===r.code?'#e4ecf5':(r.st==='norule'?'#fdf6f4':'transparent'),
+          edge:P[r.st],rule:'rgba(29,31,32,.08)',
+          glyph:G[r.st],glyphBg:r.st==='derived'?'transparent':P[r.st],glyphFg:r.st==='derived'?'#98989b':'#f2f2f3',glyphBd:P[r.st],
+          code:r.code,desc:r.desc,uom:r.uom,
+          origText:isOv?this.fmt(r.st==='stale'?r.ovBase:r.dv):'',
+          qtyText:r.q==null?(this.props.blankAsZero?'0':'blank'):this.fmt(r.q),
+          qtyW:r.st==='derived'?'400':'500',
+          qtyC:r.q==null?'#a33a2a':r.st==='stale'?'#8a6011':'#1d1f20',
+          qtyBg:r.q==null?'#f7e0da':'transparent',
+          anim: flash.indexOf(r.code)>=0 ? 'bomflash 1.4s ease-out' : 'none',
+          rateText:this.eur(r.rate),totText:r.total==null?'—':this.eur(r.total),totC:r.total==null?'#a33a2a':'#1d1f20',
+          tag:T[r.st],tagFg:r.st==='derived'?'#5d5d60':'#f2f2f3',tagBg:r.st==='derived'?'transparent':P[r.st],tagBd:r.st==='derived'?'rgba(29,31,32,.24)':P[r.st],
+          provNote: r.st==='derived'?r.rule
+            : r.st==='override'?(r.rule+' → '+this.fmt(r.dv)+' overridden')
+            : r.st==='stale'?(r.rule+' now '+this.fmt(r.dv)+', was '+this.fmt(r.ovBase))
+            : r.st==='manual'?'no rule exists'
+            : (this.NORULE_NOTE[r.code]?'driver missing':'—'),
+          chev: s.open===r.code?'▾':'▸', isOpen:s.open===r.code});
+      });
+    });
+
+    let exp={arith:'',facts:[],perLoc:[],perLocMeta:'',hasNote:false,note:'',code:'',canConfirm:false,canRevert:false,noteBd:'rgba(29,31,32,.2)',noteBg:'#f2f2f3'};
+    if(s.open){
+      const r=c.rows.find(x=>x.code===s.open);
+      if(r){
+        const rule=r.rule?c.byId[r.rule]:null;
+        const dn={DP:'total DP',TS:'total TS',LOC:'locations',RACK:'racks',PROJ:'project',APP:'applications',CUB:'cubicles',CABLE:'cable length',REF:'reference qty'};
+        let arith='—';
+        if(rule && rule.driver==='RACK'){ arith=r.code+' = '+this.fmt(c.pk[rule.pack])+'. '+rule.id+': '+rule.text+'. Driver: packing of '+c.pk.racks+' racks across 18 locations.'; }
+        else if(rule && rule.driver==='REF'){ arith=r.code+' = '+this.fmt(c.derived[r.code])+'. '+rule.id+': '+rule.text+'. Driver: '+rule.ref+' = '+this.fmt(c.rows.find(x=>x.code===rule.ref).q)+' × '+s.decl.spares+'% → round up.'; }
+        else if(rule && (rule.driver==='CUB'||rule.driver==='CABLE')){ arith=r.code+' = blank. '+rule.id+': '+rule.text+'. Driver '+dn[rule.driver]+' is not derivable — no rule produces it.'; }
+        else if(rule){ const dv=c.drivers[rule.driver]; arith=r.code+' = '+this.fmt(c.derived[r.code])+'. '+rule.id+': '+rule.text+'. Driver: '+dn[rule.driver]+' = '+this.fmt(dv)+(rule.div!==1?' ÷ '+rule.div:'')+(rule.mult!==1?' × '+rule.mult:'')+(rule.round==='up'?', rounded up'+(rule.scope==='location'?' per location':''):'')+'.'; }
+        else { arith=r.code+' = '+(r.q==null?'blank':this.fmt(r.q))+'. No rule exists for this part.'; }
+        const facts=[{k:'Part',v:r.code},{k:'Rule',v:rule?rule.id+' · '+rule.driver:'none'},{k:'Rounding',v:rule&&rule.round?rule.round:'—'},{k:'Condition',v:rule&&rule.cond?rule.cond:'always'},{k:'Rate',v:this.eur(r.rate)+' / '+r.uom},{k:'Line',v:r.total==null?'—':this.eur(r.total)}];
+        let note='',hasNote=false,noteBd='rgba(29,31,32,.2)',noteBg='#f2f2f3';
+        if(r.st==='override'){ hasNote=true; noteBd='#5980a6'; noteBg='#eef6ff'; note='Overridden '+this.fmt(r.dv)+' → '+this.fmt(r.q)+' by '+r.ov.by+' on '+r.ov.at+'. Reason: '+r.ov.reason; }
+        if(r.st==='stale'){ hasNote=true; noteBd='#b07d17'; noteBg='#fdf6e6'; note='Stale. Overridden to '+this.fmt(r.q)+' when the rule produced '+this.fmt(r.ovBase)+'; the rule now produces '+this.fmt(r.dv)+'. The quantity below has not been re-checked against the new input. Reason on record: '+r.ov.reason; }
+        if(r.st==='manual'){ hasNote=true; note='Entered by hand — no rule covers this part. It will not move when the input table changes, and it is the strongest candidate for a new rule.'; }
+        if(r.st==='norule'){ hasNote=true; noteBd='#a33a2a'; noteBg='#fdf3f1'; const n=this.NORULE_NOTE[r.code]; note='No driver. '+(n?n.why:'')+'. Precedent: '+(n?n.hint:'none')+'. The line stays blank so it cannot be mistaken for zero.'; }
+        let perLoc=[],meta='';
+        if(rule && (rule.driver==='DP'||rule.driver==='TS')){
+          const key=rule.driver==='DP'?'totDP':'totTS';
+          perLoc=c.locs.map(l=>({n:l.name,d:rule.driver+' '+l[key],q:this.fmt(this.rnd(l[key]*rule.mult/rule.div,rule.round))}));
+          meta=rule.scope==='location'?'rounded per location, then summed':'apportioned from the project total';
+        } else if(rule && rule.driver==='RACK'){
+          perLoc=c.locs.map(l=>{ const rk=c.packs[l.id].racks; const n=rule.pack==='racks'?rk.length:rule.pack==='blank'?rk.reduce((a,r2)=>a+84-this.rackTE(r2),0):rk.reduce((a,r2)=>a+r2.items.filter(i=>i.t===({pwr:'PWR',exb2:'EXB2',exb1:'EXB1'})[rule.pack]).length,0); return {n:l.name,d:rk.length+' racks',q:this.fmt(n)}; });
+          meta='from the rack packing';
+        } else if(rule && rule.driver==='LOC'){
+          perLoc=c.locs.map(l=>({n:l.name,d:'1 loc',q:this.fmt(rule.mult)})); meta='flat per location';
+        } else { perLoc=[]; meta='no per-location breakdown — project-level line'; }
+        exp={arith,facts,perLoc,perLocMeta:meta,hasNote,note,noteBd,noteBg,code:r.code,
+          canConfirm:r.st==='stale',canRevert:r.st==='override'||r.st==='stale'};
+      }
+    }
+
+    const unresolved=c.rows.filter(r=>r.q==null).map(r=>{ const n=this.NORULE_NOTE[r.code]||{}; return {code:r.code,g:r.g,why:n.why||'No driver available',hint:'last used: '+(n.hint||'—')}; });
+
+    const nav=[
+      {k:'setup',n:'01',t:'Project setup',s:'18 loc · 2 app'},
+      {k:'input',n:'02',t:'Input table',s:c.locs.filter(l=>l.err).length+' flag · '+c.totDP+' DP'},
+      {k:'boq',n:'03',t:'Generated BoQ',s:c.rows.length+' lines · '+unresolved.length+' blank'},
+      {k:'racks',n:'04',t:'Rack layout',s:c.pk.racks+' racks · '+Math.round(c.pk.used/c.pk.cap*100)+'%'},
+      {k:'rules',n:'05',t:'Rules editor',s:s.rules.length+' rules · v14'},
+      {k:'log',n:'06',t:'Override log',s:this.OVLOG.length+' across 6 proj'}
+    ].map(it=>({...it,edge:s.screen===it.k?'#5980a6':'transparent',bg:s.screen===it.k?'#f2f2f3':'transparent',
+      fg:s.screen===it.k?'#1d1f20':'#424244',sc:s.screen===it.k?'#5980a6':'#98989b'}));
+
+    const legend=['derived','override','manual','stale','norule'].map(k=>({l:G[k],c:k==='derived'?'#b7b7ba':P[k],n:T[k],count:this.fmt(c.counts[k]||0)}));
+
+    const nit={DP:544,TS:470,LOC:18};
+    const variance=[
+      {k:'Detection points',nit:this.fmt(nit.DP),ours:this.fmt(c.totDP),d:(c.totDP-nit.DP>=0?'+':'')+(c.totDP-nit.DP),c:c.totDP===nit.DP?'#5d5d60':'#b07d17',note:'6 added at Banasthali loop line'},
+      {k:'Track sections',nit:this.fmt(nit.TS),ours:this.fmt(c.totTS),d:(c.totTS-nit.TS>=0?'+':'')+(c.totTS-nit.TS),c:c.totTS===nit.TS?'#5d5d60':'#b07d17',note:'Jaipur JN UP redundant TS not mirrored'},
+      {k:'Locations',nit:this.fmt(nit.LOC),ours:this.fmt(c.locs.length),d:'0',c:'#5d5d60',note:'matches Annexure-II'}
+    ];
+
+    const declRows=this.DECL_DEFS.map(dd=>{
+      const v=s.decl[dd.id];
+      const dormant = (dd.id==='cable'&&v==='No')||(dd.id==='slotSpare'&&(+v===0))||(dd.id==='appType');
+      return {...dd,v:String(v),isSelect:!dd.num,isNum:!!dd.num,
+        bg:dormant?'transparent':'#f7f9fc',edge:dormant?'rgba(29,31,32,.12)':'#5980a6',
+        dot:dormant?'':'✓',dotBg:dormant?'transparent':'#5980a6',dotBd:dormant?'rgba(29,31,32,.3)':'#5980a6',
+        aff:dormant?'dormant':dd.aff,affC:dormant?'#98989b':'#416180'};
+    });
+    const activeCount=declRows.filter(d=>d.aff!=='dormant').length;
+
+    return {
+      rowH:(this.props.rowHeight||28)+'px',
+      rev:s.rev, gloss:s.gloss, glossary:this.GLOSSARY, nav, legend, shortcuts:[
+        {k:'⌥1–6',d:'screen'},{k:'Tab',d:'next cell'},{k:'⏎',d:'expand derivation'},{k:'⌥O',d:'override'},{k:'⌥R',d:'open rule'},{k:'?',d:'glossary'},{k:'Esc',d:'close'}],
+      statusLine:'engine v14 · '+c.rows.length+' lines · '+unresolved.length+' unresolved · last recalc just now',
+      isSetup:s.screen==='setup',isInput:s.screen==='input',isBoq:s.screen==='boq',isRacks:s.screen==='racks',isRules:s.screen==='rules',isLog:s.screen==='log',
+      goScreen:(e)=>this.setState({screen:e.currentTarget.dataset.k,open:null}),
+      toggleGloss:()=>this.setState(x=>({gloss:!x.gloss})),
+      grandTotal:this.eur0(c.grand),
+      unresolvedLabel:unresolved.length?unresolved.length+' lines block issue':'',
+      boqFlat, boqRowCount:c.rows.length, ruleFiredCount:s.rules.filter(r=>this.condOk(r,s.decl)).length,
+      boqStats:[
+        {k:'Total DP',v:this.fmt(c.totDP),c:'#1d1f20'},{k:'Total TS',v:this.fmt(c.totTS),c:'#1d1f20'},
+        {k:'Racks',v:this.fmt(c.pk.racks),c:'#1d1f20'},{k:'Overridden',v:this.fmt((c.counts.override||0)+(c.counts.stale||0)),c:'#416180'},
+        {k:'Blank',v:this.fmt(unresolved.length),c:'#a33a2a'}],
+      unresolved, hasUnresolved:unresolved.length>0,
+      delta:s.delta||{show:false,text:''}, dismissDelta:()=>this.setState({delta:null}),
+      totalQtyNote:'excl. '+unresolved.length+' blank',
+      totalCaveat:unresolved.length?'not issuable — '+unresolved.length+' quantities missing':'',
+      exp,
+      onRowClick:(e)=>{ const id=e.currentTarget.dataset.id; if(!id||id.indexOf('g-')===0) return; this.setState(x=>({open:x.open===id?null:id})); },
+      onOverride:(e)=>{ const code=e.currentTarget.dataset.code; const row=c.rows.find(r=>r.code===code); const cur=row.q==null?'':row.q;
+        const v=window.prompt('Override quantity for '+code+'\nDerived: '+(row.dv==null?'no rule':row.dv),String(cur)); if(v==null) return;
+        const n=parseFloat(v); if(isNaN(n)) return;
+        const reason=window.prompt('Reason (goes on the override log and the issued BoQ)','')||'—';
+        this.setState(x=>({overrides:{...x.overrides,[code]:{qty:n,base:row.dv,reason,by:'R. Menon',at:'2026-07-30'}}})); },
+      onRevert:(e)=>{ const code=e.currentTarget.dataset.code; this.setState(x=>{ const o={...x.overrides}; delete o[code]; return {overrides:o}; }); },
+      onConfirmStale:(e)=>{ const code=e.currentTarget.dataset.code; const row=c.rows.find(r=>r.code===code);
+        this.setState(x=>({overrides:{...x.overrides,[code]:{...x.overrides[code],base:row.dv}}})); },
+      onGotoRule:(e)=>{ const code=e.currentTarget.dataset.code; const row=c.rows.find(r=>r.code===code); this.setState({screen:'rules',draftRule:row.rule?{...c.byId[row.rule]}:null}); },
+      onWriteRule:(e)=>{ const code=e.currentTarget.dataset.code; this.setState({screen:'rules',draftRule:{id:'R'+(29+Math.floor(Math.random()*9)),part:code,driver:'LOC',mult:1,div:1,round:'none',scope:'project',cond:'',group:(this.PARTS.find(p=>p.code===code)||{}).g,text:'',isNew:true}}); },
+      onEnterManual:(e)=>{ const code=e.currentTarget.dataset.code; const v=window.prompt('Manual quantity for '+code,''); if(v==null) return; const n=parseFloat(v); if(isNaN(n)) return; this.setState(x=>({manual:{...x.manual,[code]:n}})); },
+      onExport:()=>this.setState({toast:1}),
+      onIssue:()=>this.setState({toast:2}),
+      detected:[
+        {k:'Locations',v:this.fmt(c.locs.length),u:'nos',src:'col B, rows 7–24 · 3 merged pairs collapsed'},
+        {k:'Applications',v:'2',u:'nos',src:'col D distinct · block working, station'},
+        {k:'Detection points',v:this.fmt(c.totDP),u:'DP',src:'main + redundant, DN and UP summed'},
+        {k:'Track sections',v:this.fmt(c.totTS),u:'TS',src:'main + redundant, supervisory included'},
+        {k:'Block sections',v:'10',u:'nos',src:'col C distinct'},
+        {k:'Unparsed rows',v:'0',u:'nos',src:'no cells needed manual reading'}],
+      variance,
+      varianceSummary:'The sheet exceeds the NIT on detection points and falls short on track sections. Both are carried into the BoQ as-is; the variance is stated on the issued schedule rather than reconciled silently.',
+      decls:declRows, declActiveLabel:activeCount+' of '+declRows.length+' affecting output',
+      dormantText:'Cable length is not stated in the tender, so R26 cannot fire and CBL-4C-1.5 stays blank. Spare slots are at 0%, so the packing is exactly to need. Set either and the affected lines recompute; existing overrides on them will flag stale rather than move.',
+      onDecl:(e)=>{ const k=e.currentTarget.dataset.k; const raw=e.currentTarget.value; const v=this.DECL_DEFS.find(d=>d.id===k).num?(parseFloat(raw)||0):raw; this.setState(x=>({decl:{...x.decl,[k]:v}})); },
+      inputRows:c.locs.map(l=>({
+        id:l.id,name:l.name,app:l.app==='ST'?'Station':'Block work',
+        bsA:l.bs[0],bsB:l.bs[1]||'',merged:l.bs.length>1,single:l.bs.length===1,
+        dnDP:l.dnDP,dnTS:l.dnTS,upDP:l.upDP,upTS:l.upTS,
+        mainDP:l.mainDP,mainTS:l.mainTS,redDP:l.redDP,redTS:l.redTS,
+        err:l.err||'',hasErr:!!l.err,
+        bg:l.err?'#fdf6e6':'transparent',edge:l.err?'#b07d17':'transparent',
+        redDPc:l.redDP!==l.mainDP?'#8a6011':'#1d1f20',redDPbg:l.redDP!==l.mainDP?'#f7e9c8':'transparent',
+        redTSc:l.redTS!==l.mainTS?'#8a6011':'#1d1f20',redTSbg:l.redTS!==l.mainTS?'#f7e9c8':'transparent'
+      })),
+      inputTot:(()=>{const k=['dnDP','dnTS','upDP','upTS','mainDP','mainTS','redDP','redTS'];const t={};k.forEach(x=>t[x]=this.fmt(c.locs.reduce((a,l)=>a+l[x],0)));return t;})(),
+      inputFlags:c.locs.filter(l=>l.err).length,
+      mergedCount:c.locs.filter(l=>l.bs.length>1).length,
+      onCell:(e)=>{const id=e.currentTarget.dataset.id,f=e.currentTarget.dataset.f;const n=parseInt(e.currentTarget.value,10);
+        this.setLocs(ls=>ls.map(l=>l.id===id?{...l,[f]:isNaN(n)?0:n}:l));},
+      onMirror:(e)=>{const id=e.currentTarget.dataset.id;this.setLocs(ls=>ls.map(l=>l.id===id?{...l,redDP:null,redTS:null}:l));},
+
+      locList:c.locs.map(l=>({id:l.id,name:l.name,dp:this.fmt(l.totDP),racks:c.packs[l.id].racks.length,
+        bg:s.selLoc===l.id?'#f2f2f3':'transparent',edge:s.selLoc===l.id?'#5980a6':'transparent',
+        custom:!!s.packs[l.id],customMark:s.packs[l.id]?'edited':''})),
+      onSelLoc:(e)=>this.setState({selLoc:e.currentTarget.dataset.id,dragErr:null}),
+      sel:(()=>{const l=c.locs.find(x=>x.id===s.selLoc)||c.locs[0];const rk=c.packs[l.id].racks;
+        const te=rk.reduce((a,r)=>a+this.rackTE(r),0);
+        return {name:l.name,dp:this.fmt(l.totDP),ts:this.fmt(l.totTS),aeb:this.fmt(l.totDP),io:this.fmt(Math.ceil(l.totTS/2)),
+          racks:rk.length,te:this.fmt(te),cap:this.fmt(rk.length*84),util:Math.round(te/(rk.length*84)*100)+'%',
+          blank:this.fmt(rk.length*84-te),bs:l.bs.join(' · '),
+          edited:!!s.packs[l.id],
+          summary:rk.length+'× BGT07 · '+rk.reduce((a,r)=>a+r.items.filter(i=>i.t==='PWR').length,0)+'× BP-PWR101-8 · '+rk.reduce((a,r)=>a+r.items.filter(i=>i.t==='EXB2').length,0)+'× BP-EXB101-2 · '+rk.reduce((a,r)=>a+r.items.filter(i=>i.t==='EXB1').length,0)+'× BP-EXB101-1 · '+te+' TE'};})(),
+      rackList:(()=>{const l=c.locs.find(x=>x.id===s.selLoc)||c.locs[0];
+        return c.packs[l.id].racks.map((r,i)=>{const te=this.rackTE(r);const u=te/84;
+          const items=r.items.map((it,j)=>({r:i,j,code:it.code,te:it.te,w:(it.te/84*100).toFixed(3)+'%',
+            bg:it.t==='PWR'?'#cfdeee':it.t==='EXB2'?'#e2e9f1':'#edf1f5',bd:it.t==='PWR'?'#5980a6':'#94bce3',
+            fg:'#1d1f20',cursor:'grab',draggable:'true',hatch:'none',
+            sub:it.t==='PWR'?(it.aeb+' AEB · 1 PSU'):(it.io+' I/O'),teLabel:it.te+' TE'}));
+          if(84-te>0)items.push({r:i,j:-1,code:'BLP-01TE ×'+(84-te),te:84-te,w:((84-te)/84*100).toFixed(3)+'%',
+            bg:'transparent',bd:'rgba(29,31,32,.18)',fg:'#7a7a7d',cursor:'default',draggable:'false',
+            hatch:'repeating-linear-gradient(45deg,rgba(29,31,32,.07) 0 1px,transparent 1px 7px)',
+            sub:'blanking',teLabel:(84-te)+' TE'});
+          return {r:i,idx:'R'+String(i+1).padStart(2,'0'),te:te+' / 84 TE',util:Math.round(u*100)+'%',
+            utilC:u>0.95?'#416180':u<0.55?'#b07d17':'#424244',items,
+            boards:r.items.reduce((a,b)=>a+(b.aeb||0),0)+' AEB · '+r.items.reduce((a,b)=>a+(b.io||0),0)+' I/O'};});})(),
+      selStats:(()=>{const l=c.locs.find(x=>x.id===s.selLoc)||c.locs[0];const rk=c.packs[l.id].racks;
+        const te=rk.reduce((a,r)=>a+this.rackTE(r),0);const u=te/(rk.length*84);
+        return [{k:'Detection points',v:this.fmt(l.totDP),c:'#1d1f20'},{k:'Track sections',v:this.fmt(l.totTS),c:'#1d1f20'},
+          {k:'AEB',v:this.fmt(l.totDP),c:'#1d1f20'},{k:'I/O boards',v:this.fmt(Math.ceil(l.totTS/2)),c:'#1d1f20'},
+          {k:'Racks',v:String(rk.length),c:'#1d1f20'},{k:'TE used',v:te+' / '+rk.length*84,c:'#1d1f20'},
+          {k:'Utilisation',v:Math.round(u*100)+'%',c:u>0.95?'#416180':u<0.55?'#b07d17':'#1d1f20'},
+          {k:'Blanking',v:this.fmt(rk.length*84-te)+' TE',c:'#5d5d60'},
+          {k:'Source',v:s.packs[l.id]?'hand-edited':'generated',c:s.packs[l.id]?'#416180':'#7a7a7d'}];})(),
+      onDragStart:(e)=>{this._drag={r:+e.currentTarget.dataset.r,i:+e.currentTarget.dataset.i};if(e.dataTransfer)e.dataTransfer.effectAllowed='move';},
+      onDragOver:(e)=>{e.preventDefault();if(e.dataTransfer)e.dataTransfer.dropEffect='move';},
+      onDropRack:(e)=>{e.preventDefault();const tgt=+e.currentTarget.dataset.r;const d=this._drag;this._drag=null;if(!d||d.i<0)return;
+        const lid=s.selLoc;const entry=c.packs[lid];
+        this.setState(x=>{const racks=entry.racks.map(r=>({items:r.items.map(i=>({...i}))}));
+          if(d.r===tgt)return{dragErr:null};
+          const item=racks[d.r].items[d.i];if(!item)return{};
+          const used=racks[tgt].items.reduce((a,b)=>a+b.te,0);
+          if(used+item.te>84)return{dragErr:'R'+String(tgt+1).padStart(2,'0')+' has '+(84-used)+' TE free — '+item.code+' needs '+item.te+' TE. Nothing moved.'};
+          racks[d.r].items.splice(d.i,1);racks[tgt].items.push(item);
+          const kept=racks.filter(r=>r.items.length);
+          return {packs:{...x.packs,[lid]:{racks:kept,sig:entry.sig}},dragErr:null};});},
+      onAddRack:()=>{const lid=s.selLoc;const entry=c.packs[lid];
+        this.setState(x=>({packs:{...x.packs,[lid]:{racks:entry.racks.concat([{items:[]}]),sig:entry.sig}},dragErr:null}));},
+      onResetPack:()=>{const lid=s.selLoc;this.setState(x=>{const p={...x.packs};delete p[lid];return {packs:p,dragErr:null};});},
+      dragErr:s.dragErr||'',hasDragErr:!!s.dragErr,
+
+      ruleRows:s.rules.map(r=>{const act=this.condOk(r,s.decl);const q=c.derived[r.part];
+        return {id:r.id,part:r.part,
+          driver:{DP:'per DP',TS:'per TS',LOC:'per location',RACK:'per rack',CUB:'per cubicle',PROJ:'per project',APP:'per application',REF:'per reference',CABLE:'per metre'}[r.driver],
+          expr:r.driver==='RACK'?('packing.'+r.pack):r.driver==='REF'?(r.ref+' × spares%'):r.driver==='CABLE'?'cable_run_total':(r.driver+(r.mult!==1?' × '+r.mult:'')+(r.div!==1?' ÷ '+r.div:'')),
+          round:r.round||'—',cond:r.cond||'always',group:r.group,
+          qty:q==null?'blank':this.fmt(q),qtyC:q==null?'#a33a2a':'#1d1f20',
+          bg:s.draftRule&&s.draftRule.id===r.id?'#e4ecf5':'transparent',
+          edge:act?'transparent':'#b07d17',
+          state:act?'live':'dormant',stateC:act?'#7a7a7d':'#8a6011',
+          isOpen:!!(s.draftRule&&s.draftRule.id===r.id&&!s.draftRule.isNew)};}),
+      draft:s.draftRule?{...s.draftRule,cond:s.draftRule.cond||'',text:s.draftRule.text||'',
+        title:s.draftRule.isNew?('New rule for '+s.draftRule.part):('Editing '+s.draftRule.id+' · '+s.draftRule.part)}:{id:'',part:'',mult:1,div:1,round:'none',cond:'',text:'',title:''},
+      hasDraft:!!s.draftRule,
+      impact:(()=>{if(!s.draftRule)return{count:0,rows:[],from:'',to:'',verdict:''};
+        const d=s.draftRule;const ns={...s,rules:d.isNew?s.rules.concat([{...d}]):s.rules.map(r=>r.id===d.id?{...r,...d}:r)};
+        let after;try{after=this.compute(ns);}catch(err){return{count:0,rows:[],from:'',to:'',verdict:'expression error'};}
+        const ch=[];after.rows.forEach(r=>{const b=c.rows.find(x=>x.code===r.code);if(!b||b.q===r.q)return;
+          ch.push({code:r.code,from:b.q==null?'blank':this.fmt(b.q),to:r.q==null?'blank':this.fmt(r.q),
+            dir:(r.q||0)>(b.q||0)?'▲':'▼',dirC:(r.q||0)>(b.q||0)?'#416180':'#b07d17',st:r.st});});
+        return {count:ch.length,rows:ch,from:this.eur0(c.grand),to:this.eur0(after.grand),
+          verdict:ch.length?(ch.length+' BoQ line'+(ch.length===1?'':'s')+' would change'):'No BoQ line would change'};})(),
+      onEditRule:(e)=>{const id=e.currentTarget.dataset.id;this.setState(x=>({draftRule:x.draftRule&&x.draftRule.id===id?null:{...x.rules.find(r=>r.id===id)}}));},
+      onDraft:(e)=>{const f=e.currentTarget.dataset.f;let v=e.currentTarget.value;
+        if(f==='mult'||f==='div')v=parseFloat(v)||(f==='div'?1:0);
+        this.setState(x=>({draftRule:{...x.draftRule,[f]:v}}));},
+      onCommit:()=>{this.setState(x=>{const d=x.draftRule;if(!d)return{};
+        return {rules:d.isNew?x.rules.concat([{...d,isNew:false}]):x.rules.map(r=>r.id===d.id?{...r,...d}:r),draftRule:null};});},
+      onCancelDraft:()=>this.setState({draftRule:null}),
+      versions:this.VERSIONS,
+
+      logRows:this.OVLOG.filter(o=>s.logFilter==='All projects'||o.p===s.logFilter).map(o=>({
+        p:o.p,part:o.part,o:o.o==null?'no rule':this.fmt(o.o),n:this.fmt(o.n),r:o.r,d:o.d,by:o.by,
+        oC:o.o==null?'#a33a2a':'#7a7a7d',edge:o.o==null?'#a33a2a':'#5980a6',
+        tag:o.o==null?'NO RULE':'OVERRIDE',tagBg:o.o==null?'#a33a2a':'#5980a6',
+        current:o.p==='TDR-2026-0114'})),
+      logProjects:['All projects'].concat(this.OVLOG.map(o=>o.p).filter((v,i,a)=>a.indexOf(v)===i)),
+      logFilter:s.logFilter,
+      onLogFilter:(e)=>this.setState({logFilter:e.currentTarget.value}),
+      candidates:(()=>{const m={};this.OVLOG.filter(o=>o.cand).forEach(o=>{m[o.part]=m[o.part]||{part:o.part,n:0,ps:{},vals:[]};m[o.part].n++;m[o.part].ps[o.p]=1;m[o.part].vals.push(o.n);});
+        return Object.keys(m).map(k=>m[k]).sort((a,b)=>b.n-a.n).map((x,i)=>({rank:String(i+1).padStart(2,'0'),part:x.part,n:x.n,
+          projs:Object.keys(x.ps).length,vals:x.vals.join(' · '),
+          w:(x.n/6*100)+'%',
+          verdict:x.n>=3?'Write the rule':x.n===2?'Watch':'Isolated'}));})(),
+      logStats:[{k:'Manual changes',v:String(this.OVLOG.length)},{k:'Projects',v:'6'},
+        {k:'Lines with no rule',v:String(this.OVLOG.filter(o=>o.o==null).length)},
+        {k:'Recurring parts',v:'4'},{k:'Engineer-hours implied',v:'≈ 46'}],
+      c
+    };
+  }
+}
+
+</script>
+</body>
+</html>

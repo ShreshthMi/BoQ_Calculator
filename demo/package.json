@@ -1,0 +1,13 @@
+{
+  "name": "fadc-boq-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Input sheet in, BoQ out. Wires the handover sheet through demand, packing and the rule engine.",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "demo": "node run.ts",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "dependencies": { "xlsx": "^0.18.5" }
+}

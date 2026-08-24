@@ -1,0 +1,142 @@
+﻿key,sl_no,source_row,boq_group,at_sales_cloud,in_sales_cloud,ramco_erp,rdso,description,uom,markers,duplicate_code,driver_type,driver_ref,driver_label,driver_formula,qty_abs,qty_yard,qty_total
+BD004,1,4,,14393,,,,Invoice Amount Of Billing of goods for sales,,,,none,,,,0,0,0
+BD005,2,5,,23320,102207,102207,23320,Wheel sensor RSR180-001 GS05 5m cable,Nos,,,gesamt,Gesamt!row 5,Wheel sensor RSR180,=Gesamt!C5,176,374,550
+BD006,3,6,,23529,101879,101879,23529,Wheel sensor RSR180-001 GS05 10m cable,Nos,,,none,,,,0,0,0
+BD007,4,7,,23531,102139,102139,23531,Wheel sensor RSR180-001 GS05 15m cable,Nos,,,none,,,,0,0,0
+BD008,5,8,,100605,100605,100605,,IN Protection tube 4.8m,Nos,,,derived_from_parts,BD005,,=H5,176,374,550
+BD009,6,9,,100609,100609,100609,,IN Protection tube 9.8m,Nos,,,derived_from_parts,BD006,,=H6,0,0,0
+BD010,7,10,,102423,102423,102423,,IN Protection tube 14.8 m,Nos,,,derived_from_parts,BD007,,=H7,0,0,0
+BD011,8,11,,102411,102411,102411,,IN Rail claw SK140-011 w/o m. plate FSTI - RM,Nos,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD012,9,12,,21345,101059,101059,,Rail Claw SK140-010 GS02 RM-METRO,Nos,,,none,,,,0,0,0
+BD013,10,13,,100534,100534,100534,IN-19813,IN Rail claw plate SK140-011 (60kg),Nos,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD014,11,14,,100535,100535,100535,IN-19814,IN Rail claw plate SK140-012 (52kg),Nos,,,none,,,,0,0,0
+BD015,12,15,,101431,101431,101431,,IN Clamping bolt BBIK M12-22 GS02,Pair,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD016,13,16,,101432,101432,101432,,IN Clamping bolt BBIK M12-17.5 GS02,Nos,,,none,,,,0,0,0
+BD017,14,17,Outdoor,100004,100004,100004,IN-PC0101,Track lead junction box TLJB-01,Nos,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD018,15,18,,101950,101950,101950,,IN Frauscher Rail Deflector FRD001 GS02 60kg,Pair,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD019,16,19,Outdoor,102763,102763,102763,,Strain relief clamp SRC-IN Make,Nos,,,derived_from_parts,"BD005, BD006, BD007",,=H5+H6+H7,176,374,550
+BD020,17,20,,13338,101151,101151,,Clamping bolt BBK22 1.7227-(METRO+FOREIGN),Nos,,,none,,,,0,0,0
+BD021,18,21,,13393,101152,101152,,Clamping bolt BBK17.5 1.7227-(METRO+FOREIGN),Nos,,,none,,,,0,0,0
+BD022,19,22,,14227,100859,100859,,Clamping bolt BBK11 1.7227 (FOREIGN),Nos,,,none,,,,0,0,0
+BD023,20,23,Outdoor,100008,100008,100008,IN_PC0109,Line Verification Box LVB-01,Nos,,,none,,,,0,0,0
+BD024,21,24,,20865,100386,100386,,Advanced service display ASD101 GS01,Nos,,,none,,,,0,0,0
+BD025,22,25,,100328,100328,100328,,TOOL KIT - 01 Main line with BBIK M12 GS02-ML,Nos,,,none,,,,0,0,0
+BD026,23,26,,100583,100583,100583,,TOOL KIT - 02 Main line with BBK-METRO-BALLAST,Nos,,,none,,,,0,0,0
+BD027,24,27,,100584,100584,100584,,TOOL KIT - 03 Metro with BBK-METRO VIA DUCT,Nos,,,none,,,,0,0,0
+BD028,25,28,,102480,102480,102480,,Multimeter - compact true-rms meter-Fluke,Nos,,,none,,,,0,0,0
+BD029,26,29,,100418,100418,100418,,Multimeter - compact true-rms meter-Sanwa,Nos,,,none,,,,0,0,0
+BD030,27,30,,24627,101770,101770,IN_24627,Testing plate PB200-TS GS01,Nos,,,none,,,,0,0,0
+BD031,28,31,Indoor,18571,100013,100013,IN-18571,Overvoltage protection board BSI004 GS01 CC,Nos,,,gesamt,Gesamt!row 13,Overvoltage protection board BSI,=Gesamt!C13,176,374,550
+BD032,29,32,Indoor,17390,100049,100049,IN-17390,Board rack BGT07 84TE,Nos,,,gesamt,Gesamt!row 14,Board rack BGT07 84 TE,=Gesamt!C14,23,45,68
+BD033,30,33,Indoor,19952,100031,100031,19952,Backplane BP-PWR101-0 8TE GS01,Nos,,,gesamt,Gesamt!row 16,Backplane BP-PWR-0,=Gesamt!C16,0,0,0
+BD034,31,34,Indoor,19953,100391,100391,19953,Backplane BP-PWR101-4 24TE GS01,Nos,,,gesamt,Gesamt!row 20,Backplane BP-PWR-4,=Gesamt!C20,10,9,19
+BD035,32,35,Indoor,19954,100030,100030,19954,Backplane BP-PWR101-8 40TE GS01,Nos,,,gesamt,Gesamt!row 22,Backplane BP-PWR-8,=Gesamt!C22,18,38,56
+BD036,33,36,Indoor,19956,100028,100028,19956,Backplane BP-EXB101-1 10TE GS01,Nos,,,gesamt,Gesamt!row 29,Backplane BP-EXB-1,=Gesamt!C29,16,11,27
+BD037,34,37,Indoor,19957,100392,100392,19957,Backplane BP-EXB101-2 16TE GS01,Nos,,,gesamt,Gesamt!row 30,Backplane BP-EXB-2,=Gesamt!C30,18,74,92
+BD038,35,38,Indoor,19958,100393,100393,19958,Backplane BP-EXB101-4 28TE GS01,Nos,,,gesamt,Gesamt!row 32,Backplane BP-EXB-4,=Gesamt!C32,10,0,10
+BD039,36,39,Indoor,19949,100027,100027,IN-19949,Supply board PSC101 GS01,Nos,,,gesamt,Gesamt!row 35,Power supply with Crowbar PSC,=Gesamt!C35,26,35,61
+BD040,37,40,Indoor,23152,101228,101228,23152,Communication Board COM-AdC101 GS02,Nos,,,gesamt,Gesamt!row 36,Communication board COM-AdC,=Gesamt!C36,22,20,42
+BD041,38,41,Indoor,26534,102573,102573,IN-26534,Evaluation board AEB101 GS07,Nos,,,gesamt,Gesamt!row 39,Evaluation board AEB,=Gesamt!C39,176,374,550
+BD042,39,42,Indoor,20864,100029,100029,IN_20864,In-/Output board IO-EXB101 GS01,Nos,,,gesamt,Gesamt!row 40,Input/Output board IO-EXB,=Gesamt!C40,88,156,244
+BD043,40,43,Indoor,21441,100024,100024,,Backplane connector BP-EXB crimp version,Nos,,,derived_from_parts,BD042,,=H42,88,156,244
+BD044,41,44,Indoor,26795,102644,102644,IN_26795,FDS102 GS01 for FAdC,Nos,,,none,,,,0,0,0
+BD045,42,45,Reset,100052,100052,100052,IN_PC0301,Reset box RSTBOXV01,Nos,,,none,,,,0,0,0
+BD046,43,46,,100980,100980,100980,,Axle counter cubicle FAR-002 with glass door and fan RM,Nos,,,none,,,,0,0,0
+BD047,44,47,,102682,102682,102682,,Prewired Axle counter cubicle FAR-007 wall mount 15U,Nos,,,none,,,,0,0,0
+BD048,45,48,Cubical,101416,101416,101416,,Axle counter cubicle - 20U (Half cubicle) FAR-004,Nos,,,none,,,,0,0,0
+BD049,46,49,,100285,100285,100285,,Relay rack FRR-001,Nos,,,none,,,,0,0,0
+BD050,47,50,Reset,101951,101951,101951,,Reset cubicle GS02,Nos,,,none,,,,0,0,0
+BD051,48,51,Reset,101919,101919,101919,,Co-operation reset panel GS02,Nos,,,none,,,,0,0,0
+BD052,49,52,,110159,101227,101227,,"Westermo SLC20 / SLC20-DDM SFP Transceiver, 100Mbps",Nos,,,none,,,,0,0,0
+BD053,50,53,,102663,102663,102663,,"Advantech-Mngd. ethernet switch, EKI-7710E-2CI-AE-OFC",Nos,,,none,,,,0,0,0
+BD054,51,54,,100570,100570,100570,,Redundant ring ethernet extender DDW225,Nos,,,none,,,,0,0,0
+BD055,52,55,,23470,,,,RSR110-001 GS02 - Double,,,,none,,,,0,0,0
+BD056,53,56,,23027,,,,RSR110-002 GS02 -Single,,,,none,,,,0,0,0
+BD057,54,57,,13655,101424,101424,,Connection cable pluggable 5mtr with protection tube,,,yes,none,,,,0,0,0
+BD058,55,58,,24982,102619,102619,,Wheel sensor signal convertor WSC003,,,,none,,,,0,0,0
+BD059,56,59,,12205,100011,100011,,Protection tube flame-resistant 4.8m,,,,none,,,,0,0,0
+BD060,57,60,,14475,100335,100335,,Protection tube flame-resistant 9.8m,,,,none,,,,0,0,0
+BD061,58,61,,17443,100012,100012,,Protection tube flame-resistant 14.8m,,,,none,,,,0,0,0
+BD062,59,62,,10021,100382,100382,,Rails claw SK140,,,,none,,,,0,0,0
+BD063,60,63,,100383,100383,100383,,Rail claw SK140-011,,,yes,none,,,,0,0,0
+BD064,61,64,,100384,100384,100384,,Rail claw SK140-012,,,yes,none,,,,0,0,0
+BD065,62,65,,101195,101195,101195,,Rail claw SK140-013,,,,none,,,,0,0,0
+BD066,63,66,,100383,100383,100383,,Rail claw plate SK140-011 (60kg),,,yes,none,,,,0,0,0
+BD067,64,67,,100384,100384,100384,,Rail claw plate SK140-012 (52kg),,,yes,none,,,,0,0,0
+BD068,65,68,,100268,100268,100268,,Clamping bolt BBIK M12-22 GS02,,,,none,,,,0,0,0
+BD069,66,69,,25186,10004,10004,,TCB001,,,,none,,,,0,0,0
+BD070,67,70,,110279,110279,110279,,COM-FSFB101 GS04,,,yes,none,,,,0,0,0
+BD071,68,71,,100007,100007,100007,,Rail deflector FRD-001,,$,,none,,,,0,0,0
+BD072,69,72,,100051,100051,100051,,Strain relief clamp SRC ERICO - SBA2511B,,,,none,,,,0,0,0
+BD073,70,73,,102683,102683,102683,,Axle counter cubicle FAR-002 with glass door and fan with LSZH cable duct-RM,,!,,none,,,,0,0,0
+BD074,71,74,,102234,102234,102234,,Relay Non AC immune HN 12F/4B 24V,,,,none,,,,0,0,0
+BD075,72,75,,100088,100088,100088,,Relay HNNA/QNNA1 2x6F/2B 24V DC,,,,none,,,,0,0,0
+BD076,73,76,,100361,100361,100361,,Relay HNA 12F/4B 24VDC,,,,none,,,,0,0,0
+BD077,74,77,,102235,102235,102235,,Relay Non AC immune HN 8F/8B 24V,,,,none,,,,0,0,0
+BD078,75,78,,102236,102236,102236,,Relay Non AC immune Twin HNN 4F/4B 24V,,,,none,,,,0,0,0
+BD079,76,79,,102237,102237,102237,,Relay Non AC immune Twin HNN 6F/2B 24V,,,,none,,,,0,0,0
+BD080,77,80,,102661,102661,102661,,Prewired cubicle with 1BGT _20U Half cubicle,,,yes,none,,,,0,0,0
+BD081,78,81,,102662,102662,102662,,Prewired cubicle with 2BGT _20U Half cubicle,,,yes,none,,,,0,0,0
+BD082,79,82,,22288,101426,101426,,Rail claw SK150-GS04,,,,none,,,,0,0,0
+BD083,80,83,,24051,24051,102482,,Evaluation board AEB101 GS05,,,,none,,,,0,0,0
+BD084,81,84,,21117,100922,100922,,Frauscher diagnostic system FDS101 GS01 for FAdC-R2 RM,,,,none,,,,0,0,0
+BD085,82,85,,17391,100948,100948,,Board rack BGT08 42TE,,,,none,,,,0,0,0
+BD086,83,86,,110279,102668,102668,,Communication board COM-FSE101 GS04,,!,yes,none,,,,0,0,0
+BD087,84,87,Cubical,100002,,100002,,Axle counter cubicle FAR-002 with glass door and fan - IP 60 -35U,,,,none,,,,0,0,0
+BD088,85,88,,,,101230,,Pre-wired cubicle for 1 BGT,,,,none,,,,0,0,0
+BD089,86,89,,,,101231,,Pre-wired cubicle for 2 BGT,,,,none,,,,0,0,0
+BD090,87,90,,,,101232,,Pre-wired cubicle for 3 BGT,,,,none,,,,0,0,0
+BD091,88,91,,,,101233,,Pre-wired cubicle for 4 BGT,,,,none,,,,0,0,0
+BD092,89,92,,,,101234,,Pre-wired cubicle for 5 BGT,,!,,none,,,,0,0,0
+BD093,90,93,,,,102661,,Prewired cubicle with 1BGT _20U Half cubicle,,,yes,none,,,,0,0,0
+BD094,91,94,,,,102662,,Prewired cubicle with 2BGT _20U Half cubicle,,,yes,none,,,,0,0,0
+BD095,92,95,,,,101991,,"SK140-010, RSR110-002 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube",,@,,none,,,,0,0,0
+BD096,93,96,Outdoor,,,102058,,"SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN Protection tube 4.8m",,,,none,,,,0,0,0
+BD097,94,97,,,,101541,,"SK140-011, RSR180, BBK11, IN Protection tube 4.8m",,@,,none,,,,0,0,0
+BD098,95,98,,,,101542,,"SK140-011, RSR180, BBK11, AT Protection tube 4.8m",,@,,none,,,,0,0,0
+BD099,96,99,,,,101424,,Connection cable pluggable 5m with protection tube,,!,yes,none,,,,0,0,0
+BD100,97,100,,,,102530,,"SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 14.8m",,$,,none,,,,0,0,0
+BD101,98,101,,,,102536,,"SK140-010, RSR110-001 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube",,@,,none,,,,0,0,0
+BD102,99,102,,,,102582,,"SK140-012, RSR180-001 GS05, BBK11, IN Protection tube 4.8m",,$,,none,,,,0,0,0
+BD103,100,103,,,,102206,,"SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, AT Protection tube 14.8m",,,,none,,,,0,0,0
+BD104,101,104,,,,102227,,"SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 4.8m",,,,none,,,,0,0,0
+BD105,102,105,,,,102228,,"SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 9.8m",,,,none,,,,0,0,0
+BD106,103,106,,,,102229,,"SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",,,,none,,,,0,0,0
+BD107,104,107,,,,102657,,"SK140-004, RSR180-001 GS05, BBIK M12 17.5, AT Protection tube 9.8m",,@,,none,,,,0,0,0
+BD108,105,108,,,,101198,,"SK140-010, RSR180, BBK22 1.7227, AT Protection tube 4.8m",,@,,none,,,,0,0,0
+BD109,106,109,,,,101041,,"SK140-011, RSR180, BBK22 1.7227, IN Protection tube 4.8m",,@,,none,,,,0,0,0
+BD110,107,110,,,,101042,,"SK140-011, RSR180, BBK22 1.7227, IN Protection tube 9.8m",,@,,none,,,,0,0,0
+BD111,108,111,,,,101199,,"SK140-010, RSR180, BBK22 1.7227, AT Protection tube 9.8m",,@,,none,,,,0,0,0
+BD112,109,112,,,,101200,,"SK140-010, RSR180, BBK22 1.7227, AT Protection tube 14.8m",,@,,none,,,,0,0,0
+BD113,110,113,,,,102343,,"SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",,,,none,,,,0,0,0
+BD114,111,114,,,,102344,,"SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",,,,none,,,,0,0,0
+BD115,112,115,,,,102345,,"SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",,,,none,,,,0,0,0
+BD116,113,116,,,,102346,,"SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",,,,none,,,,0,0,0
+BD117,114,117,,,,102347,,"SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",,,,none,,,,0,0,0
+BD118,115,118,,,,102418,,"SK140-004, RSR180-001 GS05, BBK17.5, AT Protection tube 9.8m",,@,,none,,,,0,0,0
+BD119,116,119,,,,102419,,"SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 9.8m",,$,,none,,,,0,0,0
+BD120,117,120,,,,102369,,"SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 4.8m",,,,none,,,,0,0,0
+BD121,118,121,,,,102370,,"SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 9.8m",,,,none,,,,0,0,0
+BD122,119,122,,,,102371,,"SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, AT Protection tube 14.8m",,,,none,,,,0,0,0
+BD123,120,123,,,,102667,,"SK140-004, RSR180-001 GS05, BBIK M12 17.5, Protection tube 9.8m",,@,,none,,,,0,0,0
+BD124,121,124,,,,102420,,"SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 4.8m",,!$,,none,,,,0,0,0
+BD125,122,125,,,,102421,,"SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 9.8m",,!$,,none,,,,0,0,0
+BD126,123,126,,,,102426,,"SM - SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m",,!$,,none,,,,0,0,0
+BD127,124,127,Outdoor,,,102428,,"SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m",,,,none,,,,0,0,0
+BD128,125,128,,,,102429,,"SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN protection tube 14.8m",,,,none,,,,0,0,0
+BD129,126,129,Outdoor,,,101880,,"SK140-011, RSR180-001 GS05, BBIK M12-22 GS02 , IN Protection tube 9.8m",,,,none,,,,0,0,0
+BD130,127,130,,23288,102785,102785,,COM-MS101 GS01,,,,none,,,,0,0,0
+BD131,128,131,,21118,101725,101725,,Frauscher Diagnostic SystemFSD 101-SNMP-GS01 For FAdC-R2,,!@,,none,,,,0,0,0
+BD132,129,132,,18572,100429,100429,,ABP002-2 21TE GS03 CC,,,,none,,,,0,0,0
+BD133,130,133,,18557,100596,100596,,SIC006 GS01 CC,,,,none,,,,0,0,0
+BD134,131,134,,18577,100595,100595,,ACB119 GS04 CC,,,,none,,,,0,0,0
+BD135,132,135,,20765,100600,100600,,ACB130 GS04 CC,,,,none,,,,0,0,0
+BD136,133,136,,22206,100599,100599,,ACB129 GS04 CC,,,,none,,,,0,0,0
+BD137,134,137,,18558,100598,100598,,ACB120 GS04 CC,,,,none,,,,0,0,0
+BD138,135,138,,25002,100597,100597,,IMC010 GS05 CC,,,,none,,,,0,0,0
+BD139,136,139,,22230,100612,100612,,FDS GS02 CC for ACS2000,,,,none,,,,0,0,0
+BD140,137,140,,18680,100603,100603,,BTE001 GS01 CC,,,,none,,,,0,0,0
+BD141,138,141,,23904,102070,102070,,Communication board COM-FSE101 GS03,,,,none,,,,0,0,0
+BD142,139,142,,102770,102770,102770,,Reset Cubicle with LSZH cable duct-RM- For Metro,,,,none,,,,0,0,0
+BD143,140,143,,102771,102771,102771,,Relay rack FRR-001 with LSZH cable duct RM- For Metro,,,,none,,,,0,0,0
+BD144,141,144,,102226,102226,102226,,"HIRSCHMANN 19"" rack mount GRS1020 Industrial managed Fast Ethernet Switch",,!,,none,,,,0,0,0

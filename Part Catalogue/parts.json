@@ -1,0 +1,7189 @@
+{
+  "source": {
+    "sheet": "BD BOM",
+    "rows": "4-144",
+    "catalogue_version": 1.5,
+    "workbooks": {
+      "ABS": {
+        "workbook": "ABS V.1_2025-BRC with BD BOM.xlsm",
+        "project": "Jaipur-Sheodaspura",
+        "locations": [
+          {
+            "col": "H",
+            "index": 1,
+            "name": "Jaipur JN",
+            "used": true
+          },
+          {
+            "col": "I",
+            "index": 2,
+            "name": "ALH-1",
+            "used": true
+          },
+          {
+            "col": "J",
+            "index": 3,
+            "name": "Durgapura",
+            "used": true
+          },
+          {
+            "col": "K",
+            "index": 4,
+            "name": "Sanganer",
+            "used": true
+          },
+          {
+            "col": "L",
+            "index": 5,
+            "name": "ALH-2",
+            "used": true
+          },
+          {
+            "col": "M",
+            "index": 6,
+            "name": "ALH-3",
+            "used": true
+          },
+          {
+            "col": "N",
+            "index": 7,
+            "name": "ALH-4",
+            "used": true
+          },
+          {
+            "col": "O",
+            "index": 8,
+            "name": "Sheodaspura",
+            "used": true
+          }
+        ],
+        "duplicate_location_labels": {}
+      },
+      "Yard": {
+        "workbook": "Yard V.1_2025-BRC with BD BOM.xlsm",
+        "project": "Jaipur to Sawai",
+        "locations": [
+          {
+            "col": "H",
+            "index": 1,
+            "name": "Chaksu",
+            "used": true
+          },
+          {
+            "col": "I",
+            "index": 2,
+            "name": "Channani",
+            "used": true
+          },
+          {
+            "col": "J",
+            "index": 3,
+            "name": "Banasthali",
+            "used": true
+          },
+          {
+            "col": "K",
+            "index": 4,
+            "name": "Sirsa",
+            "used": true
+          },
+          {
+            "col": "L",
+            "index": 5,
+            "name": "Irsada",
+            "used": true
+          },
+          {
+            "col": "M",
+            "index": 6,
+            "name": "Chauth",
+            "used": true
+          },
+          {
+            "col": "N",
+            "index": 7,
+            "name": "Devpura Acc-1",
+            "used": true
+          },
+          {
+            "col": "O",
+            "index": 8,
+            "name": "Devpura Acc-2",
+            "used": true
+          },
+          {
+            "col": "P",
+            "index": 9,
+            "name": "Snaganer Acc-1",
+            "used": true
+          },
+          {
+            "col": "Q",
+            "index": 10,
+            "name": "Devpura Acc-2",
+            "used": true
+          },
+          {
+            "col": "R",
+            "index": 11,
+            "name": "Sheodaspura",
+            "used": true
+          },
+          {
+            "col": "S",
+            "index": 12,
+            "name": "Durgapur Acc-1",
+            "used": true
+          },
+          {
+            "col": "T",
+            "index": 13,
+            "name": "Durgapur Acc-2",
+            "used": true
+          }
+        ],
+        "duplicate_location_labels": {
+          "Devpura Acc-2": [
+            "O",
+            "Q"
+          ]
+        }
+      }
+    },
+    "note": "Columns A-G are identical in both workbooks; they differ only in the quantity block H:BF."
+  },
+  "duplicate_codes": {
+    "ramco_erp:101424": [
+      "BD057",
+      "BD099"
+    ],
+    "at_sales_cloud:100383": [
+      "BD063",
+      "BD066"
+    ],
+    "in_sales_cloud:100383": [
+      "BD063",
+      "BD066"
+    ],
+    "ramco_erp:100383": [
+      "BD063",
+      "BD066"
+    ],
+    "at_sales_cloud:100384": [
+      "BD064",
+      "BD067"
+    ],
+    "in_sales_cloud:100384": [
+      "BD064",
+      "BD067"
+    ],
+    "ramco_erp:100384": [
+      "BD064",
+      "BD067"
+    ],
+    "at_sales_cloud:110279": [
+      "BD070",
+      "BD086"
+    ],
+    "ramco_erp:102661": [
+      "BD080",
+      "BD093"
+    ],
+    "ramco_erp:102662": [
+      "BD081",
+      "BD094"
+    ]
+  },
+  "parts": [
+    {
+      "key": "BD004",
+      "sl_no": 1,
+      "source_row": 4,
+      "codes": {
+        "at_sales_cloud": "14393",
+        "in_sales_cloud": "",
+        "ramco_erp": "",
+        "rdso": ""
+      },
+      "description": "Invoice Amount Of Billing of goods for sales",
+      "description_raw": "Invoice Amount Of Billing of goods for sales",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD005",
+      "sl_no": 2,
+      "source_row": 5,
+      "codes": {
+        "at_sales_cloud": "23320",
+        "in_sales_cloud": "102207",
+        "ramco_erp": "102207",
+        "rdso": "23320"
+      },
+      "description": "Wheel sensor RSR180-001 GS05 5m cable",
+      "description_raw": "Wheel sensor RSR180-001 GS05 5m cable",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 5",
+        "label": "Wheel sensor RSR180",
+        "formula": "=Gesamt!C5"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD006",
+      "sl_no": 3,
+      "source_row": 6,
+      "codes": {
+        "at_sales_cloud": "23529",
+        "in_sales_cloud": "101879",
+        "ramco_erp": "101879",
+        "rdso": "23529"
+      },
+      "description": "Wheel sensor RSR180-001 GS05 10m cable",
+      "description_raw": "Wheel sensor RSR180-001 GS05 10m cable",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD007",
+      "sl_no": 4,
+      "source_row": 7,
+      "codes": {
+        "at_sales_cloud": "23531",
+        "in_sales_cloud": "102139",
+        "ramco_erp": "102139",
+        "rdso": "23531"
+      },
+      "description": "Wheel sensor RSR180-001 GS05 15m cable",
+      "description_raw": "Wheel sensor RSR180-001 GS05 15m cable",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD008",
+      "sl_no": 5,
+      "source_row": 8,
+      "codes": {
+        "at_sales_cloud": "100605",
+        "in_sales_cloud": "100605",
+        "ramco_erp": "100605",
+        "rdso": ""
+      },
+      "description": "IN Protection tube 4.8m",
+      "description_raw": "IN Protection tube 4.8m",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005",
+        "label": "",
+        "formula": "=H5"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD009",
+      "sl_no": 6,
+      "source_row": 9,
+      "codes": {
+        "at_sales_cloud": "100609",
+        "in_sales_cloud": "100609",
+        "ramco_erp": "100609",
+        "rdso": ""
+      },
+      "description": "IN Protection tube 9.8m",
+      "description_raw": "IN Protection tube 9.8m",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD006",
+        "label": "",
+        "formula": "=H6"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD010",
+      "sl_no": 7,
+      "source_row": 10,
+      "codes": {
+        "at_sales_cloud": "102423",
+        "in_sales_cloud": "102423",
+        "ramco_erp": "102423",
+        "rdso": ""
+      },
+      "description": "IN Protection tube 14.8 m",
+      "description_raw": "IN Protection tube 14.8 m",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD007",
+        "label": "",
+        "formula": "=H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD011",
+      "sl_no": 8,
+      "source_row": 11,
+      "codes": {
+        "at_sales_cloud": "102411",
+        "in_sales_cloud": "102411",
+        "ramco_erp": "102411",
+        "rdso": ""
+      },
+      "description": "IN Rail claw SK140-011 w/o m. plate FSTI - RM",
+      "description_raw": "IN Rail claw SK140-011 w/o m. plate FSTI - RM",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD012",
+      "sl_no": 9,
+      "source_row": 12,
+      "codes": {
+        "at_sales_cloud": "21345",
+        "in_sales_cloud": "101059",
+        "ramco_erp": "101059",
+        "rdso": ""
+      },
+      "description": "Rail Claw SK140-010 GS02 RM-METRO",
+      "description_raw": "Rail Claw SK140-010 GS02 RM-METRO",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD013",
+      "sl_no": 10,
+      "source_row": 13,
+      "codes": {
+        "at_sales_cloud": "100534",
+        "in_sales_cloud": "100534",
+        "ramco_erp": "100534",
+        "rdso": "IN-19813"
+      },
+      "description": "IN Rail claw plate SK140-011 (60kg)",
+      "description_raw": "IN Rail claw plate SK140-011 (60kg)",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD014",
+      "sl_no": 11,
+      "source_row": 14,
+      "codes": {
+        "at_sales_cloud": "100535",
+        "in_sales_cloud": "100535",
+        "ramco_erp": "100535",
+        "rdso": "IN-19814"
+      },
+      "description": "IN Rail claw plate SK140-012 (52kg)",
+      "description_raw": "IN Rail claw plate SK140-012 (52kg)",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD015",
+      "sl_no": 12,
+      "source_row": 15,
+      "codes": {
+        "at_sales_cloud": "101431",
+        "in_sales_cloud": "101431",
+        "ramco_erp": "101431",
+        "rdso": ""
+      },
+      "description": "IN Clamping bolt BBIK M12-22 GS02",
+      "description_raw": "IN Clamping bolt BBIK M12-22 GS02",
+      "markers": "",
+      "uom": "Pair",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD016",
+      "sl_no": 13,
+      "source_row": 16,
+      "codes": {
+        "at_sales_cloud": "101432",
+        "in_sales_cloud": "101432",
+        "ramco_erp": "101432",
+        "rdso": ""
+      },
+      "description": "IN Clamping bolt BBIK M12-17.5 GS02",
+      "description_raw": "IN Clamping bolt BBIK M12-17.5 GS02",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD017",
+      "sl_no": 14,
+      "source_row": 17,
+      "codes": {
+        "at_sales_cloud": "100004",
+        "in_sales_cloud": "100004",
+        "ramco_erp": "100004",
+        "rdso": "IN-PC0101"
+      },
+      "description": "Track lead junction box TLJB-01",
+      "description_raw": "Track lead junction box TLJB-01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD018",
+      "sl_no": 15,
+      "source_row": 18,
+      "codes": {
+        "at_sales_cloud": "101950",
+        "in_sales_cloud": "101950",
+        "ramco_erp": "101950",
+        "rdso": ""
+      },
+      "description": "IN Frauscher Rail Deflector FRD001 GS02 60kg",
+      "description_raw": "IN Frauscher Rail Deflector FRD001 GS02 60kg",
+      "markers": "",
+      "uom": "Pair",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD019",
+      "sl_no": 16,
+      "source_row": 19,
+      "codes": {
+        "at_sales_cloud": "102763",
+        "in_sales_cloud": "102763",
+        "ramco_erp": "102763",
+        "rdso": ""
+      },
+      "description": "Strain relief clamp SRC-IN Make",
+      "description_raw": "Strain relief clamp SRC-IN Make",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD005, BD006, BD007",
+        "label": "",
+        "formula": "=H5+H6+H7"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD020",
+      "sl_no": 17,
+      "source_row": 20,
+      "codes": {
+        "at_sales_cloud": "13338",
+        "in_sales_cloud": "101151",
+        "ramco_erp": "101151",
+        "rdso": ""
+      },
+      "description": "Clamping bolt BBK22 1.7227-(METRO+FOREIGN)",
+      "description_raw": "Clamping bolt BBK22 1.7227-(METRO+FOREIGN)",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD021",
+      "sl_no": 18,
+      "source_row": 21,
+      "codes": {
+        "at_sales_cloud": "13393",
+        "in_sales_cloud": "101152",
+        "ramco_erp": "101152",
+        "rdso": ""
+      },
+      "description": "Clamping bolt BBK17.5 1.7227-(METRO+FOREIGN)",
+      "description_raw": "Clamping bolt BBK17.5 1.7227-(METRO+FOREIGN)",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD022",
+      "sl_no": 19,
+      "source_row": 22,
+      "codes": {
+        "at_sales_cloud": "14227",
+        "in_sales_cloud": "100859",
+        "ramco_erp": "100859",
+        "rdso": ""
+      },
+      "description": "Clamping bolt BBK11 1.7227 (FOREIGN)",
+      "description_raw": "Clamping bolt BBK11 1.7227 (FOREIGN)",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD023",
+      "sl_no": 20,
+      "source_row": 23,
+      "codes": {
+        "at_sales_cloud": "100008",
+        "in_sales_cloud": "100008",
+        "ramco_erp": "100008",
+        "rdso": "IN_PC0109"
+      },
+      "description": "Line Verification Box LVB-01",
+      "description_raw": "Line Verification Box LVB-01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD024",
+      "sl_no": 21,
+      "source_row": 24,
+      "codes": {
+        "at_sales_cloud": "20865",
+        "in_sales_cloud": "100386",
+        "ramco_erp": "100386",
+        "rdso": ""
+      },
+      "description": "Advanced service display ASD101 GS01",
+      "description_raw": "Advanced service display ASD101 GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD025",
+      "sl_no": 22,
+      "source_row": 25,
+      "codes": {
+        "at_sales_cloud": "100328",
+        "in_sales_cloud": "100328",
+        "ramco_erp": "100328",
+        "rdso": ""
+      },
+      "description": "TOOL KIT - 01 Main line with BBIK M12 GS02-ML",
+      "description_raw": "TOOL KIT - 01 Main line with BBIK M12 GS02-ML",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD026",
+      "sl_no": 23,
+      "source_row": 26,
+      "codes": {
+        "at_sales_cloud": "100583",
+        "in_sales_cloud": "100583",
+        "ramco_erp": "100583",
+        "rdso": ""
+      },
+      "description": "TOOL KIT - 02 Main line with BBK-METRO-BALLAST",
+      "description_raw": "TOOL KIT - 02 Main line with BBK-METRO-BALLAST",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD027",
+      "sl_no": 24,
+      "source_row": 27,
+      "codes": {
+        "at_sales_cloud": "100584",
+        "in_sales_cloud": "100584",
+        "ramco_erp": "100584",
+        "rdso": ""
+      },
+      "description": "TOOL KIT - 03 Metro with BBK-METRO VIA DUCT",
+      "description_raw": "TOOL KIT - 03 Metro with BBK-METRO VIA DUCT",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD028",
+      "sl_no": 25,
+      "source_row": 28,
+      "codes": {
+        "at_sales_cloud": "102480",
+        "in_sales_cloud": "102480",
+        "ramco_erp": "102480",
+        "rdso": ""
+      },
+      "description": "Multimeter - compact true-rms meter-Fluke",
+      "description_raw": "Multimeter - compact true-rms meter-Fluke",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD029",
+      "sl_no": 26,
+      "source_row": 29,
+      "codes": {
+        "at_sales_cloud": "100418",
+        "in_sales_cloud": "100418",
+        "ramco_erp": "100418",
+        "rdso": ""
+      },
+      "description": "Multimeter - compact true-rms meter-Sanwa",
+      "description_raw": "Multimeter - compact true-rms meter-Sanwa",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD030",
+      "sl_no": 27,
+      "source_row": 30,
+      "codes": {
+        "at_sales_cloud": "24627",
+        "in_sales_cloud": "101770",
+        "ramco_erp": "101770",
+        "rdso": "IN_24627"
+      },
+      "description": "Testing plate PB200-TS GS01",
+      "description_raw": "Testing plate PB200-TS GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD031",
+      "sl_no": 28,
+      "source_row": 31,
+      "codes": {
+        "at_sales_cloud": "18571",
+        "in_sales_cloud": "100013",
+        "ramco_erp": "100013",
+        "rdso": "IN-18571"
+      },
+      "description": "Overvoltage protection board BSI004 GS01 CC",
+      "description_raw": "Overvoltage protection board BSI004 GS01 CC",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 13",
+        "label": "Overvoltage protection board BSI",
+        "formula": "=Gesamt!C13"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD032",
+      "sl_no": 29,
+      "source_row": 32,
+      "codes": {
+        "at_sales_cloud": "17390",
+        "in_sales_cloud": "100049",
+        "ramco_erp": "100049",
+        "rdso": "IN-17390"
+      },
+      "description": "Board rack BGT07 84TE",
+      "description_raw": "Board rack BGT07 84TE",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 14",
+        "label": "Board rack BGT07 84 TE",
+        "formula": "=Gesamt!C14"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 23,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 1
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 3
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 3
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 3
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 4
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 4
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 1
+            }
+          ]
+        },
+        "Yard": {
+          "total": 45,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 4
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 4
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 4
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 4
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 3
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 3
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 3
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 3
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 4
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 3
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD033",
+      "sl_no": 30,
+      "source_row": 33,
+      "codes": {
+        "at_sales_cloud": "19952",
+        "in_sales_cloud": "100031",
+        "ramco_erp": "100031",
+        "rdso": "19952"
+      },
+      "description": "Backplane BP-PWR101-0 8TE GS01",
+      "description_raw": "Backplane BP-PWR101-0 8TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 16",
+        "label": "Backplane BP-PWR-0",
+        "formula": "=Gesamt!C16"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD034",
+      "sl_no": 31,
+      "source_row": 34,
+      "codes": {
+        "at_sales_cloud": "19953",
+        "in_sales_cloud": "100391",
+        "ramco_erp": "100391",
+        "rdso": "19953"
+      },
+      "description": "Backplane BP-PWR101-4 24TE GS01",
+      "description_raw": "Backplane BP-PWR101-4 24TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 20",
+        "label": "Backplane BP-PWR-4",
+        "formula": "=Gesamt!C20"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 10,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 2
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 2
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 2
+            }
+          ]
+        },
+        "Yard": {
+          "total": 9,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 1
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 1
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 1
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 1
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 1
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 1
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 1
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD035",
+      "sl_no": 32,
+      "source_row": 35,
+      "codes": {
+        "at_sales_cloud": "19954",
+        "in_sales_cloud": "100030",
+        "ramco_erp": "100030",
+        "rdso": "19954"
+      },
+      "description": "Backplane BP-PWR101-8 40TE GS01",
+      "description_raw": "Backplane BP-PWR101-8 40TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 22",
+        "label": "Backplane BP-PWR-8",
+        "formula": "=Gesamt!C22"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 18,
+          "by_location": [
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 2
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 4
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 38,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 3
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 3
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 4
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 3
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 3
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 3
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 3
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 3
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 3
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD036",
+      "sl_no": 33,
+      "source_row": 36,
+      "codes": {
+        "at_sales_cloud": "19956",
+        "in_sales_cloud": "100028",
+        "ramco_erp": "100028",
+        "rdso": "19956"
+      },
+      "description": "Backplane BP-EXB101-1 10TE GS01",
+      "description_raw": "Backplane BP-EXB101-1 10TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 29",
+        "label": "Backplane BP-EXB-1",
+        "formula": "=Gesamt!C29"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 16,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 2
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 4
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 2
+            }
+          ]
+        },
+        "Yard": {
+          "total": 11,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 1
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 1
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 1
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 2
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 1
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 1
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD037",
+      "sl_no": 34,
+      "source_row": 37,
+      "codes": {
+        "at_sales_cloud": "19957",
+        "in_sales_cloud": "100392",
+        "ramco_erp": "100392",
+        "rdso": "19957"
+      },
+      "description": "Backplane BP-EXB101-2 16TE GS01",
+      "description_raw": "Backplane BP-EXB101-2 16TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 30",
+        "label": "Backplane BP-EXB-2",
+        "formula": "=Gesamt!C30"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 18,
+          "by_location": [
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 8
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 8
+            }
+          ]
+        },
+        "Yard": {
+          "total": 74,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 6
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 6
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 7
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 6
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 7
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 6
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 4
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 6
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 4
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 6
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 6
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 4
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 6
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD038",
+      "sl_no": 35,
+      "source_row": 38,
+      "codes": {
+        "at_sales_cloud": "19958",
+        "in_sales_cloud": "100393",
+        "ramco_erp": "100393",
+        "rdso": "19958"
+      },
+      "description": "Backplane BP-EXB101-4 28TE GS01",
+      "description_raw": "Backplane BP-EXB101-4 28TE GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 32",
+        "label": "Backplane BP-EXB-4",
+        "formula": "=Gesamt!C32"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 10,
+          "by_location": [
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 2
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD039",
+      "sl_no": 36,
+      "source_row": 39,
+      "codes": {
+        "at_sales_cloud": "19949",
+        "in_sales_cloud": "100027",
+        "ramco_erp": "100027",
+        "rdso": "IN-19949"
+      },
+      "description": "Supply board PSC101 GS01",
+      "description_raw": "Supply board PSC101 GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 35",
+        "label": "Power supply with Crowbar PSC",
+        "formula": "=Gesamt!C35"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 26,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 2
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 4
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 4
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 4
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 4
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 2
+            }
+          ]
+        },
+        "Yard": {
+          "total": 35,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 3
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 3
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 4
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 3
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 3
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 2
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 2
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 3
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 2
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 2
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD040",
+      "sl_no": 37,
+      "source_row": 40,
+      "codes": {
+        "at_sales_cloud": "23152",
+        "in_sales_cloud": "101228",
+        "ramco_erp": "101228",
+        "rdso": "23152"
+      },
+      "description": "Communication Board COM-AdC101 GS02",
+      "description_raw": "Communication Board COM-AdC101 GS02",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 36",
+        "label": "Communication board COM-AdC",
+        "formula": "=Gesamt!C36"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 22,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 1
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 3
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 3
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 4
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 4
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 4
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 1
+            }
+          ]
+        },
+        "Yard": {
+          "total": 20,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 2
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 2
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 2
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 2
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 2
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 2
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 1
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 1
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 2
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 1
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 1
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD041",
+      "sl_no": 38,
+      "source_row": 41,
+      "codes": {
+        "at_sales_cloud": "26534",
+        "in_sales_cloud": "102573",
+        "ramco_erp": "102573",
+        "rdso": "IN-26534"
+      },
+      "description": "Evaluation board AEB101 GS07",
+      "description_raw": "Evaluation board AEB101 GS07",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 39",
+        "label": "Evaluation board AEB",
+        "formula": "=Gesamt!C39"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 176,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 4
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 24
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 16
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 40
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 40
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 32
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 4
+            }
+          ]
+        },
+        "Yard": {
+          "total": 374,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 31
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 30
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 39
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 30
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 39
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 31
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 22
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 29
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 21
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 27
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 30
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 19
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 26
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD042",
+      "sl_no": 39,
+      "source_row": 42,
+      "codes": {
+        "at_sales_cloud": "20864",
+        "in_sales_cloud": "100029",
+        "ramco_erp": "100029",
+        "rdso": "IN_20864"
+      },
+      "description": "In-/Output board IO-EXB101 GS01",
+      "description_raw": "In-/Output board IO-EXB101 GS01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "gesamt",
+        "ref": "Gesamt!row 40",
+        "label": "Input/Output board IO-EXB",
+        "formula": "=Gesamt!C40"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 88,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 2
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 12
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 8
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 8
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 20
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 20
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 16
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 2
+            }
+          ]
+        },
+        "Yard": {
+          "total": 156,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 13
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 13
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 13
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 16
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 13
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 12
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 11
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 13
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 12
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD043",
+      "sl_no": 40,
+      "source_row": 43,
+      "codes": {
+        "at_sales_cloud": "21441",
+        "in_sales_cloud": "100024",
+        "ramco_erp": "100024",
+        "rdso": ""
+      },
+      "description": "Backplane connector BP-EXB crimp version",
+      "description_raw": "Backplane connector BP-EXB crimp version",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "derived_from_parts",
+        "ref": "BD042",
+        "label": "",
+        "formula": "=H42"
+      },
+      "quantities": {
+        "ABS": {
+          "total": 88,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Jaipur JN",
+              "qty": 2
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "ALH-1",
+              "qty": 12
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Durgapura",
+              "qty": 8
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sanganer",
+              "qty": 8
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "ALH-2",
+              "qty": 20
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "ALH-3",
+              "qty": 20
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "ALH-4",
+              "qty": 16
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Sheodaspura",
+              "qty": 2
+            }
+          ]
+        },
+        "Yard": {
+          "total": 156,
+          "by_location": [
+            {
+              "col": "H",
+              "index": 1,
+              "location": "Chaksu",
+              "qty": 13
+            },
+            {
+              "col": "I",
+              "index": 2,
+              "location": "Channani",
+              "qty": 13
+            },
+            {
+              "col": "J",
+              "index": 3,
+              "location": "Banasthali",
+              "qty": 16
+            },
+            {
+              "col": "K",
+              "index": 4,
+              "location": "Sirsa",
+              "qty": 13
+            },
+            {
+              "col": "L",
+              "index": 5,
+              "location": "Irsada",
+              "qty": 16
+            },
+            {
+              "col": "M",
+              "index": 6,
+              "location": "Chauth",
+              "qty": 13
+            },
+            {
+              "col": "N",
+              "index": 7,
+              "location": "Devpura Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "O",
+              "index": 8,
+              "location": "Devpura Acc-2",
+              "qty": 12
+            },
+            {
+              "col": "P",
+              "index": 9,
+              "location": "Snaganer Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "Q",
+              "index": 10,
+              "location": "Devpura Acc-2",
+              "qty": 11
+            },
+            {
+              "col": "R",
+              "index": 11,
+              "location": "Sheodaspura",
+              "qty": 13
+            },
+            {
+              "col": "S",
+              "index": 12,
+              "location": "Durgapur Acc-1",
+              "qty": 8
+            },
+            {
+              "col": "T",
+              "index": 13,
+              "location": "Durgapur Acc-2",
+              "qty": 12
+            }
+          ]
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD044",
+      "sl_no": 41,
+      "source_row": 44,
+      "codes": {
+        "at_sales_cloud": "26795",
+        "in_sales_cloud": "102644",
+        "ramco_erp": "102644",
+        "rdso": "IN_26795"
+      },
+      "description": "FDS102 GS01 for FAdC",
+      "description_raw": "FDS102 GS01 for FAdC",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Indoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD045",
+      "sl_no": 42,
+      "source_row": 45,
+      "codes": {
+        "at_sales_cloud": "100052",
+        "in_sales_cloud": "100052",
+        "ramco_erp": "100052",
+        "rdso": "IN_PC0301"
+      },
+      "description": "Reset box RSTBOXV01",
+      "description_raw": "Reset box RSTBOXV01",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Reset",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD046",
+      "sl_no": 43,
+      "source_row": 46,
+      "codes": {
+        "at_sales_cloud": "100980",
+        "in_sales_cloud": "100980",
+        "ramco_erp": "100980",
+        "rdso": ""
+      },
+      "description": "Axle counter cubicle FAR-002 with glass door and fan RM",
+      "description_raw": "Axle counter cubicle FAR-002 with glass door and fan RM",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD047",
+      "sl_no": 44,
+      "source_row": 47,
+      "codes": {
+        "at_sales_cloud": "102682",
+        "in_sales_cloud": "102682",
+        "ramco_erp": "102682",
+        "rdso": ""
+      },
+      "description": "Prewired Axle counter cubicle FAR-007 wall mount 15U",
+      "description_raw": "Prewired Axle counter cubicle FAR-007 wall mount 15U",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD048",
+      "sl_no": 45,
+      "source_row": 48,
+      "codes": {
+        "at_sales_cloud": "101416",
+        "in_sales_cloud": "101416",
+        "ramco_erp": "101416",
+        "rdso": ""
+      },
+      "description": "Axle counter cubicle - 20U (Half cubicle) FAR-004",
+      "description_raw": "Axle counter cubicle - 20U (Half cubicle) FAR-004",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Cubical",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD049",
+      "sl_no": 46,
+      "source_row": 49,
+      "codes": {
+        "at_sales_cloud": "100285",
+        "in_sales_cloud": "100285",
+        "ramco_erp": "100285",
+        "rdso": ""
+      },
+      "description": "Relay rack FRR-001",
+      "description_raw": "Relay rack FRR-001",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD050",
+      "sl_no": 47,
+      "source_row": 50,
+      "codes": {
+        "at_sales_cloud": "101951",
+        "in_sales_cloud": "101951",
+        "ramco_erp": "101951",
+        "rdso": ""
+      },
+      "description": "Reset cubicle GS02",
+      "description_raw": "Reset cubicle GS02",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Reset",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD051",
+      "sl_no": 48,
+      "source_row": 51,
+      "codes": {
+        "at_sales_cloud": "101919",
+        "in_sales_cloud": "101919",
+        "ramco_erp": "101919",
+        "rdso": ""
+      },
+      "description": "Co-operation reset panel GS02",
+      "description_raw": "Co-operation reset panel GS02",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Reset",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD052",
+      "sl_no": 49,
+      "source_row": 52,
+      "codes": {
+        "at_sales_cloud": "110159",
+        "in_sales_cloud": "101227",
+        "ramco_erp": "101227",
+        "rdso": ""
+      },
+      "description": "Westermo SLC20 / SLC20-DDM SFP Transceiver, 100Mbps",
+      "description_raw": "Westermo SLC20 / SLC20-DDM SFP Transceiver, 100Mbps",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD053",
+      "sl_no": 50,
+      "source_row": 53,
+      "codes": {
+        "at_sales_cloud": "102663",
+        "in_sales_cloud": "102663",
+        "ramco_erp": "102663",
+        "rdso": ""
+      },
+      "description": "Advantech-Mngd. ethernet switch, EKI-7710E-2CI-AE-OFC",
+      "description_raw": "Advantech-Mngd. ethernet switch, EKI-7710E-2CI-AE-OFC",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD054",
+      "sl_no": 51,
+      "source_row": 54,
+      "codes": {
+        "at_sales_cloud": "100570",
+        "in_sales_cloud": "100570",
+        "ramco_erp": "100570",
+        "rdso": ""
+      },
+      "description": "Redundant ring ethernet extender DDW225",
+      "description_raw": "Redundant ring ethernet extender DDW225",
+      "markers": "",
+      "uom": "Nos",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD055",
+      "sl_no": 52,
+      "source_row": 55,
+      "codes": {
+        "at_sales_cloud": "23470",
+        "in_sales_cloud": "",
+        "ramco_erp": "",
+        "rdso": ""
+      },
+      "description": "RSR110-001 GS02 - Double",
+      "description_raw": "RSR110-001 GS02 - Double",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD056",
+      "sl_no": 53,
+      "source_row": 56,
+      "codes": {
+        "at_sales_cloud": "23027",
+        "in_sales_cloud": "",
+        "ramco_erp": "",
+        "rdso": ""
+      },
+      "description": "RSR110-002 GS02 -Single",
+      "description_raw": "RSR110-002 GS02 -Single",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD057",
+      "sl_no": 54,
+      "source_row": 57,
+      "codes": {
+        "at_sales_cloud": "13655",
+        "in_sales_cloud": "101424",
+        "ramco_erp": "101424",
+        "rdso": ""
+      },
+      "description": "Connection cable pluggable 5mtr with protection tube",
+      "description_raw": "Connection cable pluggable 5mtr with protection tube",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD058",
+      "sl_no": 55,
+      "source_row": 58,
+      "codes": {
+        "at_sales_cloud": "24982",
+        "in_sales_cloud": "102619",
+        "ramco_erp": "102619",
+        "rdso": ""
+      },
+      "description": "Wheel sensor signal convertor WSC003",
+      "description_raw": "Wheel sensor signal convertor WSC003",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD059",
+      "sl_no": 56,
+      "source_row": 59,
+      "codes": {
+        "at_sales_cloud": "12205",
+        "in_sales_cloud": "100011",
+        "ramco_erp": "100011",
+        "rdso": ""
+      },
+      "description": "Protection tube flame-resistant 4.8m",
+      "description_raw": "Protection tube flame-resistant 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD060",
+      "sl_no": 57,
+      "source_row": 60,
+      "codes": {
+        "at_sales_cloud": "14475",
+        "in_sales_cloud": "100335",
+        "ramco_erp": "100335",
+        "rdso": ""
+      },
+      "description": "Protection tube flame-resistant 9.8m",
+      "description_raw": "Protection tube flame-resistant 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD061",
+      "sl_no": 58,
+      "source_row": 61,
+      "codes": {
+        "at_sales_cloud": "17443",
+        "in_sales_cloud": "100012",
+        "ramco_erp": "100012",
+        "rdso": ""
+      },
+      "description": "Protection tube flame-resistant 14.8m",
+      "description_raw": "Protection tube flame-resistant 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD062",
+      "sl_no": 59,
+      "source_row": 62,
+      "codes": {
+        "at_sales_cloud": "10021",
+        "in_sales_cloud": "100382",
+        "ramco_erp": "100382",
+        "rdso": ""
+      },
+      "description": "Rails claw SK140",
+      "description_raw": "Rails claw SK140",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD063",
+      "sl_no": 60,
+      "source_row": 63,
+      "codes": {
+        "at_sales_cloud": "100383",
+        "in_sales_cloud": "100383",
+        "ramco_erp": "100383",
+        "rdso": ""
+      },
+      "description": "Rail claw SK140-011",
+      "description_raw": "Rail claw SK140-011",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD064",
+      "sl_no": 61,
+      "source_row": 64,
+      "codes": {
+        "at_sales_cloud": "100384",
+        "in_sales_cloud": "100384",
+        "ramco_erp": "100384",
+        "rdso": ""
+      },
+      "description": "Rail claw SK140-012",
+      "description_raw": "Rail claw SK140-012",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD065",
+      "sl_no": 62,
+      "source_row": 65,
+      "codes": {
+        "at_sales_cloud": "101195",
+        "in_sales_cloud": "101195",
+        "ramco_erp": "101195",
+        "rdso": ""
+      },
+      "description": "Rail claw SK140-013",
+      "description_raw": "Rail claw SK140-013",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD066",
+      "sl_no": 63,
+      "source_row": 66,
+      "codes": {
+        "at_sales_cloud": "100383",
+        "in_sales_cloud": "100383",
+        "ramco_erp": "100383",
+        "rdso": ""
+      },
+      "description": "Rail claw plate SK140-011 (60kg)",
+      "description_raw": "Rail claw plate SK140-011 (60kg)",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD067",
+      "sl_no": 64,
+      "source_row": 67,
+      "codes": {
+        "at_sales_cloud": "100384",
+        "in_sales_cloud": "100384",
+        "ramco_erp": "100384",
+        "rdso": ""
+      },
+      "description": "Rail claw plate SK140-012 (52kg)",
+      "description_raw": "Rail claw plate SK140-012 (52kg)",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD068",
+      "sl_no": 65,
+      "source_row": 68,
+      "codes": {
+        "at_sales_cloud": "100268",
+        "in_sales_cloud": "100268",
+        "ramco_erp": "100268",
+        "rdso": ""
+      },
+      "description": "Clamping bolt BBIK M12-22 GS02",
+      "description_raw": "Clamping bolt BBIK M12-22 GS02",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD069",
+      "sl_no": 66,
+      "source_row": 69,
+      "codes": {
+        "at_sales_cloud": "25186",
+        "in_sales_cloud": "10004",
+        "ramco_erp": "10004",
+        "rdso": ""
+      },
+      "description": "TCB001",
+      "description_raw": "TCB001",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD070",
+      "sl_no": 67,
+      "source_row": 70,
+      "codes": {
+        "at_sales_cloud": "110279",
+        "in_sales_cloud": "110279",
+        "ramco_erp": "110279",
+        "rdso": ""
+      },
+      "description": "COM-FSFB101 GS04",
+      "description_raw": "COM-FSFB101 GS04",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD071",
+      "sl_no": 68,
+      "source_row": 71,
+      "codes": {
+        "at_sales_cloud": "100007",
+        "in_sales_cloud": "100007",
+        "ramco_erp": "100007",
+        "rdso": ""
+      },
+      "description": "Rail deflector FRD-001",
+      "description_raw": "$ Rail deflector FRD-001 $",
+      "markers": "$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD072",
+      "sl_no": 69,
+      "source_row": 72,
+      "codes": {
+        "at_sales_cloud": "100051",
+        "in_sales_cloud": "100051",
+        "ramco_erp": "100051",
+        "rdso": ""
+      },
+      "description": "Strain relief clamp SRC ERICO - SBA2511B",
+      "description_raw": "Strain relief clamp SRC ERICO - SBA2511B",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD073",
+      "sl_no": 70,
+      "source_row": 73,
+      "codes": {
+        "at_sales_cloud": "102683",
+        "in_sales_cloud": "102683",
+        "ramco_erp": "102683",
+        "rdso": ""
+      },
+      "description": "Axle counter cubicle FAR-002 with glass door and fan with LSZH cable duct-RM",
+      "description_raw": "!Axle counter cubicle FAR-002 with glass door and fan with LSZH cable duct-RM!",
+      "markers": "!",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD074",
+      "sl_no": 71,
+      "source_row": 74,
+      "codes": {
+        "at_sales_cloud": "102234",
+        "in_sales_cloud": "102234",
+        "ramco_erp": "102234",
+        "rdso": ""
+      },
+      "description": "Relay Non AC immune HN 12F/4B 24V",
+      "description_raw": "Relay Non AC immune HN 12F/4B 24V",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD075",
+      "sl_no": 72,
+      "source_row": 75,
+      "codes": {
+        "at_sales_cloud": "100088",
+        "in_sales_cloud": "100088",
+        "ramco_erp": "100088",
+        "rdso": ""
+      },
+      "description": "Relay HNNA/QNNA1 2x6F/2B 24V DC",
+      "description_raw": "Relay HNNA/QNNA1 2x6F/2B 24V DC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD076",
+      "sl_no": 73,
+      "source_row": 76,
+      "codes": {
+        "at_sales_cloud": "100361",
+        "in_sales_cloud": "100361",
+        "ramco_erp": "100361",
+        "rdso": ""
+      },
+      "description": "Relay HNA 12F/4B 24VDC",
+      "description_raw": "Relay HNA 12F/4B 24VDC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD077",
+      "sl_no": 74,
+      "source_row": 77,
+      "codes": {
+        "at_sales_cloud": "102235",
+        "in_sales_cloud": "102235",
+        "ramco_erp": "102235",
+        "rdso": ""
+      },
+      "description": "Relay Non AC immune HN 8F/8B 24V",
+      "description_raw": "Relay Non AC immune HN 8F/8B 24V",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD078",
+      "sl_no": 75,
+      "source_row": 78,
+      "codes": {
+        "at_sales_cloud": "102236",
+        "in_sales_cloud": "102236",
+        "ramco_erp": "102236",
+        "rdso": ""
+      },
+      "description": "Relay Non AC immune Twin HNN 4F/4B 24V",
+      "description_raw": "Relay Non AC immune Twin HNN 4F/4B 24V",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD079",
+      "sl_no": 76,
+      "source_row": 79,
+      "codes": {
+        "at_sales_cloud": "102237",
+        "in_sales_cloud": "102237",
+        "ramco_erp": "102237",
+        "rdso": ""
+      },
+      "description": "Relay Non AC immune Twin HNN 6F/2B 24V",
+      "description_raw": "Relay Non AC immune Twin HNN 6F/2B 24V",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD080",
+      "sl_no": 77,
+      "source_row": 80,
+      "codes": {
+        "at_sales_cloud": "102661",
+        "in_sales_cloud": "102661",
+        "ramco_erp": "102661",
+        "rdso": ""
+      },
+      "description": "Prewired cubicle with 1BGT _20U Half cubicle",
+      "description_raw": "Prewired cubicle with 1BGT _20U Half cubicle",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD081",
+      "sl_no": 78,
+      "source_row": 81,
+      "codes": {
+        "at_sales_cloud": "102662",
+        "in_sales_cloud": "102662",
+        "ramco_erp": "102662",
+        "rdso": ""
+      },
+      "description": "Prewired cubicle with 2BGT _20U Half cubicle",
+      "description_raw": "Prewired cubicle with 2BGT _20U Half cubicle",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD082",
+      "sl_no": 79,
+      "source_row": 82,
+      "codes": {
+        "at_sales_cloud": "22288",
+        "in_sales_cloud": "101426",
+        "ramco_erp": "101426",
+        "rdso": ""
+      },
+      "description": "Rail claw SK150-GS04",
+      "description_raw": "Rail claw SK150-GS04",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD083",
+      "sl_no": 80,
+      "source_row": 83,
+      "codes": {
+        "at_sales_cloud": "24051",
+        "in_sales_cloud": "24051",
+        "ramco_erp": "102482",
+        "rdso": ""
+      },
+      "description": "Evaluation board AEB101 GS05",
+      "description_raw": "Evaluation board AEB101 GS05",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD084",
+      "sl_no": 81,
+      "source_row": 84,
+      "codes": {
+        "at_sales_cloud": "21117",
+        "in_sales_cloud": "100922",
+        "ramco_erp": "100922",
+        "rdso": ""
+      },
+      "description": "Frauscher diagnostic system FDS101 GS01 for FAdC-R2 RM",
+      "description_raw": "Frauscher diagnostic system FDS101 GS01 for FAdC-R2 RM",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD085",
+      "sl_no": 82,
+      "source_row": 85,
+      "codes": {
+        "at_sales_cloud": "17391",
+        "in_sales_cloud": "100948",
+        "ramco_erp": "100948",
+        "rdso": ""
+      },
+      "description": "Board rack BGT08 42TE",
+      "description_raw": "Board rack BGT08 42TE",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD086",
+      "sl_no": 83,
+      "source_row": 86,
+      "codes": {
+        "at_sales_cloud": "110279",
+        "in_sales_cloud": "102668",
+        "ramco_erp": "102668",
+        "rdso": ""
+      },
+      "description": "Communication board COM-FSE101 GS04",
+      "description_raw": "! Communication board COM-FSE101 GS04 !",
+      "markers": "!",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD087",
+      "sl_no": 84,
+      "source_row": 87,
+      "codes": {
+        "at_sales_cloud": "100002",
+        "in_sales_cloud": "",
+        "ramco_erp": "100002",
+        "rdso": ""
+      },
+      "description": "Axle counter cubicle FAR-002 with glass door and fan - IP 60 -35U",
+      "description_raw": "Axle counter cubicle FAR-002 with glass door and fan - IP 60 -35U",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Cubical",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD088",
+      "sl_no": 85,
+      "source_row": 88,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101230",
+        "rdso": ""
+      },
+      "description": "Pre-wired cubicle for 1 BGT",
+      "description_raw": "Pre-wired cubicle for 1 BGT",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD089",
+      "sl_no": 86,
+      "source_row": 89,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101231",
+        "rdso": ""
+      },
+      "description": "Pre-wired cubicle for 2 BGT",
+      "description_raw": "Pre-wired cubicle for 2 BGT",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD090",
+      "sl_no": 87,
+      "source_row": 90,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101232",
+        "rdso": ""
+      },
+      "description": "Pre-wired cubicle for 3 BGT",
+      "description_raw": "Pre-wired cubicle for 3 BGT",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD091",
+      "sl_no": 88,
+      "source_row": 91,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101233",
+        "rdso": ""
+      },
+      "description": "Pre-wired cubicle for 4 BGT",
+      "description_raw": "Pre-wired cubicle for 4 BGT",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD092",
+      "sl_no": 89,
+      "source_row": 92,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101234",
+        "rdso": ""
+      },
+      "description": "Pre-wired cubicle for 5 BGT",
+      "description_raw": "! Pre-wired cubicle for 5 BGT !",
+      "markers": "!",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD093",
+      "sl_no": 90,
+      "source_row": 93,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102661",
+        "rdso": ""
+      },
+      "description": "Prewired cubicle with 1BGT _20U Half cubicle",
+      "description_raw": "Prewired cubicle with 1BGT _20U Half cubicle",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD094",
+      "sl_no": 91,
+      "source_row": 94,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102662",
+        "rdso": ""
+      },
+      "description": "Prewired cubicle with 2BGT _20U Half cubicle",
+      "description_raw": "Prewired cubicle with 2BGT _20U Half cubicle",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD095",
+      "sl_no": 92,
+      "source_row": 95,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101991",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR110-002 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube",
+      "description_raw": "@ SK140-010, RSR110-002 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD096",
+      "sl_no": 93,
+      "source_row": 96,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102058",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN Protection tube 4.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN Protection tube 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD097",
+      "sl_no": 94,
+      "source_row": 97,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101541",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180, BBK11, IN Protection tube 4.8m",
+      "description_raw": "@ SK140-011, RSR180, BBK11, IN Protection tube 4.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD098",
+      "sl_no": 95,
+      "source_row": 98,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101542",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180, BBK11, AT Protection tube 4.8m",
+      "description_raw": "@ SK140-011, RSR180, BBK11, AT Protection tube 4.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD099",
+      "sl_no": 96,
+      "source_row": 99,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101424",
+        "rdso": ""
+      },
+      "description": "Connection cable pluggable 5m with protection tube",
+      "description_raw": "! Connection cable pluggable 5m with protection tube !",
+      "markers": "!",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": true
+    },
+    {
+      "key": "BD100",
+      "sl_no": 97,
+      "source_row": 100,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102530",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 14.8m",
+      "description_raw": "$ SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 14.8m $",
+      "markers": "$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD101",
+      "sl_no": 98,
+      "source_row": 101,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102536",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR110-001 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube",
+      "description_raw": "@ SK140-010, RSR110-001 GS02, BBK22 1.7227, Connection cable pluggable 5m with protection tube @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD102",
+      "sl_no": 99,
+      "source_row": 102,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102582",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBK11, IN Protection tube 4.8m",
+      "description_raw": "$ SK140-012, RSR180-001 GS05, BBK11, IN Protection tube 4.8m $",
+      "markers": "$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD103",
+      "sl_no": 100,
+      "source_row": 103,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102206",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, AT Protection tube 14.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, AT Protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD104",
+      "sl_no": 101,
+      "source_row": 104,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102227",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 4.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD105",
+      "sl_no": 102,
+      "source_row": 105,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102228",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 9.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBK22 1.7227, IN Protection tube 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD106",
+      "sl_no": 103,
+      "source_row": 106,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102229",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD107",
+      "sl_no": 104,
+      "source_row": 107,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102657",
+        "rdso": ""
+      },
+      "description": "SK140-004, RSR180-001 GS05, BBIK M12 17.5, AT Protection tube 9.8m",
+      "description_raw": "@ SK140-004, RSR180-001 GS05, BBIK M12 17.5, AT Protection tube 9.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD108",
+      "sl_no": 105,
+      "source_row": 108,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101198",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180, BBK22 1.7227, AT Protection tube 4.8m",
+      "description_raw": "@ SK140-010, RSR180, BBK22 1.7227, AT Protection tube 4.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD109",
+      "sl_no": 106,
+      "source_row": 109,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101041",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180, BBK22 1.7227, IN Protection tube 4.8m",
+      "description_raw": "@ SK140-011, RSR180, BBK22 1.7227, IN Protection tube 4.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD110",
+      "sl_no": 107,
+      "source_row": 110,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101042",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180, BBK22 1.7227, IN Protection tube 9.8m",
+      "description_raw": "@ SK140-011, RSR180, BBK22 1.7227, IN Protection tube 9.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD111",
+      "sl_no": 108,
+      "source_row": 111,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101199",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180, BBK22 1.7227, AT Protection tube 9.8m",
+      "description_raw": "@ SK140-010, RSR180, BBK22 1.7227, AT Protection tube 9.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD112",
+      "sl_no": 109,
+      "source_row": 112,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101200",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180, BBK22 1.7227, AT Protection tube 14.8m",
+      "description_raw": "@ SK140-010, RSR180, BBK22 1.7227, AT Protection tube 14.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD113",
+      "sl_no": 110,
+      "source_row": 113,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102343",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD114",
+      "sl_no": 111,
+      "source_row": 114,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102344",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD115",
+      "sl_no": 112,
+      "source_row": 115,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102345",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",
+      "description_raw": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD116",
+      "sl_no": 113,
+      "source_row": 116,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102346",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",
+      "description_raw": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD117",
+      "sl_no": 114,
+      "source_row": 117,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102347",
+        "rdso": ""
+      },
+      "description": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",
+      "description_raw": "SK140-010, RSR180-001 GS05, BBK22 1.7227, AT Protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD118",
+      "sl_no": 115,
+      "source_row": 118,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102418",
+        "rdso": ""
+      },
+      "description": "SK140-004, RSR180-001 GS05, BBK17.5, AT Protection tube 9.8m",
+      "description_raw": "@ SK140-004, RSR180-001 GS05, BBK17.5, AT Protection tube 9.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD119",
+      "sl_no": 116,
+      "source_row": 119,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102419",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 9.8m",
+      "description_raw": "$ SK140-012, RSR180-001 GS05, BBK11, AT Protection tube 9.8m $",
+      "markers": "$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD120",
+      "sl_no": 117,
+      "source_row": 120,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102369",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 4.8m",
+      "description_raw": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 4.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD121",
+      "sl_no": 118,
+      "source_row": 121,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102370",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 9.8m",
+      "description_raw": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN Protection tube 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD122",
+      "sl_no": 119,
+      "source_row": 122,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102371",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, AT Protection tube 14.8m",
+      "description_raw": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, AT Protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD123",
+      "sl_no": 120,
+      "source_row": 123,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102667",
+        "rdso": ""
+      },
+      "description": "SK140-004, RSR180-001 GS05, BBIK M12 17.5, Protection tube 9.8m",
+      "description_raw": "@ SK140-004, RSR180-001 GS05, BBIK M12 17.5, Protection tube 9.8m @",
+      "markers": "@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD124",
+      "sl_no": 121,
+      "source_row": 124,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102420",
+        "rdso": ""
+      },
+      "description": "SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 4.8m",
+      "description_raw": "! $ SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 4.8m $ !",
+      "markers": "!$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD125",
+      "sl_no": 122,
+      "source_row": 125,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102421",
+        "rdso": ""
+      },
+      "description": "SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 9.8m",
+      "description_raw": "! $ SK140-013, RSR180-001 GS05, BBIK M12-17.5 GS02 , IN Protection Tube 9.8m $ !",
+      "markers": "!$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD126",
+      "sl_no": 123,
+      "source_row": 126,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102426",
+        "rdso": ""
+      },
+      "description": "SM - SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m",
+      "description_raw": "! $ SM - SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m ! $",
+      "markers": "!$",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD127",
+      "sl_no": 124,
+      "source_row": 127,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102428",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD128",
+      "sl_no": 125,
+      "source_row": 128,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "102429",
+        "rdso": ""
+      },
+      "description": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN protection tube 14.8m",
+      "description_raw": "SK140-012, RSR180-001 GS05, BBIK M12-17.5 GS02, IN protection tube 14.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD129",
+      "sl_no": 126,
+      "source_row": 129,
+      "codes": {
+        "at_sales_cloud": "",
+        "in_sales_cloud": "",
+        "ramco_erp": "101880",
+        "rdso": ""
+      },
+      "description": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02 , IN Protection tube 9.8m",
+      "description_raw": "SK140-011, RSR180-001 GS05, BBIK M12-22 GS02 , IN Protection tube 9.8m",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "Outdoor",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD130",
+      "sl_no": 127,
+      "source_row": 130,
+      "codes": {
+        "at_sales_cloud": "23288",
+        "in_sales_cloud": "102785",
+        "ramco_erp": "102785",
+        "rdso": ""
+      },
+      "description": "COM-MS101 GS01",
+      "description_raw": "COM-MS101 GS01",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD131",
+      "sl_no": 128,
+      "source_row": 131,
+      "codes": {
+        "at_sales_cloud": "21118",
+        "in_sales_cloud": "101725",
+        "ramco_erp": "101725",
+        "rdso": ""
+      },
+      "description": "Frauscher Diagnostic SystemFSD 101-SNMP-GS01 For FAdC-R2",
+      "description_raw": "! @ Frauscher Diagnostic SystemFSD 101-SNMP-GS01 For FAdC-R2 ! @",
+      "markers": "!@",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD132",
+      "sl_no": 129,
+      "source_row": 132,
+      "codes": {
+        "at_sales_cloud": "18572",
+        "in_sales_cloud": "100429",
+        "ramco_erp": "100429",
+        "rdso": ""
+      },
+      "description": "ABP002-2 21TE GS03 CC",
+      "description_raw": "ABP002-2 21TE GS03 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD133",
+      "sl_no": 130,
+      "source_row": 133,
+      "codes": {
+        "at_sales_cloud": "18557",
+        "in_sales_cloud": "100596",
+        "ramco_erp": "100596",
+        "rdso": ""
+      },
+      "description": "SIC006 GS01 CC",
+      "description_raw": "SIC006 GS01 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD134",
+      "sl_no": 131,
+      "source_row": 134,
+      "codes": {
+        "at_sales_cloud": "18577",
+        "in_sales_cloud": "100595",
+        "ramco_erp": "100595",
+        "rdso": ""
+      },
+      "description": "ACB119 GS04 CC",
+      "description_raw": "ACB119 GS04 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD135",
+      "sl_no": 132,
+      "source_row": 135,
+      "codes": {
+        "at_sales_cloud": "20765",
+        "in_sales_cloud": "100600",
+        "ramco_erp": "100600",
+        "rdso": ""
+      },
+      "description": "ACB130 GS04 CC",
+      "description_raw": "ACB130 GS04 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD136",
+      "sl_no": 133,
+      "source_row": 136,
+      "codes": {
+        "at_sales_cloud": "22206",
+        "in_sales_cloud": "100599",
+        "ramco_erp": "100599",
+        "rdso": ""
+      },
+      "description": "ACB129 GS04 CC",
+      "description_raw": "ACB129 GS04 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD137",
+      "sl_no": 134,
+      "source_row": 137,
+      "codes": {
+        "at_sales_cloud": "18558",
+        "in_sales_cloud": "100598",
+        "ramco_erp": "100598",
+        "rdso": ""
+      },
+      "description": "ACB120 GS04 CC",
+      "description_raw": "ACB120 GS04 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD138",
+      "sl_no": 135,
+      "source_row": 138,
+      "codes": {
+        "at_sales_cloud": "25002",
+        "in_sales_cloud": "100597",
+        "ramco_erp": "100597",
+        "rdso": ""
+      },
+      "description": "IMC010 GS05 CC",
+      "description_raw": "IMC010 GS05 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD139",
+      "sl_no": 136,
+      "source_row": 139,
+      "codes": {
+        "at_sales_cloud": "22230",
+        "in_sales_cloud": "100612",
+        "ramco_erp": "100612",
+        "rdso": ""
+      },
+      "description": "FDS GS02 CC for ACS2000",
+      "description_raw": "FDS GS02 CC for ACS2000",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD140",
+      "sl_no": 137,
+      "source_row": 140,
+      "codes": {
+        "at_sales_cloud": "18680",
+        "in_sales_cloud": "100603",
+        "ramco_erp": "100603",
+        "rdso": ""
+      },
+      "description": "BTE001 GS01 CC",
+      "description_raw": "BTE001 GS01 CC",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD141",
+      "sl_no": 138,
+      "source_row": 141,
+      "codes": {
+        "at_sales_cloud": "23904",
+        "in_sales_cloud": "102070",
+        "ramco_erp": "102070",
+        "rdso": ""
+      },
+      "description": "Communication board COM-FSE101 GS03",
+      "description_raw": "Communication board COM-FSE101 GS03",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD142",
+      "sl_no": 139,
+      "source_row": 142,
+      "codes": {
+        "at_sales_cloud": "102770",
+        "in_sales_cloud": "102770",
+        "ramco_erp": "102770",
+        "rdso": ""
+      },
+      "description": "Reset Cubicle with LSZH cable duct-RM- For Metro",
+      "description_raw": "Reset Cubicle with LSZH cable duct-RM- For Metro",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD143",
+      "sl_no": 140,
+      "source_row": 143,
+      "codes": {
+        "at_sales_cloud": "102771",
+        "in_sales_cloud": "102771",
+        "ramco_erp": "102771",
+        "rdso": ""
+      },
+      "description": "Relay rack FRR-001 with LSZH cable duct RM- For Metro",
+      "description_raw": "Relay rack FRR-001 with LSZH cable duct RM- For Metro",
+      "markers": "",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    },
+    {
+      "key": "BD144",
+      "sl_no": 141,
+      "source_row": 144,
+      "codes": {
+        "at_sales_cloud": "102226",
+        "in_sales_cloud": "102226",
+        "ramco_erp": "102226",
+        "rdso": ""
+      },
+      "description": "HIRSCHMANN 19\" rack mount GRS1020 Industrial managed Fast Ethernet Switch",
+      "description_raw": "! HIRSCHMANN 19\" rack mount GRS1020 Industrial managed Fast Ethernet Switch !",
+      "markers": "!",
+      "uom": "",
+      "driver": {
+        "type": "none",
+        "ref": "",
+        "label": "",
+        "formula": ""
+      },
+      "quantities": {
+        "ABS": {
+          "total": 0,
+          "by_location": []
+        },
+        "Yard": {
+          "total": 0,
+          "by_location": []
+        }
+      },
+      "boq_group": "",
+      "duplicate_code": false
+    }
+  ]
+}
