@@ -1,0 +1,46 @@
+# Line endings.
+#
+# `text=auto` stores every text file with LF in the repository and checks it out
+# with the platform's native endings.
+#
+# This repository is already stored as LF, because the machine it was created on
+# has core.autocrlf=true. That is the point of putting it here: core.autocrlf is
+# a per-machine setting, so a contributor with it unset or false on Windows would
+# start committing CRLF and every later Linux or CI checkout would report those
+# files as wholly rewritten. Committing the intent to the repository makes it
+# hold regardless of who clones it.
+#
+# There is deliberately no `eol=` — the working tree keeps native endings, which
+# is what the Excel and editor tooling around this project expects. Only what git
+# stores is normalised.
+* text=auto
+
+# Scripts that genuinely require CRLF to run on Windows.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binaries — never line-ending converted, never diffed as text.
+*.xlsx binary
+*.xlsm binary
+*.xls  binary
+*.zip  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+
+# The source workbooks are inputs to this project, not code it maintains.
+# Keep them out of the language breakdown so the repo reads as what it is.
+*.xlsm linguist-vendored
+*.xlsx linguist-vendored
+
+# The design prototype is marked vendored by a nested .gitattributes inside
+# "BOM CAL DESIGN/" — gitattributes patterns cannot express a path containing
+# spaces, so a file in the directory is the supported way to do it.
+
+# Generated, and regenerable. Collapsed in diffs and excluded from stats.
+demo/boq-report.html linguist-generated
+package-lock.json    linguist-generated
