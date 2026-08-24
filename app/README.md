@@ -29,13 +29,14 @@ pipeline into `demo/src/node-io.ts`, which the app never imports. Everything
 else takes data and returns data, so the same code runs against a `File` from an
 input element as against a path.
 
-## The six screens
+## The seven screens
 
 | Screen | What it does |
 |---|---|
 | **Project source** | Drop the workbook, start empty, or reopen a saved project state. Reports what was read and reconciles it against the stated totals |
 | **Declarations** | The project-level answers rules read. Switching one off makes its rules *dormant*, not zero |
 | **Locations** | The editor. Add and remove locations, edit every field, declare equipment rooms and cable runs. Everything downstream re-derives on each keystroke |
+| **Questionnaire** | The 24 questions of sheet `4. Project Questionnairre`. Seven are answered from the project and shown with what they read; the rest are asked |
 | **Rack layout** | Per-room elevation, slots drawn true to TE pitch. Hover for backplane and owning group |
 | **Bill of Quantities** | Every line with its provenance. Click to expand |
 | **Diff vs submitted** | Against the `10.  BOQ` sheet in the same workbook. A hand-entered project says it has nothing to compare against rather than showing an empty comparison |
@@ -64,6 +65,23 @@ the manual route's equivalent of the sheet's own summary block.
 until there is demand to derive from. Summing an empty list gives zero for every
 driver, and a BoQ of zeros reads as a real answer of "none required" — which is
 exactly the failure the whole provenance model exists to prevent.
+
+## The export is the whole handover workbook
+
+"Bid Process Sheet" writes a workbook in the format of
+`Handover BID Process Sheet Version 11.xlsx` with this project in it — the
+questionnaire, the DP/TS table and the BoQ — by patching the template's zip
+rather than rebuilding it. The reasoning, and the measurement behind it, is in
+[`../Bid Sheet/README.md`](../Bid%20Sheet/README.md). The short version: the
+obvious approach destroys 98 of the workbook's 128 parts and reports success.
+
+`npm run verify-bid-sheet` generates one outside the browser and checks it three
+ways — it re-imports as the same project with no warnings, it has the same zip
+parts as the template with every untouched one byte-identical, and its
+quantities land on the rows their part numbers name.
+
+"BoQ sheet only" is the older export, kept because a single styled sheet is
+sometimes all anyone wants.
 
 ## The spreadsheet export is in the bid team's own format
 
@@ -174,7 +192,10 @@ a glance rather than by comparing words.
 | `src/pipeline.ts` | Browser wiring; bundles the rule seed and part master |
 | `src/export-xlsx.ts` | The styled BoQ writer |
 | `scripts/verify-export.ts` | Generates the file outside the browser so it can be inspected |
-| `src/App.tsx` | All six screens, including the locations editor |
+| `src/App.tsx` | All seven screens, including the locations editor and the questionnaire |
+| `src/xlsx-patch.ts` | Cell surgery at the zip level, so nothing outside the edited cells moves |
+| `src/export-bid-sheet.ts` | The Bid Process Sheet writer |
+| `src/questionnaire.ts` | Which questionnaire answers the tool holds and which it asks for |
 | `../demo/src/project.ts` | The project shape, the derivations and `buildProject` — shared with the CLI |
 | `src/styles.css` | Tokens and components |
 | `vite.config.ts` | Reads the shared pipeline from the workspace root |

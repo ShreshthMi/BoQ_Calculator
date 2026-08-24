@@ -1,17 +1,22 @@
 import { useCallback, useMemo, useRef, useState, type WheelEvent } from 'react'
 import { exportStyledBoq } from './export-xlsx.ts'
 import {
+  QUESTIONS, QUESTIONNAIRE, blankAnswers, derivedAnswers,
+  type Answers, type Question,
+} from './questionnaire.ts'
+import templateUrl from '../../BOM CAL/Handover BID Process Sheet Version 11.xlsx?url'
+import {
   loadWorkbook, startEmpty, run, explain, exportProject, importProjectState, download,
   buildProject, blankLocation, blankSection, setRoomCount, nextLocationId,
   submittedOf, labelOf,
   APPLICATIONS, APPLICATION_LABEL,
-  RULES, PART_ALIASES, DEFAULT_DECLARATIONS,
+  RULES, PART_ALIASES, DEFAULT_DECLARATIONS, partKeyOf,
   type Loaded, type Declarations, type Override, type BoqLine, type LocationPlan,
   type Project, type ProjectInput, type LocationInput, type Application,
   type CableSource, type Detection, type Scope, type CableSplit,
 } from './pipeline.ts'
 
-type Screen = 'source' | 'setup' | 'input' | 'racks' | 'boq' | 'diff'
+type Screen = 'source' | 'setup' | 'input' | 'questions' | 'racks' | 'boq' | 'diff'
 
 const TE_OF: Record<string, number> = {
   'PSC': 8, 'PSC-R': 8, 'spare-PSC': 8,
@@ -46,6 +51,7 @@ const whole = (raw: string): number => {
 export default function App() {
   const [loaded, setLoaded] = useState<Loaded | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [exportWarnings, setExportWarnings] = useState<string[]>([])
   const [screen, setScreen] = useState<Screen>('source')
   const [decl, setDecl] = useState<Declarations>(DEFAULT_DECLARATIONS)
   const [overrides, setOverrides] = useState<Override[]>([])
@@ -57,6 +63,8 @@ export default function App() {
    * id — cannot survive into a project where that rule holds a different number.
    */
   const [projectKey, setProjectKey] = useState(0)
+  /** Questionnaire answers the tool cannot derive. Cleared with the project. */
+  const [answers, setAnswers] = useState<Answers>(blankAnswers)
 
   // The project is BUILT from the entered data, never mutated. Editing replaces
   // the input and everything derived — totals, sections, warnings, the whole
@@ -80,6 +88,7 @@ export default function App() {
     setOverrides(ovs ?? [])
     setLocId(null)
     setOpenLine(null)
+    setAnswers(blankAnswers())
     setProjectKey((k) => k + 1)
   }, [])
 
@@ -157,6 +166,8 @@ export default function App() {
           <NavBtn s="setup" cur={screen} go={setScreen} label="Declarations" disabled={!loaded} />
           <NavBtn s="input" cur={screen} go={setScreen} label="Locations" disabled={!loaded}
             hint={project ? String(project.totals.locations) : ''} />
+          <NavBtn s="questions" cur={screen} go={setScreen} label="Questionnaire" disabled={!loaded}
+            hint={project ? String(QUESTIONS.length) : ''} />
           <div className="grp">Output</div>
           <NavBtn s="racks" cur={screen} go={setScreen} label="Rack layout" disabled={!loaded || empty}
             hint={result ? String(result.totals.racks) : ''} />
@@ -165,11 +176,31 @@ export default function App() {
           <NavBtn s="diff" cur={screen} go={setScreen} label="Diff vs submitted"
             disabled={!loaded || empty}
             hint={result && !empty ? String(result.diff.summary['match'] ?? 0) : ''} />
-          {loaded && result && !empty && <>
+          {loaded && result && !empty && project && <>
             <div className="grp">Export</div>
+            <button onClick={async () => {
+              setError(null)
+              try {
+                // Loaded on demand, as the styled-BoQ writer already loads
+                // ExcelJS: the zip library and the template between them are
+                // most of a megabyte, and neither is needed until someone exports.
+                const { buildBidProcessSheet } = await import('./export-bid-sheet.ts')
+                const template = await (await fetch(templateUrl)).arrayBuffer()
+                const { bytes, warnings } = await buildBidProcessSheet(template, {
+                  project, declarations: decl, lines: result.lines, answers, partKeyOf,
+                })
+                setExportWarnings(warnings)
+                download(`${(project.source || 'Bid Process Sheet').replace(/\.xlsx?$/i, '')}.xlsx`,
+                  bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+              } catch (err) {
+                setError(`Could not build the Bid Process Sheet. ${(err as Error).message}`)
+              }
+            }}>
+              Bid Process Sheet
+            </button>
             <button onClick={async () => download('BoQ.xlsx', await exportStyledBoq(result.lines),
               'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')}>
-              BoQ spreadsheet
+              BoQ sheet only
             </button>
             <button onClick={() => download('project.json', exportProject(loaded, decl, overrides), 'application/json')}>
               Project state
@@ -184,6 +215,10 @@ export default function App() {
             }} error={error} loaded={loaded} project={project} />
           )}
           {screen === 'setup' && loaded && <SetupScreen decl={decl} setDecl={setDecl} />}
+          {screen === 'questions' && loaded && project && (
+            <QuestionScreen project={project} decl={decl} answers={answers}
+              setAnswers={setAnswers} exportWarnings={exportWarnings} error={error} />
+          )}
           {screen === 'input' && loaded && project && result && (
             <InputScreen input={loaded.input} setInput={setInput} project={project}
               plans={result.plans} cable={result.cable} />
@@ -381,6 +416,110 @@ function SetupScreen({ decl, setDecl }: {
         {num('comPerGroup', 'COM per group', 'One CAN segment per COM. Redundancy gives one per system.')}
         {num('pscPerGroup', 'PSC per group', '"Decided as per technical requirement" — guideline item 1.')}
         {num('dataTransmissionIO', 'Extra IO-EXB', 'Data-transmission allowance beyond ceil(TS/2).')}
+      </div>
+    </>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/* The questionnaire — what the sheet asks, and who answers it                */
+/* -------------------------------------------------------------------------- */
+function QuestionScreen({ project, decl, answers, setAnswers, exportWarnings, error }: {
+  project: Project
+  decl: Declarations
+  answers: Answers
+  setAnswers: (a: Answers) => void
+  exportWarnings: string[]
+  error: string | null
+}) {
+  const derived = useMemo(() => new Map(
+    derivedAnswers(project, decl).map((x) => [x.id, x]),
+  ), [project, decl])
+
+  const set = (id: string, patch: Partial<Answers[string]>) =>
+    setAnswers({ ...answers, [id]: { ...answers[id], ...patch } })
+
+  const toggle = (q: Question, row: number) => {
+    const picked = answers[q.id]?.picked ?? []
+    // Every question here is a single choice bar the ones that plainly are not,
+    // and the sheet gives no way to tell which. Treating them all as multiple
+    // choice lets someone say what is true rather than what fits the control.
+    set(q.id, { picked: picked.includes(row) ? picked.filter((r) => r !== row) : [...picked, row] })
+  }
+
+  const answeredCount = QUESTIONS.filter(
+    (q) => derived.has(q.id) || answers[q.id]?.picked?.length || answers[q.id]?.text,
+  ).length
+
+  return (
+    <>
+      <h1>Project questionnaire</h1>
+      <p className="lede">Sheet <code>4. Project Questionnairre</code> of the Bid Process Sheet, as
+      it will be written. Seven answers the tool already holds are shown with what they read and
+      cannot be typed over here &mdash; change the thing itself and the answer follows. The rest are
+      yours.</p>
+
+      <div className="cards">
+        <div className="ok"><b>{derived.size}</b><span>derived</span></div>
+        <div><b>{answeredCount - derived.size}</b><span>answered</span></div>
+        <div className={answeredCount < QUESTIONS.length ? 'warn' : ''}>
+          <b>{QUESTIONS.length - answeredCount}</b><span>left blank</span></div>
+        <div><b>{QUESTIONS.length}</b><span>questions</span></div>
+      </div>
+
+      {error && <div className="warnbox">{error}</div>}
+      <Warnings list={exportWarnings} />
+
+      <div className="qlist">
+        {QUESTIONS.map((q) => {
+          const auto = derived.get(q.id)
+          const picked = answers[q.id]?.picked ?? []
+          return (
+            <div className={`qcard${auto ? ' auto' : ''}`} key={q.id}>
+              <div className="qhead">
+                <b>{q.text}</b>
+                {auto
+                  ? <span className="pill derived">from {auto.reads}</span>
+                  : <span className="dim">B{q.row}</span>}
+              </div>
+              {q.hint && <p className="dim">{q.hint}</p>}
+
+              {auto ? (
+                <p className="dim">
+                  {auto.value
+                    ? <>Written as <b>{auto.value}</b>.</>
+                    : <>Ticked from the project, not from this screen.</>}
+                </p>
+              ) : q.options.length > 0 ? (
+                <div className="qopts">
+                  {q.options.map((o) => (
+                    <label key={o.row}>
+                      <input type="checkbox" checked={picked.includes(o.row)}
+                        onChange={() => toggle(q, o.row)} />
+                      <span>{o.text}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : null}
+
+              {!auto && q.answerCell && (
+                <input type="text" className="wide" placeholder={`answer — written to ${q.answerCell}`}
+                  value={answers[q.id]?.text ?? ''}
+                  onChange={(e) => set(q.id, { text: e.target.value })} />
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      <h2>The 24 standing guidelines</h2>
+      <p className="lede">Cell <code>B151</code> carries these unchanged into every generated sheet.
+      Four of them are already rules in this tool &mdash; the cubicle capacities, the FDS divisor,
+      the IO-EXB-per-two-track-sections ratio and the cable-length split. Three more, items 9 to 11,
+      are rules for the reset box, the reset cubicle and the co-operation panel, which the BoQ still
+      reports as blank.</p>
+      <div className="calc" style={{ maxHeight: 260, overflowY: 'auto', whiteSpace: 'pre-wrap' }}>
+        {QUESTIONNAIRE.guidelines.text}
       </div>
     </>
   )

@@ -8,6 +8,7 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "strict": true,
+    "erasableSyntaxOnly": true,
     "noUncheckedIndexedAccess": true,
     "noEmit": true,
     "skipLibCheck": true,

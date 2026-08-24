@@ -53,6 +53,8 @@ cd ../demo && npm install
 npm test                       # 74 tests
 npm run typecheck              # types, under the same erasable-syntax rules Node enforces
 npm run demo                   # the CLI: sheet in, BoQ out, diffed against the submitted one
+cd ../app && npm install
+npm run verify-bid-sheet       # generate a Bid Process Sheet and check it round-trips
 ```
 
 Expect `11 match · 10 differ · 4 blank · 16 not produced` from the CLI, and
@@ -89,6 +91,7 @@ cd packer && npm run score least-te      # score the packer under the other obje
 | [`app/`](app) | The application. React + TypeScript, browser-only, no server |
 | [`demo/`](demo) | The pipeline — import, demand, rules, overrides, BoQ, diff — and a CLI |
 | [`packer/`](packer) | Backplane decomposition and rack packing. Zero dependencies |
+| [`Bid Sheet/`](Bid%20Sheet) | Generating the handover workbook back out — the questionnaire map and why the export patches a zip |
 | [`Rule Map/`](Rule%20Map) | 57 recovered rules, mapped against the prototype's 28 |
 | [`Part Catalogue/`](Part%20Catalogue) | The 141-part master extracted from `BD BOM` |
 | `BOM CAL/` | The source workbooks. Inputs, not outputs — never modified |
@@ -132,6 +135,19 @@ testing plates and the FDS with it.
 **Measured cable runs.** The 350/163/37 split shipped as a hand adjustment to
 the guideline's 369/144/37 with no reason recorded. Entering the real cable plan
 switches the guideline *off* rather than overriding it, and the two lines agree.
+
+## And one way out
+
+The export is the whole handover artefact, not one sheet of it: a workbook in
+the format of the Bid Process Sheet carrying this project's questionnaire, DP/TS
+table and BoQ, with its other five tabs passed through untouched.
+
+It is built by patching the template's zip rather than by rebuilding the
+workbook, and that is not a style preference. Loading this file with a
+spreadsheet library and writing it straight back **destroys 98 of its 128
+parts** — every checkbox, both VML drawings, the external links, the printer
+settings. Patching keeps all 128, and the generated file re-imports into the
+tool as the same project with no warnings. See [`Bid Sheet/`](Bid%20Sheet).
 
 ## Two ways in
 

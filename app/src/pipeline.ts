@@ -56,6 +56,14 @@ const PART_INDEX = buildPartIndexFrom(partsJson as never)
 export const PART_ALIASES = PART_INDEX.aliases
 
 /**
+ * A SAP code to a catalogue part, across all four code systems plus the alias
+ * table. The Bid Process Sheet writes codes the rules do not use — `24422` for
+ * the rail deflector where the rule carries `101950` — so anything matching a
+ * generated line against that workbook has to come through here.
+ */
+export const partKeyOf = (code: string): string | undefined => PART_INDEX.index.get(code)
+
+/**
  * Where a project came from.
  *
  * A workbook also carries the BoQ that was actually submitted, which is what
