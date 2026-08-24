@@ -7,14 +7,77 @@ The starting point was two Excel workbooks and a design prototype. The end point
 is a browser application that takes the handover sheet and produces a Bill of
 Quantities, with every line carrying where its number came from.
 
-```bash
-cd app && npm install && npm run dev     # the application
-cd demo && npm test                      # 41 tests — the pipeline
-cd packer && npm test                    # 90 tests — decomposition and packing
-```
-
 Reference project throughout: **NWR Jaipur–Sawai Madhopur**, 18 locations,
 550 detection points.
+
+## Running it
+
+### Prerequisites
+
+| | | |
+|---|---|---|
+| **Node.js 24 or newer** | required | The project runs TypeScript directly through Node's type stripping, so there is no build step for `packer/` or `demo/`. On Node 20 or older the test scripts fail with a syntax error on the first type annotation |
+| **Python 3.9+ with `openpyxl`** | optional | Only for the scripts that read the Excel workbooks. `pip install openpyxl` |
+| git | required | |
+
+Nothing else. No global tooling, no `gh`, no database, no server.
+
+Paths in this repository contain spaces — `Part Catalogue`, `Rule Map`,
+`BOM CAL` — so quote them in shell commands.
+
+### Just run the application
+
+```bash
+cd app
+npm install
+npm run dev          # http://localhost:5173
+```
+
+Then drop `BOM CAL/Handover BID Process Sheet Version 11.xlsx` onto the page.
+
+`npm run build` produces `dist/`, a folder of static files that can be opened
+from disk or served from anywhere. The app is browser-only — the workbook is
+read in the tab and never leaves the machine.
+
+Run it from inside the repository. Vite is configured to read the shared
+pipeline from the repository root, so moving `app/` elsewhere breaks the
+imports.
+
+### Verify the whole thing
+
+```bash
+cd packer && npm test          # 90 tests — no npm install needed, it has no dependencies
+cd ../demo && npm install
+npm test                       # 41 tests
+npm run demo                   # the CLI: sheet in, BoQ out, diffed against the submitted one
+```
+
+Expect `11 match · 10 differ · 4 blank · 16 not produced` from the CLI, and
+`21/21` rack counts from `cd packer && npm run score`.
+
+### Regenerate everything from the workbooks
+
+Optional — the generated artefacts are committed. This re-derives them from the
+source spreadsheets, in dependency order:
+
+```bash
+pip install openpyxl
+
+python "Part Catalogue/extract.py"        # the 141-part master
+python "Rule Map/build_rulemap.py"        # 57 rules + fixtures  (needs parts.json)
+python "Rule Map/verify_rulemap.py"       # 7 checks over the seed
+python packer/scripts/extract_reference.py   # ground truth — slow, a few minutes
+```
+
+`git status` should be clean afterwards: regeneration is byte-identical to what
+is committed.
+
+### Also available
+
+```bash
+cd demo && node scripts/report.ts        # a standalone HTML report of a live run
+cd packer && npm run score least-te      # score the packer under the other objective
+```
 
 ## What is here
 

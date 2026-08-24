@@ -6,7 +6,7 @@ Quantities out, override what needs overriding, export.
 ```bash
 cd app
 npm install
-npm run dev      # http://localhost:5180
+npm run dev      # http://localhost:5173
 npm run build    # dist/ — static files, open index.html anywhere
 ```
 
