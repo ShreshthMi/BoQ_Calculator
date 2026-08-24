@@ -1,7 +1,8 @@
 # BoQ Calculator — the application
 
-The demo as a standalone app. Drop the handover workbook in, get a Bill of
-Quantities out, override what needs overriding, export.
+The demo as a standalone app. Drop the handover workbook in — or start with
+nothing and enter the locations by hand — get a Bill of Quantities out, override
+what needs overriding, export.
 
 ```bash
 cd app
@@ -20,7 +21,8 @@ behind any web server.
 Not a reimplementation. `src/pipeline.ts` is thin wiring over the modules
 `demo/` and `packer/` already ship, and both produce identical numbers from the
 same workbook: 18 locations, 550 DP, 66 racks, 11 of 41 lines matching the
-submitted BoQ.
+submitted BoQ — and 14 of 41 once the equipment rooms and the cable plan are
+declared.
 
 Making that possible needed one refactor: filesystem access moved out of the
 pipeline into `demo/src/node-io.ts`, which the app never imports. Everything
@@ -31,12 +33,37 @@ input element as against a path.
 
 | Screen | What it does |
 |---|---|
-| **Workbook** | Drag-drop or pick the file. Reports what was read and reconciles it against the sheet's own stated totals |
+| **Project source** | Drop the workbook, start empty, or reopen a saved project state. Reports what was read and reconciles it against the stated totals |
 | **Declarations** | The project-level answers rules read. Switching one off makes its rules *dormant*, not zero |
-| **Locations** | The DP/TS table, editable. Everything downstream re-derives on each keystroke |
-| **Rack layout** | Per-location elevation, slots drawn true to TE pitch. Hover for backplane and owning group |
+| **Locations** | The editor. Add and remove locations, edit every field, declare equipment rooms and cable runs. Everything downstream re-derives on each keystroke |
+| **Rack layout** | Per-room elevation, slots drawn true to TE pitch. Hover for backplane and owning group |
 | **Bill of Quantities** | Every line with its provenance. Click to expand |
-| **Diff vs submitted** | Against the `10.  BOQ` sheet in the same workbook |
+| **Diff vs submitted** | Against the `10.  BOQ` sheet in the same workbook. A hand-entered project says it has nothing to compare against rather than showing an empty comparison |
+
+## The Locations screen is now the editor for both routes
+
+An imported project and a hand-built one are the same object from the moment
+they are open, so there is one editor rather than two.
+
+**The project is built, never mutated.** The screen holds the entered data — a
+`ProjectInput` — and `buildProject` derives the `Project` from it on every
+change. That replaced an in-place mutation that maintained `totalDp`, `totalTs`
+and `project.totals` by hand in three places, plus a revision counter that
+existed to lie to `useMemo`. Now the direction sums, the location totals, the
+project totals and the reconciliation warnings cannot drift out of step, because
+none of them is stored.
+
+Each row carries the name, scope, detection, application, room count and the
+DN/UP counts. Opening one gives the block sections — Durgapura and Sanganer sit
+on two, and their split has to survive — the equipment rooms with their own rack
+counts, and the measured cable runs. What the tender states can be entered too:
+it is never used as a source, only reconciled against on every edit, which is
+the manual route's equivalent of the sheet's own summary block.
+
+**A project with no locations bills nothing.** The output screens are closed
+until there is demand to derive from. Summing an empty list gives zero for every
+driver, and a BoQ of zeros reads as a real answer of "none required" — which is
+exactly the failure the whole provenance model exists to prevent.
 
 ## The spreadsheet export is in the bid team's own format
 
@@ -63,12 +90,16 @@ A second sheet, **Provenance**, carries the audit trail: rule id, provenance,
 derived value and note per line. Keeping it off sheet 1 is what lets sheet 1 stay
 a drop-in match.
 
+Project state exports as JSON and **reads back in**: what is written is the
+entered data, the declarations and the overrides, not the derived project, so
+reloading rebuilds every derived figure rather than trusting a snapshot. A
+workbook-sourced project loses its submitted BoQ that way — that lived in the
+.xlsx — and the app says so rather than showing an empty diff.
+
 This needed a different writer. SheetJS reads workbooks well but cannot write
 cell styling in its community build, which is why the export — and only the
 export — uses ExcelJS, imported dynamically so its 930 KB lands solely when
-someone actually exports. Project state also exports as JSON: source, locations,
-declarations and overrides, which is the versioning and sharing story the
-proposal asks for.
+someone actually exports. 
 
 ## Expanding a line is the point
 
@@ -97,7 +128,7 @@ Overrides also feed forward: override the wheel sensor to 350 and the protection
 tube follows to 350, and the 5 % spare becomes 18 rather than 28. A spare is a
 percentage of what is actually being bought.
 
-## Two bugs the browser found
+## Four bugs the browser found
 
 Worth recording, because both were invisible from the CLI.
 
@@ -109,7 +140,17 @@ only ever passed literal snapshots.
 
 **The header DP total ignored edits.** Editing a location updated the location
 but not `project.totals`, so the figure in the top bar drifted from the tables
-below it.
+below it. That class of bug is now unreachable: totals are derived, not stored.
+
+**Two locations sharing a name produced one warning between them.** This tender
+carries a Durgapura and a Sheodaspura in *both* the Yard and the ABS block, so
+switching to measured cable runs raised two identical sentences — which React
+then rendered under the same key, duplicating and omitting boxes at random. A
+warning now names the scope when, and only when, the name is shared, and the
+list is keyed by position rather than by its own text.
+
+**Number inputs changed value on a stray scroll wheel.** In a dense grid of
+eighteen rows that is a silent data edit. They blur on wheel instead.
 
 A third turned up while building the export: lines with no catalogue part were
 showing their engineering *note* in the Description column, so a BoQ row read
@@ -133,6 +174,7 @@ a glance rather than by comparing words.
 | `src/pipeline.ts` | Browser wiring; bundles the rule seed and part master |
 | `src/export-xlsx.ts` | The styled BoQ writer |
 | `scripts/verify-export.ts` | Generates the file outside the browser so it can be inspected |
-| `src/App.tsx` | All six screens |
+| `src/App.tsx` | All six screens, including the locations editor |
+| `../demo/src/project.ts` | The project shape, the derivations and `buildProject` — shared with the CLI |
 | `src/styles.css` | Tokens and components |
 | `vite.config.ts` | Reads the shared pipeline from the workspace root |

@@ -1,6 +1,27 @@
 # Handover — build manual input capture in the UI
 
-Paste this whole file as the opening message of the next session.
+**Status: delivered.** This file is kept as the brief it was, not as a to-do
+list. What was built, and where the reasoning now lives:
+
+- `demo/src/project.ts` — the project shape, every derivation, both sets of
+  checks, and `buildProject`. Dependency-free, so the CLI, the tests and the
+  browser all use it. `import.ts` is now only a workbook reader.
+- Equipment rooms, application type and measured cable runs are fields on the
+  project and are editable on the Locations screen, which is now a full editor
+  for both routes.
+- `demo/fixtures/nwr-jaipur-manual.json` — the reference project as plain typed
+  data. The test asserts it builds into the imported project field for field.
+- Declaring the rooms and the cable plan takes the diff from 11 matches to 14.
+- 74 demo tests, 90 packer tests. The CLI is unchanged at
+  `11 match · 10 differ · 4 blank · 16 not produced`.
+
+Read [`demo/README.md`](demo/README.md) for the reasoning — the three sections
+"Two doors, one room", "Equipment rooms" and "Measured cable runs switch the
+guideline off" are where the arguments are recorded.
+
+One deliberate deviation from the brief below: `K01`–`K03` keep deriving under a
+measured cable plan rather than going dormant. The reasoning is written up under
+"Why these rules stay `derived` rather than going dormant".
 
 ---
 

@@ -8,10 +8,10 @@
  */
 import { pack, ioForTs, type Group } from '../../packer/src/packer.ts'
 import { allocateCubicles, type CubicleAllocation } from '../../packer/src/cubicle.ts'
-import type { PackResult, SystemId } from '../../packer/src/types.ts'
+import { emptyCounts, type PackResult, type PackedRack, type SystemId } from '../../packer/src/types.ts'
 import { evaluate, applyRounding, partRefs, identifiers, type Rounding } from './expr.ts'
 import { splitByLength } from './cable.ts'
-import type { Location, Project } from './import.ts'
+import { deriveLocation, type CableSource, type Location, type Project } from './project.ts'
 
 export type SeedRule = {
   id: string
@@ -63,6 +63,29 @@ export type LocationPlan = {
   groups: Group[]
   pack: PackResult
   cubicles: CubicleAllocation
+  /**
+   * One plan per equipment room, when the location declares more than one.
+   * Empty otherwise, because a single-room location IS its own column.
+   *
+   * A room is where racks physically stand and a rack cannot span two of them,
+   * so each is packed on its own and the results are added up. It is also the
+   * unit `Gesamt` computes in: the calculators carry 21 location sheets against
+   * the input sheet's 18 locations, one per room. See `columnsOf`.
+   */
+  rooms: LocationPlan[]
+}
+
+/**
+ * The evaluation columns behind a set of location plans.
+ *
+ * Location-scoped rules are evaluated once per column and summed, exactly as
+ * `Gesamt` computes each row in every column and totals across. Where no
+ * equipment rooms are declared the column is the location and nothing changes;
+ * where they are, `ceil(racks / 6)` is asked of each room separately, which is
+ * the only answer that can be true — two rooms cannot share a cubicle.
+ */
+export function columnsOf(plans: LocationPlan[]): LocationPlan[] {
+  return plans.flatMap((p) => (p.rooms.length > 1 ? p.rooms : [p]))
 }
 
 /**
@@ -108,8 +131,9 @@ export function groupsFor(loc: Location, d: Declarations): Group[] {
   return out
 }
 
-export function planLocation(loc: Location, d: Declarations): LocationPlan {
-  const groups = groupsFor(loc, d)
+/** Pack one column — a location with a single equipment room, or one room of one. */
+function planColumn(loc: Location, d: Declarations, tag: string): LocationPlan {
+  const groups = groupsFor(loc, d).map((g) => ({ ...g, id: `${tag}${g.id}` }))
   // Dual detection permits BP-EXB-4; single detection caps at BP-EXB-2.
   const maxExbSlots = loc.detection === 'DUAL' ? 4 : 2
   const result = pack({ groups, options: { maxExbSlots } })
@@ -117,28 +141,130 @@ export function planLocation(loc: Location, d: Declarations): LocationPlan {
     cubiclesEnabled: d.cubiclesEnabled,
     powerWatts: d.powerAbove120W ? 999 : 0,
   })
-  return { location: loc, groups, pack: result, cubicles }
+  return { location: loc, groups, pack: result, cubicles, rooms: [] }
+}
+
+export function planLocation(loc: Location, d: Declarations): LocationPlan {
+  const rooms = loc.rooms ?? []
+  if (rooms.length < 2) return planColumn(loc, d, '')
+
+  // More than one equipment room: pack each on its own, then add them up.
+  //
+  // A room boundary is a real boundary. Racks cannot be shared across it, and
+  // neither can evaluation groups — a second room is a second CAN segment, so a
+  // station small enough to fold its two directions into one group gains a
+  // second group, and with it a second COM board and a second PSC. Devpura and
+  // Snaganer are unaffected only because 22 and 29 both clear the split
+  // threshold and were two groups already. Declaring a room is a statement
+  // about the building, and it moves more than the rack line.
+  const plans = rooms.map((room, ri) => planColumn(
+    deriveLocation({
+      id: `${loc.id}.R${ri + 1}`,
+      name: room.name,
+      scope: loc.scope,
+      blockSections: loc.blockSections,
+      rooms: [room],
+      detection: loc.detection,
+      application: loc.application,
+      // A measured cable plan is a project-level total; it is not divided
+      // between rooms, and nothing at column scope reads it.
+      cable: null,
+    }),
+    d,
+    `R${ri + 1}-`,
+  ))
+  return {
+    location: loc,
+    groups: plans.flatMap((p) => p.groups),
+    pack: mergePacks(plans.map((p) => p.pack)),
+    cubicles: mergeCubicles(plans),
+    rooms: plans,
+  }
+}
+
+/** Add up what several equipment rooms pack to. Racks are renumbered across them. */
+function mergePacks(parts: PackResult[]): PackResult {
+  const counts = emptyCounts()
+  const racks: PackedRack[] = []
+  for (const p of parts) {
+    for (const [code, n] of Object.entries(p.backplaneCounts)) {
+      counts[code] = (counts[code] ?? 0) + n
+    }
+    for (const r of p.racks) racks.push({ ...r, index: racks.length + 1 })
+  }
+  const sum = (f: (p: PackResult) => number) => parts.reduce((a, p) => a + f(p), 0)
+  return {
+    racks,
+    backplaneCounts: counts,
+    rackCount: sum((p) => p.rackCount),
+    psc: sum((p) => p.psc),
+    sparePsc: sum((p) => p.sparePsc),
+    aebSeated: sum((p) => p.aebSeated),
+    ioExbSeated: sum((p) => p.ioExbSeated),
+    comSeated: sum((p) => p.comSeated),
+    blankingTe: sum((p) => p.blankingTe),
+    // Named, so a warning from the second room does not read as the first's —
+    // and so two rooms raising the same warning stay two warnings.
+    warnings: parts.flatMap((p, i) => p.warnings.map((w) => `room ${i + 1}: ${w}`)),
+  }
+}
+
+function mergeCubicles(plans: LocationPlan[]): CubicleAllocation {
+  const counts: Record<string, number> = {}
+  for (const p of plans) {
+    for (const [code, n] of Object.entries(p.cubicles.counts)) {
+      counts[code] = (counts[code] ?? 0) + n
+    }
+  }
+  const sum = (f: (c: CubicleAllocation) => number) =>
+    plans.reduce((a, p) => a + f(p.cubicles), 0)
+  return {
+    counts,
+    total: sum((c) => c.total),
+    excelCount: sum((c) => c.excelCount),
+    divergesFromWorkbook: plans.some((p) => p.cubicles.divergesFromWorkbook),
+    slotFans: sum((c) => c.slotFans),
+    activeFans: sum((c) => c.activeFans),
+    sparePscPlates: sum((c) => c.sparePscPlates),
+    warnings: plans.flatMap((p) => p.cubicles.warnings.map((w) => `${p.location.name}: ${w}`)),
+  }
 }
 
 export type Drivers = Record<string, number | null>
 
-/** Drivers for a single location — what a location-scoped rule sees. */
-export function buildDriversFor(plan: LocationPlan, d: Declarations): Drivers {
+/**
+ * Drivers for a single evaluation column — what a location-scoped rule sees.
+ *
+ * The column is one location, or one equipment room of one where rooms are
+ * declared; `columnsOf` decides which. Either way it is a single `Gesamt`
+ * column, evaluated on its own and summed afterwards.
+ */
+export function buildDriversFor(
+  plan: LocationPlan,
+  d: Declarations,
+  cableSource: CableSource = 'guideline',
+): Drivers {
   return buildDrivers(
-    { totals: { dp: plan.location.totalDp, ts: plan.location.totalTs, locations: 1 } } as Project,
+    {
+      totals: {
+        dp: plan.location.totalDp, ts: plan.location.totalTs,
+        locations: 1, rooms: Math.max(1, plan.location.rooms?.length ?? 1),
+      },
+      cableSource,
+    },
     [plan], d,
   )
 }
 
 /** Aggregate every driver the seeded rules can read. */
 export function buildDrivers(
-  project: Project,
+  project: Pick<Project, 'totals' | 'cableSource'>,
   plans: LocationPlan[],
   d: Declarations,
 ): Drivers {
   const s = (f: (p: LocationPlan) => number) => plans.reduce((a, p) => a + f(p), 0)
   const bp = (code: string) => s((p) => p.pack.backplaneCounts[code] ?? 0)
-  const cable = splitByLength(plans.map((p) => p.location))
+  const cable = splitByLength(plans.map((p) => p.location), project.cableSource ?? 'guideline')
 
   const aeb = s((p) => p.pack.aebSeated)
   const io = s((p) => p.pack.ioExbSeated)
@@ -147,7 +273,7 @@ export function buildDrivers(
   const bpPwrAll = bp('BP-PWR-0') + bp('BP-PWR-4') + bp('BP-PWR-8')
   const bpExbAll = bp('BP-EXB-1') + bp('BP-EXB-2') + bp('BP-EXB-4')
 
-  return {
+  const drivers: Drivers = {
     // demand
     DP: project.totals.dp,
     TS: project.totals.ts,
@@ -162,11 +288,13 @@ export function buildDrivers(
     racks,
     racks42: 0,          // BGT08 unused
     /**
-     * The workbook's own definition, `ceil(racks / 6)` per location — which is
+     * The workbook's own definition, `ceil(racks / 6)` per COLUMN — which is
      * what its downstream rows consume (Gesamt row 58 wiring = row 55, row 49
-     * planning = row 55). cubicle.ts also computes a capacity-based allocation
-     * from the questionnaire's 15U/20U/35U limits; the two diverge above four
-     * racks and the divergence is reported separately rather than resolved here.
+     * planning = row 55). Where equipment rooms are declared the column is the
+     * room, because two rooms cannot share a cubicle. cubicle.ts also computes a
+     * capacity-based allocation from the questionnaire's 15U/20U/35U limits; the
+     * two diverge above four racks and the divergence is reported separately
+     * rather than resolved here.
      */
     cubicles: d.cubiclesEnabled ? s((p) => p.cubicles.excelCount) : null,
     // backplanes
@@ -191,6 +319,13 @@ export function buildDrivers(
     // not derivable from anything in the workbook
     CABLE: null,
   }
+
+  // A project with nothing in it yet knows nothing, and must say so. Summing an
+  // empty list gives zero for every driver, and a BoQ of zeros reads as a real
+  // answer of "none required" rather than as an unanswered question.
+  return plans.length === 0
+    ? Object.fromEntries(Object.keys(drivers).map((k) => [k, null]))
+    : drivers
 }
 
 export type Resolved = {
@@ -236,32 +371,74 @@ export function runRulesOverLocations(
   d: Declarations,
   overrideOf?: (partKey: string) => number | null,
 ): { resolved: Map<string, Resolved>; order: string[]; problems: string[] } {
-  const project = runRules(rules, projectDrivers, d, overrideOf)
-  if (perLocation.length === 0) return project
+  if (perLocation.length === 0) return runRules(rules, projectDrivers, d, overrideOf)
 
+  // Columns first, THEN the project pass.
+  //
+  // The order is load-bearing. A project-scoped rule can reference a
+  // location-scoped one — `part(BD###)` — and what it must see is the quantity
+  // that rule actually books, which is the sum across columns. Running the
+  // project pass first and summing afterwards hands it the rule's own
+  // project-driver value instead: `ceil(840 / 110)` is 8 where the sum of
+  // eighteen columns is 18, and the referencing line quietly books 8.
+  //
   // Overrides are project-level quantities, so they steer the project pass only;
   // the per-location passes see the plain derived chain.
   const locRuns = perLocation.map((dr) => runRules(rules, dr, d))
-  const resolved = new Map<string, Resolved>()
 
-  for (const [id, projRes] of project.resolved) {
-    if ((projRes.rule.scope ?? 'location') === 'project') {
-      resolved.set(id, projRes)
-      continue
-    }
+  const summed = new Map<string, Resolved>()
+  for (const rule of rules) {
+    if ((rule.scope ?? 'location') === 'project') continue
     let sum: number | null = null
     let blockedBy: string | null = null
     let status: Resolved['status'] = 'derived'
     for (const run of locRuns) {
-      const r = run.resolved.get(id)
+      const r = run.resolved.get(rule.id)
       if (!r) continue
       if (r.status === 'dormant') { status = 'dormant'; blockedBy = r.blockedBy; sum = null; break }
       if (r.qty === null) { status = r.status; blockedBy = r.blockedBy; sum = null; break }
       sum = (sum ?? 0) + r.qty
     }
-    resolved.set(id, { rule: projRes.rule, qty: sum, blockedBy, status })
+    summed.set(rule.id, { rule, qty: sum, blockedBy, status })
+  }
+
+  // What `part()` resolves to during the project pass, for the parts the columns
+  // decided. A blank column result is carried as a blank, not as an absence —
+  // otherwise the project pass would fall back to its own number and a line that
+  // should be flagged would come out confident.
+  const settled = new Map<string, number | null>()
+  for (const [key, rule] of definingRules(rules)) {
+    const s = summed.get(rule.id)
+    if (s) settled.set(key, s.qty)
+  }
+
+  const project = runRules(rules, projectDrivers, d, overrideOf, settled)
+
+  const resolved = new Map<string, Resolved>()
+  for (const [id, projRes] of project.resolved) {
+    resolved.set(id, (projRes.rule.scope ?? 'location') === 'project'
+      ? projRes
+      : summed.get(id) ?? projRes)
   }
   return { resolved, order: project.order, problems: project.problems }
+}
+
+/**
+ * Part key -> the rule that DEFINES it.
+ *
+ * A part's defining rule is the one that produces it without referencing it.
+ * Spare rules carry the same partKey as their referent (`BD005` spared from
+ * `part(BD005) * 0.05`), so indexing naively both fakes a cycle and resolves
+ * `part()` to the wrong rule.
+ */
+function definingRules(rules: SeedRule[]): Map<string, SeedRule> {
+  const byKey = new Map<string, SeedRule>()
+  for (const r of rules) {
+    if (!r.partKey) continue
+    if (r.expression && partRefs(r.expression).includes(r.partKey)) continue
+    if (!byKey.has(r.partKey)) byKey.set(r.partKey, r)
+  }
+  return byKey
 }
 
 export function runRules(
@@ -274,19 +451,16 @@ export function runRules(
    * what is actually being bought.
    */
   overrideOf?: (partKey: string) => number | null,
+  /**
+   * Quantities already decided elsewhere — the per-column sums, when this is the
+   * project pass of `runRulesOverLocations`. A key present here answers
+   * `part()` outright, blank included, rather than letting this pass compute its
+   * own answer from project-level drivers.
+   */
+  settled?: Map<string, number | null>,
 ): { resolved: Map<string, Resolved>; order: string[]; problems: string[] } {
   const problems: string[] = []
-  // A part's DEFINING rule is the one that produces it without referencing it.
-  // Spare rules carry the same partKey as their referent ('BD005' spared from
-  // 'part(BD005) * 0.05'), so indexing naively both fakes a cycle and resolves
-  // part() to the wrong rule.
-  const byKey = new Map<string, SeedRule>()
-  for (const r of rules) {
-    if (!r.partKey) continue
-    const selfRef = r.expression ? partRefs(r.expression).includes(r.partKey) : false
-    if (selfRef) continue
-    if (!byKey.has(r.partKey)) byKey.set(r.partKey, r)
-  }
+  const byKey = definingRules(rules)
 
   // --- topological order over part() references ---------------------------
   const order: string[] = []
@@ -314,6 +488,7 @@ export function runRules(
   const qtyOfPart = (key: string): number | null => {
     const forced = overrideOf?.(key)
     if (forced != null) return forced
+    if (settled?.has(key)) return settled.get(key)!
     const dep = byKey.get(key)
     if (!dep) return null
     return resolved.get(dep.id)?.qty ?? null

@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Input sheet in, BoQ out. Wires the handover sheet through demand, packing and the rule engine.",
+  "description": "Input in, BoQ out. Wires the handover sheet — or plain entered data — through demand, packing and the rule engine.",
   "engines": { "node": ">=24" },
   "scripts": {
     "demo": "node run.ts",
-    "test": "node --test \"test/*.test.ts\""
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
   },
-  "dependencies": { "xlsx": "^0.18.5" }
+  "dependencies": { "xlsx": "^0.18.5" },
+  "devDependencies": { "@types/node": "^26.2.0", "typescript": "^5.9.0" }
 }

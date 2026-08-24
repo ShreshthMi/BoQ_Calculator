@@ -174,7 +174,9 @@ export function evaluate(src: string, scope: Scope): number | null {
 export type Rounding = 'UP' | 'DOWN' | 'NEAREST' | 'NONE'
 
 export function applyRounding(v: number | null, mode: Rounding): number | null {
-  if (v === null) return null
+  // NaN and Infinity are unanswered questions wearing a number, and a BoQ has
+  // nowhere to put one. They blank for the same reason null does.
+  if (v === null || !Number.isFinite(v)) return null
   switch (mode) {
     case 'UP': return Math.ceil(v)
     case 'DOWN': return Math.floor(v)

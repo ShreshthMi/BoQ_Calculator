@@ -33,7 +33,9 @@ npm install
 npm run dev          # http://localhost:5173
 ```
 
-Then drop `BOM CAL/Handover BID Process Sheet Version 11.xlsx` onto the page.
+Then drop `BOM CAL/Handover BID Process Sheet Version 11.xlsx` onto the page — or
+take the other door and start with nothing, entering the locations by hand. Both
+routes produce the same project and the same BoQ.
 
 `npm run build` produces `dist/`, a folder of static files that can be opened
 from disk or served from anywhere. The app is browser-only — the workbook is
@@ -48,7 +50,8 @@ imports.
 ```bash
 cd packer && npm test          # 90 tests — no npm install needed, it has no dependencies
 cd ../demo && npm install
-npm test                       # 41 tests
+npm test                       # 74 tests
+npm run typecheck              # types, under the same erasable-syntax rules Node enforces
 npm run demo                   # the CLI: sheet in, BoQ out, diffed against the submitted one
 ```
 
@@ -95,7 +98,8 @@ Each folder has its own README with the detail.
 
 ## The result
 
-Against the BoQ the bid team actually submitted:
+Against the BoQ the bid team actually submitted, from the handover sheet taken
+at face value:
 
 ```
 41 submitted lines — 11 match · 10 differ · 4 blank · 16 not produced
@@ -109,8 +113,38 @@ the tender looks wrong rather than the engine:
 
 - **+4 COM-AdC** — one per evaluation group. Four locations omit the redundant board
 - **+4 backplane connectors** — `BD BOM` copies the IO-EXB row instead of Gesamt's slot-weighted count
-- **+6 FDS** — the rule says one per location; the shipped 12 was typed by hand
+- **+8 FDS** — the rule says one per column; the shipped 12 was typed by hand
 - **19-unit kit split** — moved 5 m → 10 m after the fact, recorded nowhere
+
+Two of the ten are not disagreements at all. They are facts about the project the
+input sheet has no field for, and stating them closes the lines outright:
+
+```
+41 submitted lines — 14 match · 7 differ · 4 blank · 16 not produced
+```
+
+**Equipment rooms.** Three Yard stations put their down and up lines in separate
+rooms — which is why the calculators carry 21 location sheets against the sheet's
+18 rows. A rack cannot span two rooms, so declaring it takes 66 racks to the 68
+that shipped. It is also a `Gesamt` column, so it moves the cubicles, the
+testing plates and the FDS with it.
+
+**Measured cable runs.** The 350/163/37 split shipped as a hand adjustment to
+the guideline's 369/144/37 with no reason recorded. Entering the real cable plan
+switches the guideline *off* rather than overriding it, and the two lines agree.
+
+## Two ways in
+
+The Bid Process Sheet is one of them, and it is not a reliable primary: cell
+`E13` of `16.DP TS details` reads "To Match the Quantity", its own
+`No of Location` is wrong, and it refers work to a sheet that does not exist. So
+a project can also be entered by hand, from nothing, in the same Locations
+screen the imported one is edited in.
+
+Both routes produce the identical `Project`, which is the load-bearing claim and
+is tested as one: a committed fixture of the reference project as **plain typed
+data** builds into the imported project field for field, and therefore into the
+same 550 detection points, the same 66 racks, the same BoQ and the same diff.
 
 ## The three findings worth the trip
 
@@ -148,5 +182,6 @@ Three inputs a planner chooses rather than rules waiting to be found: the
 evaluation-group structure, the PSC count — guideline item 1 says outright it is
 "decided as per technical requirement" — and the data-transmission IO allowance.
 
-The seven remaining differences against the submitted BoQ are listed with their
-figures in [`demo/README.md`](demo/README.md).
+The differences against the submitted BoQ are listed with their figures in
+[`demo/README.md`](demo/README.md). Seven survive both declarations, and four of
+them are the tender's own arithmetic rather than the engine's.

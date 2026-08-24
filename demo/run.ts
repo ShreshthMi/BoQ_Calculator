@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 import {
-  planLocation, buildDrivers, buildDriversFor, runRulesOverLocations,
+  planLocation, buildDrivers, buildDriversFor, runRulesOverLocations, columnsOf,
   DEFAULT_DECLARATIONS, type Declarations, type LocationPlan,
 } from './src/engine.ts'
 import {
@@ -116,7 +116,8 @@ const overrides: Override[] = useOverrides || bump
 console.log('\n\x1b[1mSTAGE 4  rule engine\x1b[0m')
 const rules = loadRules(RULES)
 const drivers = buildDrivers(project, plans, decl)
-const perLocation = plans.map((p) => buildDriversFor(p, decl))
+// One column per equipment room where any are declared, else one per location.
+const perLocation = columnsOf(plans).map((p) => buildDriversFor(p, decl, project.cableSource))
 const { resolved, problems } = runRulesOverLocations(
   rules, perLocation, drivers, decl,
   (key) => overrides.find((o) => o.partKey === key)?.qty ?? null,

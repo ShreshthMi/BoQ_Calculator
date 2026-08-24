@@ -1,14 +1,17 @@
-# The demo — input sheet in, BoQ out
+# The demo — input in, BoQ out
 
 Drops the real handover sheet in one end and gets a Bill of Quantities out the
-other, then diffs it against the BoQ the bid team actually submitted.
+other, then diffs it against the BoQ the bid team actually submitted. The sheet
+is one of two ways in; the other is plain entered data, and both land on the
+same `Project`.
 
 ```bash
 cd demo && npm install
 npm run demo                  # import, generate, diff
 node run.ts --overrides       # with two hand overrides applied
 node run.ts --bump ALH-2:2    # revise the input sheet, watch an override go stale
-npm test                      # 41 tests
+npm test                      # 74 tests
+npm run typecheck             # types, including erasable-syntax-only
 ```
 
 SheetJS reads the workbook, so the import is the same code path a browser build
@@ -19,11 +22,91 @@ would run on an uploaded file. Everything downstream — packing, rules, overrid
 
 | Stage | Module | What it does |
 |---|---|---|
+| 0 The shape | `src/project.ts` | Types, derivations, checks — and `buildProject`, the second way in |
 | 1 Import | `src/import.ts` | `16.DP TS details` → 18 locations |
 | 2–3 Demand + pack | `src/engine.ts`, `../packer` | groups, backplanes, racks, cubicles |
-| 4 Rules | `src/engine.ts`, `src/expr.ts` | 57 seeded rules, evaluated per location |
+| 4 Rules | `src/engine.ts`, `src/expr.ts` | 57 seeded rules, evaluated per column and summed |
 | 5 Overrides | `src/boq.ts` | effective quantities, stale detection |
 | 6 BoQ + diff | `src/boq.ts` | grouped output, diffed against `10.  BOQ` |
+
+## Two doors, one room
+
+`src/project.ts` owns the project shape. It has no dependencies — no xlsx, no
+fs, no DOM — and holds the types, every derivation and both sets of checks.
+`import.ts` reads a workbook and hands it a `ProjectInput`; `buildProject` takes
+the same `ProjectInput` from anybody who typed it. Neither route derives
+anything itself, so they cannot drift apart.
+
+The strongest available check is committed as a fixture. `fixtures/nwr-jaipur-manual.json`
+is the reference project as plain entered data — 18 locations, DN and UP counts,
+nothing derived — and the test asserts that building it produces the imported
+project **field for field**, and therefore the same 550 DP, the same 66 racks,
+the same BoQ line for line and the same diff.
+
+```
+buildProject(fixture)  ==  importProject(sheet)      modulo `source`
+buildProject(toInput(p))  ==  p                      so the export round-trips
+```
+
+### Why bother, when the sheet works
+
+Because the sheet is not a reliable primary, and three things it cannot say at
+all are each worth a difference against the BoQ that shipped.
+
+Cell `E13` of `16.DP TS details` reads **"To Match the Quantity"** beside the
+Sheodaspura row: the DP table was back-fitted so the totals would land on
+374/550. Its own `No of Location` says 18 while the calculators carry 21
+location sheets. It refers work to a "Sheet No 17" that does not exist in the
+workbook. And it has no field for an equipment room, an application type or a
+measured cable run.
+
+Declaring those three takes the diff from **11 matches to 14**, and every step
+is a statement about the project rather than an adjustment to a number:
+
+| Declared | Line it closes | |
+|---|---|---|
+| Equipment rooms at Devpura and Snaganer | BGT07 racks | 66 → **68**, the shipped figure |
+| Measured cable runs | the three trackside kits | 369/144/37 → **350/163/37**, the shipped figures |
+| Application type | — | no change here; it is what makes the other two rows of the guideline reachable at all |
+
+## Equipment rooms — the racks the sheet cannot express
+
+Three Yard stations put their down and up lines in **separate equipment rooms**.
+The calculators carry a sheet each — `Devpura Acc-1` and `Devpura Acc-2`,
+`Snaganer Acc-1` and `-2`, `Durgapur Acc-1` and `-2` — which is exactly why 18
+rows of input sheet become 21 location sheets. A rack cannot span two rooms, so
+each is packed on its own:
+
+```
+Devpura, one room     22 + 29 boards, packed together        5 racks
+Devpura, two rooms    Acc-1 22 boards 3 racks
+                      Acc-2 29 boards 3 racks                6 racks
+```
+
+Declaring it at Devpura and Snaganer takes the project from 66 racks to **68**,
+which is what the tender booked. Splitting Durgapur too — as the workbook does —
+costs nothing, because the planner fitted it into 2 + 3 where the tool fits 5.
+
+**A room is a `Gesamt` column, and that moves more than the rack line.** `Gesamt`
+computes every row in each location sheet's column and totals across, so
+declaring a room asks every location-scoped rule once more:
+
+| | 18 columns | 20 columns | 21 columns | shipped |
+|---|---|---|---|---|
+| BGT07 racks | 66 | **68** | **68** | 68 |
+| Cubicles `ceil(racks/6)` | 18 | 20 | 21 | 22 |
+| Testing plate, ASD `ceil(AEB/25)` | 32 | 33 | 34 | — |
+| Planning, FDS | 18 | 20 | 21 | 12 (FDS) |
+
+FDS moves the **wrong** way, and that is worth saying plainly rather than
+quietly reporting the two figures that improved. The rule gives one per column;
+the tender typed 12.
+
+A room boundary is also a CAN-segment boundary, so a station small enough to
+fold its two directions into one evaluation group gains a second group when it
+is split — and with it a second COM board and a second PSC. Devpura and Snaganer
+are unaffected only because 22 and 29 both clear the split threshold and were
+two groups already.
 
 ## Stage 1 reads both block shapes
 
@@ -42,8 +125,13 @@ Import reconciles against the sheet's own stated totals (176 / 164 ABS,
 ## The result
 
 ```
-41 submitted lines — 10 match · 11 differ · 4 blank · 16 not produced
+41 submitted lines — 11 match · 10 differ · 4 blank · 16 not produced
 ```
+
+That is the sheet taken at face value. Declaring the equipment rooms and the
+measured cable runs — two facts about the project the sheet has no field for —
+takes it to **14 match · 7 differ · 4 blank · 16 not produced**, with no
+warnings and nothing overridden.
 
 Of the 41, **20 are machine-reproducible** today. The remainder are parts with no
 rule and, in 14 cases, no catalogue entry either.
@@ -56,13 +144,13 @@ backplane counts.
 
 | Line | Submitted | Generated | Why |
 |---|---|---|---|
-| Kit 4.8 m / 9.8 m | 350 / 163 | 369 / 144 | The guideline's answer. See below — this one is the good news |
-| BGT07 racks | 68 | 66 | The planner put DN and UP in separate rooms at Devpura and Snaganer. That is a siting decision; the input sheet does not record it |
-| BP-EXB-1 / -2 | 27 / 92 | 26 / 91 | Same cause |
+| Kit 4.8 m / 9.8 m | 350 / 163 | 369 / 144 | The guideline's answer. **Closed** by entering the real cable plan — see below |
+| BGT07 racks | 68 | 66 | The planner put DN and UP in separate rooms at Devpura and Snaganer. **Closed** by declaring the equipment rooms |
+| BP-EXB-1 / -2 | 27 / 92 | 26 / 91 | Not the same cause. Rooms leave this untouched: at three of the room sheets the planner used a wider backplane mix than necessary, and the packer is not tuned to match |
 | IO-EXB | 244 | 237 | `dataTransmissionIO` is declared 0 here; the real allowance is per-location and not in the sheet |
 | Backplane connector | 244 | 248 | The **known BD BOM defect** — its formula copies the IO-EXB row instead of Gesamt's slot-weighted count. Gesamt says 251; the BoQ shipped 244 |
 | PSC | 61 | 46 | `pscPerGroup` declared as 1; the workbook equips 2 on larger Yard groups. Not derivable |
-| FDS102 | 12 | 18 | The rule says one per location. The submitted 12 was typed by hand. **The rule and the tender disagree** |
+| FDS102 | 12 | 18 | The rule says one per column. The submitted 12 was typed by hand. **The rule and the tender disagree**, and declaring equipment rooms moves it to 20, further away |
 | COM-AdC | 42 | 46 | One per evaluation group. The four missing are redundant COM boards — see below |
 | Cubicles | 22 | 18 | `ceil(racks / 6)` per location against the workbook's own formula |
 
@@ -188,6 +276,59 @@ missing information, not a measurement. Once the real cable plan exists the rule
 should be switched *off*, not overridden line by line — otherwise a dormant
 guideline sits underneath the BoQ quietly contradicting three of its lines.
 
+That switch now exists, and the next section is what it does.
+
+## Measured cable runs switch the guideline off
+
+`Project.cableSource` is either `guideline` or `measured`. Under `measured` the
+percentage table above **is not consulted at all**: `dp_5m` / `dp_10m` / `dp_15m`
+come from runs counted per location, and `K01`–`K03` book them. Entering the
+real plan on this tender gives 350 / 163 / 37 and two more lines of the
+submitted BoQ agree — the 19-unit hand adjustment stops being an override with
+no justification and becomes a measurement.
+
+Three things make that honest rather than merely convenient.
+
+**A half-finished plan is a blank, not a smaller number.** A location with
+detection points and no runs counted blanks all three lines, and so does one
+whose runs do not add up to its detection points. Every detection point takes
+exactly one trackside kit, so `K01 + K02 + K03` has to equal what `G05` books
+for sensors; booking a plan that is ten runs short would put a BoQ into print
+contradicting its own sensor line. An all-zero entry counts as not measured —
+zero runs is an absence of information wearing a number.
+
+**Both figures stay visible.** `CableSplit` carries what the guideline would have
+said either way, so a measured plan is read against the default it replaced
+rather than silently superseding it.
+
+**The provenance changes with the number.** When the runs were counted, the
+line's explanation stops citing questionnaire `B151` and says where the number
+actually came from. A panel that cites the guideline under a measured figure is
+asserting two stories at once, and one of them is false.
+
+### Why these rules stay `derived` rather than going dormant
+
+The obvious reading of the caveat above is that `K01`–`K03` should go dormant
+under a measured plan. They do not, deliberately.
+
+Those three rules are pass-throughs of a driver — `quantity = dp_5m`. What a
+measured plan changes is where the *driver* comes from, not whether the rule
+holds. Making the rules dormant would blank three BoQ lines on the project that
+has the **best** information about them, which is the opposite of what the
+caveat is protecting against. What the caveat actually argues is that the
+guideline must not sit underneath the BoQ contradicting it, and switching the
+source off is precisely that: no percentage is applied, nothing is overridden,
+and there is no dormant estimate left over.
+
+## Application type — the guideline rows the sheet cannot reach
+
+The mix keys on the **application**, and the input sheet records only a scope.
+Yard means station and ABS means auto block on this tender, so that is the
+default — but it is a default. The IBH and absolute-block rows of `B151` item 16
+are unreachable from a scope, and `Location.application` is what makes them
+sayable. Note that ABS here is the auto-block sheet, which maps to `AUTO_BLOCK`;
+`ABSOLUTE_BLOCK` is a different application that happens to share three letters.
+
 ## Three findings from running it
 
 **The submitted BoQ books zero spares.** All 41 lines, Spare column empty —
@@ -283,7 +424,7 @@ cables on this tender.
   shipped figure moved.
 - `No of Location` in the handover sheet reads 18, but the calculators carry 21
   used location sheets — three Yard stations are split across two equipment rooms
-  each. The sheet's own count is wrong.
+  each. The sheet's own count is wrong, and the rooms are now declarable.
 - The questionnaire refers work to "Sheet No 17" at five places. There is no
   sheet 17 in the workbook; whatever backed the per-location breakdown was never
   shipped with the handover.

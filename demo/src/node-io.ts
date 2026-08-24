@@ -8,7 +8,8 @@
  * import this module at all.
  */
 import { readFileSync } from 'node:fs'
-import { importProjectFromBuffer, type Project } from './import.ts'
+import { importProjectFromBuffer } from './import.ts'
+import { buildProject, type Project, type ProjectInput } from './project.ts'
 import { parseRules, type SeedRule } from './engine.ts'
 import {
   readSubmittedBoqFromBuffer, buildPartIndexFrom,
@@ -36,4 +37,12 @@ export function buildPartIndexWithAliases(
 
 export function buildPartIndex(path: string): PartIndex {
   return buildPartIndexWithAliases(path).index
+}
+
+/**
+ * A hand-entered project from a JSON file of plain data — the second route in,
+ * for a project with no Bid Process Sheet behind it.
+ */
+export function importManualProject(path: string): Project {
+  return buildProject(JSON.parse(readFileSync(path, 'utf8')) as ProjectInput)
 }

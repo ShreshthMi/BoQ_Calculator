@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 import {
-  planLocation, buildDrivers, buildDriversFor, runRulesOverLocations,
+  planLocation, buildDrivers, buildDriversFor, runRulesOverLocations, columnsOf,
   DEFAULT_DECLARATIONS, type LocationPlan,
 } from '../src/engine.ts'
 import {
@@ -33,12 +33,13 @@ const decl = DEFAULT_DECLARATIONS
 const plans = project.locations.map((l) => planLocation(l, decl))
 const rules = loadRules(join(BASE, 'Rule Map', 'rules.seed.json'))
 const { resolved, problems } = runRulesOverLocations(
-  rules, plans.map((p) => buildDriversFor(p, decl)), buildDrivers(project, plans, decl), decl)
+  rules, columnsOf(plans).map((p) => buildDriversFor(p, decl, project.cableSource)),
+  buildDrivers(project, plans, decl), decl)
 const lines = assemble(resolved, [])
 const submitted = readSubmittedBoq(SHEET)
 const { index } = buildPartIndexWithAliases(join(BASE, 'Part Catalogue', 'parts.json'))
 const { rows, summary } = diffAgainstSubmitted(lines, submitted, index)
-const cable = splitByLength(project.locations)
+const cable = splitByLength(project.locations, project.cableSource)
 
 const esc = (s: unknown) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
