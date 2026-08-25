@@ -115,14 +115,14 @@ export function groupsFor(loc: Location, d: Declarations): Group[] {
           if (line.dp === 0 && line.ts === 0) continue
           out.push({
             id: `${sTag}${dir}-${tag}`, system,
-            aeb: line.dp, ioExb: ioForTs(line.ts),
+            aeb: line.dp, ioExb: ioForTs(line.ts), ts: line.ts,
             com: d.comPerGroup, psc: d.pscPerGroup,
           })
         }
       } else {
         out.push({
           id: `${sTag}ALL-${tag}`, system,
-          aeb: dp, ioExb: ioForTs(ts),
+          aeb: dp, ioExb: ioForTs(ts), ts,
           com: d.comPerGroup, psc: d.pscPerGroup,
         })
       }

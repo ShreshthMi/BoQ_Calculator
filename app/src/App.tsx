@@ -5,12 +5,18 @@ import {
   type Answers, type Question,
 } from './questionnaire.ts'
 import templateUrl from '../../BOM CAL/Handover BID Process Sheet Version 11.xlsx?url'
+// One template serves both project types. Measured across every shared sheet of
+// the two shipped calculators: zero formula differences, zero literal
+// differences and zero semantic formatting differences. The ABS file is the one
+// bundled because it carries more pristine location sheets and stores its
+// revision date as a date rather than as text with a stray apostrophe.
+import brcTemplateUrl from '../../BOM CAL/ABS V.1_2025-BRC with BD BOM.xlsm?url'
 import {
   loadWorkbook, startEmpty, run, explain, exportProject, importProjectState, download,
   buildProject, blankLocation, blankSection, setRoomCount, nextLocationId,
   submittedOf, labelOf,
   APPLICATIONS, APPLICATION_LABEL,
-  RULES, PART_ALIASES, DEFAULT_DECLARATIONS, partKeyOf,
+  RULES, PARTS, PART_ALIASES, DEFAULT_DECLARATIONS, partKeyOf,
   type Loaded, type Declarations, type Override, type BoqLine, type LocationPlan,
   type Project, type ProjectInput, type LocationInput, type Application,
   type CableSource, type Detection, type Scope, type CableSplit,
@@ -52,6 +58,31 @@ export default function App() {
   const [loaded, setLoaded] = useState<Loaded | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [exportWarnings, setExportWarnings] = useState<string[]>([])
+  /**
+   * Which export is running, if any.
+   *
+   * Writing a workbook is seconds of synchronous work on the main thread — a
+   * megabyte of XML rewritten and then deflated — and a button that looks
+   * unchanged while the tab stops responding reads as a broken button. Yielding
+   * once before the work lets the label repaint first.
+   */
+  const [busy, setBusy] = useState<string | null>(null)
+  const withBusy = async (label: string, work: () => Promise<void>) => {
+    setError(null)
+    setBusy(label)
+    // A timer, deliberately, not `requestAnimationFrame`: rAF does not fire in a
+    // backgrounded tab, so waiting on one means an export started and then never
+    // ran at all if the engineer switched away. One macrotask is enough for
+    // React to have committed the label.
+    await new Promise((r) => setTimeout(r, 0))
+    try {
+      await work()
+    } catch (err) {
+      setError(`Could not build the ${label}. ${(err as Error).message}`)
+    } finally {
+      setBusy(null)
+    }
+  }
   const [screen, setScreen] = useState<Screen>('source')
   const [decl, setDecl] = useState<Declarations>(DEFAULT_DECLARATIONS)
   const [overrides, setOverrides] = useState<Override[]>([])
@@ -178,25 +209,37 @@ export default function App() {
             hint={result && !empty ? String(result.diff.summary['match'] ?? 0) : ''} />
           {loaded && result && !empty && project && <>
             <div className="grp">Export</div>
-            <button onClick={async () => {
-              setError(null)
-              try {
-                // Loaded on demand, as the styled-BoQ writer already loads
-                // ExcelJS: the zip library and the template between them are
-                // most of a megabyte, and neither is needed until someone exports.
-                const { buildBidProcessSheet } = await import('./export-bid-sheet.ts')
-                const template = await (await fetch(templateUrl)).arrayBuffer()
-                const { bytes, warnings } = await buildBidProcessSheet(template, {
-                  project, declarations: decl, lines: result.lines, answers, partKeyOf,
-                })
-                setExportWarnings(warnings)
-                download(`${(project.source || 'Bid Process Sheet').replace(/\.xlsx?$/i, '')}.xlsx`,
-                  bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-              } catch (err) {
-                setError(`Could not build the Bid Process Sheet. ${(err as Error).message}`)
+            <button disabled={busy !== null} onClick={() => withBusy('Bid Process Sheet', async () => {
+              // Loaded on demand, as the styled-BoQ writer already loads
+              // ExcelJS: the zip library and the template between them are
+              // most of a megabyte, and neither is needed until someone exports.
+              const { buildBidProcessSheet } = await import('./export-bid-sheet.ts')
+              const template = await (await fetch(templateUrl)).arrayBuffer()
+              const { bytes, warnings } = await buildBidProcessSheet(template, {
+                project, declarations: decl, lines: result.lines, answers, partKeyOf,
+              })
+              setExportWarnings(warnings)
+              download(`${(project.source || 'Bid Process Sheet').replace(/\.xlsx?$/i, '')}.xlsx`,
+                bytes, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            })}>
+              {busy === 'Bid Process Sheet' ? 'Writing…' : 'Bid Process Sheet'}
+            </button>
+            <button disabled={busy !== null} onClick={() => withBusy('BRC calculators', async () => {
+              const { buildBrcPair } = await import('./export-brc.ts')
+              const template = await (await fetch(brcTemplateUrl)).arrayBuffer()
+              // One project, two workbooks — ABS locations in one and Yard in
+              // the other, which is how this tender was actually delivered.
+              const books = await buildBrcPair(template, {
+                project, declarations: decl, plans: result.plans, rules: RULES, parts: PARTS,
+              })
+              setExportWarnings(books.flatMap((b) => b.result.warnings))
+              const stem = (project.source || 'BRC').replace(/\.xlsm?x?$/i, '')
+              for (const { scope, result: r } of books) {
+                download(`${stem} — ${scope} BRC.xlsm`, r.bytes,
+                  'application/vnd.ms-excel.sheet.macroEnabled.12')
               }
-            }}>
-              Bid Process Sheet
+            })}>
+              {busy === 'BRC calculators' ? 'Writing two workbooks…' : 'BRC calculators'}
             </button>
             <button onClick={async () => download('BoQ.xlsx', await exportStyledBoq(result.lines),
               'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')}>

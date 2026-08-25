@@ -41,6 +41,16 @@ export type Group = Demand & {
    * structure itself, this is a planner decision the packer should not invent.
    */
   psc?: number
+  /**
+   * Track sections this group covers.
+   *
+   * The packer itself never reads it — `ioExb` is what decides the hardware. It
+   * is carried because `ceil(ts / 2)` loses the parity, and the drawn grid needs
+   * it back: seven track sections and eight both pack to four I/O boards, but
+   * the seventh's last board is numbered with one FMA rather than two. See
+   * `grid.ts`.
+   */
+  ts?: number
 }
 
 export type PackInput = {

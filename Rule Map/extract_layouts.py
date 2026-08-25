@@ -81,6 +81,14 @@ EXB_BODY_TOKENS = {"IO-EXB", "CO-EXB", "spare IO"}
 BP_RE = re.compile(r"^BP-(PWR|EXB)-(\d+)$")
 TABELLE_RE = re.compile(r"^Tabelle\s+\d+$", re.I)
 
+# Set by --book.  A GENERATED workbook has not been opened in Excel yet, so every
+# formula in it still carries the template's cached value: the TE widths, the
+# 'Pos.' prefix sums, Gesamt row 4 and the whole aggregation band are stale by
+# construction, and `fullCalcOnLoad` is what fixes them on open.  In that mode
+# this script checks only what it can read as LITERALS - the drawn grid itself,
+# which is the thing under test - and says plainly which checks it skipped.
+GENERATED = False
+
 # every orderable backplane variant that has a Gesamt BoM row
 BP_VARIANTS = (["BP-PWR-%d" % n for n in (0, 1, 2, 3, 4, 6, 8, 10, 12, 14, 16)] +
                ["BP-EXB-%d" % n for n in (0, 1, 2, 3, 4, 6, 8, 10, 12)])
@@ -195,7 +203,7 @@ def parse_block(ws, sheet, base, anomalies):
                 if tok not in TE_OF_TOKEN:
                     anomalies.append("%s %s%d: unknown board token %r"
                                      % (sheet, gcl(cc), base + 2, tok))
-                elif te is not None and te != TE_OF_TOKEN[tok]:
+                elif not GENERATED and te is not None and te != TE_OF_TOKEN[tok]:
                     anomalies.append("%s %s%d: TE %r does not match token %r (expected %d)"
                                      % (sheet, gcl(cc), base + 3, te, tok, TE_OF_TOKEN[tok]))
                 # head / body role check
@@ -210,7 +218,12 @@ def parse_block(ws, sheet, base, anomalies):
             slot = OrderedDict()
             slot["col"] = gcl(cc)
             slot["board"] = tok
-            slot["te"] = te if te is not None else (TE_OF_TOKEN.get(tok or "", 0))
+            # In generated mode the width cell is a formula Excel has not run
+            # yet, so the token's own width is the honest answer.
+            if GENERATED:
+                slot["te"] = TE_OF_TOKEN.get(tok or "", 0)
+            else:
+                slot["te"] = te if te is not None else (TE_OF_TOKEN.get(tok or "", 0))
             slot["zp"] = zps[cc]
             slot["fma"] = fma
             slots.append(slot)
@@ -236,13 +249,16 @@ def parse_block(ws, sheet, base, anomalies):
         backplanes.append(bp)
 
         # cross-check the sheet's own derived 'Pos.' ordinal
-        declared = as_int(cv(ws, base, c))
+        declared = None if GENERATED else as_int(cv(ws, base, c))
         if declared is not None and declared != pos:
             anomalies.append("%s %s%d: derived Pos. is %r, positional order says %d"
                              % (sheet, gcl(c), base, declared, pos))
         c += nslots
 
-    te_used = sum(t for t in tes.values() if t)
+    if GENERATED:
+        te_used = sum(s["te"] or 0 for bp in backplanes for s in bp["slots"])
+    else:
+        te_used = sum(t for t in tes.values() if t)
     budget = RACK_TE.get(str(rack_type), None)
     rack = OrderedDict()
     rack["type"] = rack_type
@@ -253,7 +269,7 @@ def parse_block(ws, sheet, base, anomalies):
         anomalies.append("%s block@%d: %d TE used exceeds the %d TE %s budget"
                          % (sheet, base, te_used, budget, rack_type))
     # cross-check against the sheet's own 'Rest of 84 TE' cell AC(base+3)
-    rest = as_int(cv(ws, base + 3, 29))
+    rest = None if GENERATED else as_int(cv(ws, base + 3, 29))
     rack["_restCell"] = rest
     if budget == 84 and rest is not None and rest != rack["teFree"]:
         anomalies.append("%s AC%d: sheet says %d TE free, parsed grid says %d"
@@ -375,15 +391,23 @@ def parse_workbook(tag, path, anomalies):
     locations = []
     for i in range(1, 31):
         col = 2 + i                      # C = location 1
-        name = cv(g, 4, col)
-        if name is None or TABELLE_RE.match(str(name)):
-            continue
         sheet = "%02d" % i
         ws = wbv[sheet]
         sheet_name = cv(ws, 2, 1)
-        if sheet_name is not None and str(sheet_name) != str(name):
-            anomalies.append("%s %s: sheet A2 name %r != Gesamt!%s4 %r"
-                             % (tag, sheet, sheet_name, gcl(col), name))
+        if GENERATED:
+            # Gesamt row 4 is ='NN'!$A2 - a formula, and therefore stale in a
+            # workbook Excel has not opened.  A2 itself is the literal a human
+            # (or the writer) types, so it is the one to trust here.
+            name = sheet_name
+            if name is None or TABELLE_RE.match(str(name)):
+                continue
+        else:
+            name = cv(g, 4, col)
+            if name is None or TABELLE_RE.match(str(name)):
+                continue
+            if sheet_name is not None and str(sheet_name) != str(name):
+                anomalies.append("%s %s: sheet A2 name %r != Gesamt!%s4 %r"
+                                 % (tag, sheet, sheet_name, gcl(col), name))
         racks = []
         for b in range(NBLOCK):
             base = BLOCK0 + PERIOD * b
@@ -689,7 +713,73 @@ def audit_redundancy(tag, extracted):
     return violations
 
 
+def inspect_generated(paths):
+    """Re-read a GENERATED calculator and check the grid we drew into it.
+
+    This is the round trip: the writer puts literals on the page, and this reads
+    them back with a different language, a different library and a parser that
+    predates the writer by several commits.  What it can check is everything the
+    grid asserts about itself - the token vocabulary, the head/body role of every
+    slot, backplane widths against their own geometry, counting points running
+    1..n without a gap in each evaluation group, and the main/redundant
+    separation constraint.
+
+    What it deliberately does NOT check is anything downstream of a formula.  A
+    generated workbook carries the template's cached values until Excel opens it
+    and `fullCalcOnLoad` fires, so Gesamt, BD BOM and the sheet's own row 3 are
+    stale by construction and reconciling against them would be theatre.
+    """
+    global GENERATED
+    GENERATED = True
+    print("GENERATED-WORKBOOK MODE")
+    print("  checking: the drawn grid, read back as literals.")
+    print("  skipping: Gesamt, BD BOM, row 3 and the TE band - all cached formula")
+    print("            values, stale until Excel recalculates on open.")
+    bad = 0
+    for path in paths:
+        tag = os.path.basename(path)
+        anom = []
+        data = parse_workbook(tag, path, anom)
+        print("")
+        print("=" * 100)
+        print("%s  -  project %r" % (tag, data["project"]))
+        print("=" * 100)
+        print("%-5s %-18s %-6s %-6s %-5s %-5s %-5s %-5s %s"
+              % ("id", "location", "racks", "BP", "AEB", "IO", "PSC", "COM", "TE"))
+        print("-" * 100)
+        for loc in data["locations"]:
+            t = loc["totals"]
+            print("%-5s %-18s %-6d %-6d %-5d %-5d %-5d %-5d %d"
+                  % (loc["id"], loc["name"][:18], t["racks"], t["bpTotal"], t["aeb"],
+                     t["ioExb"], t["pscTotal"], t["comAdc"], t["teUsed"]))
+        print("-" * 100)
+        tot = lambda k: sum(l["totals"].get(k, 0) for l in data["locations"])
+        print("%-24s %-6d %-6d %-5d %-5d %-5d %-5d %d"
+              % ("TOTAL", tot("racks"), tot("bpTotal"), tot("aeb"), tot("ioExb"),
+                 tot("pscTotal"), tot("comAdc"), tot("teUsed")))
+        print("track sections (FMA): %d" % tot("trackSections"))
+        audit_redundancy(tag, data)
+        verify_geometry(anom)
+        bad += len(anom)
+    print("")
+    print("OVERALL: %s" % ("the drawn grid reads back clean" if bad == 0
+                           else "%d geometry anomalies" % bad))
+    return 1 if bad else 0
+
+
 def main():
+    argv = sys.argv[1:]
+    if "--book" in argv:
+        paths = [a for a in argv[argv.index("--book") + 1:] if not a.startswith("-")]
+        if not paths:
+            print("usage: extract_layouts.py --book <generated.xlsm> [more.xlsm ...]")
+            return 2
+        missing = [p for p in paths if not os.path.exists(p)]
+        if missing:
+            print("not found: %s" % ", ".join(missing))
+            return 2
+        return inspect_generated(paths)
+
     all_anom = []
     out = OrderedDict()
     per_book = {}

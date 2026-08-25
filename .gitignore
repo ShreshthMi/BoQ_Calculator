@@ -8,6 +8,8 @@ dist/
 # generated artefacts — regenerate with the scripts that make them
 app/BoQ.xlsx
 app/BidProcessSheet.xlsx
+app/BRC-ABS.xlsm
+app/BRC-YARD.xlsm
 
 # byte-identical copies of BOM CAL/ and BOM CAL DESIGN/, 5.2 MB of duplication
 Zipped Source Files/

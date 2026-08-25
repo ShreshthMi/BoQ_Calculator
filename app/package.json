@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify-export": "node scripts/verify-export.ts",
-    "verify-bid-sheet": "node scripts/verify-bid-sheet.ts"
+    "verify-bid-sheet": "node scripts/verify-bid-sheet.ts",
+    "verify-brc": "node scripts/verify-brc.ts"
   },
   "dependencies": {
     "exceljs": "^4.4.0",

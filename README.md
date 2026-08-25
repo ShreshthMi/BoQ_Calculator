@@ -55,6 +55,8 @@ npm run typecheck              # types, under the same erasable-syntax rules Nod
 npm run demo                   # the CLI: sheet in, BoQ out, diffed against the submitted one
 cd ../app && npm install
 npm run verify-bid-sheet       # generate a Bid Process Sheet and check it round-trips
+npm run verify-brc             # generate both BD/BRC calculators and check them five ways
+python "../Rule Map/extract_layouts.py" --book BRC-ABS.xlsm BRC-YARD.xlsm
 ```
 
 Expect `11 match · 10 differ · 4 blank · 16 not produced` from the CLI, and
@@ -94,7 +96,7 @@ cd packer && npm run score least-te      # score the packer under the other obje
 | [`Bid Sheet/`](Bid%20Sheet) | Generating the handover workbook back out — the questionnaire map and why the export patches a zip |
 | [`Rule Map/`](Rule%20Map) | 57 recovered rules, mapped against the prototype's 28 |
 | [`Part Catalogue/`](Part%20Catalogue) | The 141-part master extracted from `BD BOM` |
-| `BOM CAL/` | The source workbooks. Inputs, not outputs — never modified |
+| [`BOM CAL/`](BOM%20CAL) | The source workbooks — inputs, never modified — and how the BD/BRC calculators are generated back out |
 | `BOM CAL DESIGN/` | The design prototype, parsed for its rule set |
 
 Each folder has its own README with the detail.
@@ -148,6 +150,30 @@ spreadsheet library and writing it straight back **destroys 98 of its 128
 parts** — every checkbox, both VML drawings, the external links, the printer
 settings. Patching keeps all 128, and the generated file re-imports into the
 tool as the same project with no warnings. See [`Bid Sheet/`](Bid%20Sheet).
+
+## And the calculator the BoQ falls out of
+
+The bid team's working artefact is not the Bill of Quantities — it is the
+calculator. The tool now writes one of those too: a slot grid drawn per
+evaluation column, board by board, with the counting points and track-section
+numbers a planner writes underneath. One project makes **two workbooks**, ABS
+and Yard, as this tender was actually delivered — 21 location sheets, 68 racks.
+
+Almost none of it needs writing. Row 3 of a location sheet is fed by `COUNTIF`s
+over two rows of the grid, `Gesamt` reads row 3 and `BD BOM` reads `Gesamt`, so
+drawing the grid makes the whole 55,000-formula chain say the right thing.
+
+Every one of `BD BOM`'s 141 part rows is then **marked with where its number
+came from** — `derived`, `wired by tool`, `corrected by tool`, `tool literal`,
+`manual` or `no rule` — in two columns the sheet reserved for locations it can
+never have. 106 rows have no rule anywhere and ship blank; each one says so in
+the file rather than looking like an oversight.
+
+Drawing the layout and reading it back found a defect nothing else could: the
+packer was seating power backplanes first, leaving **43 of the reference
+project's 202 backplanes** with I/O boards under an empty evaluation slot —
+something the planners' own layouts never do once in 21 locations.
+See [`BOM CAL/`](BOM%20CAL).
 
 ## Two ways in
 

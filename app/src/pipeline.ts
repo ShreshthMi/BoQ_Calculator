@@ -52,6 +52,23 @@ export {
 }
 
 export const RULES: SeedRule[] = parseRules(rulesJson as never)
+
+/**
+ * The 141-part catalogue, in `BD BOM` row order.
+ *
+ * `parts.json` is a mechanical extraction of that sheet — `source_row` IS the
+ * row, and the set matches it in both directions with no orphans — which is
+ * what lets the BRC writer mark every row of the generated calculator without a
+ * lookup table of its own.
+ */
+export const PARTS = (partsJson as unknown as {
+  parts: {
+    key: string
+    source_row: number
+    description: string
+    driver: { type: string; formula?: string; label?: string }
+  }[]
+}).parts
 const PART_INDEX = buildPartIndexFrom(partsJson as never)
 export const PART_ALIASES = PART_INDEX.aliases
 

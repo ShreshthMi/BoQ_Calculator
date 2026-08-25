@@ -83,6 +83,22 @@ quantities land on the rows their part numbers name.
 "BoQ sheet only" is the older export, kept because a single styled sheet is
 sometimes all anyone wants.
 
+## And "BRC calculators" writes the workbook the BoQ falls out of
+
+One click, **two files** — ABS and Yard — because the two shipped calculators
+are the two halves of one tender. Each carries a slot grid drawn per evaluation
+column, board by board, with the counting points and track-section numbers a
+planner writes underneath, and every `BD BOM` row marked with where its number
+came from.
+
+`npm run verify-brc` builds both outside the browser and checks them five ways;
+`python "../Rule Map/extract_layouts.py" --book BRC-ABS.xlsm BRC-YARD.xlsm` then
+reads the result back with a different language and a parser that predates the
+writer. The reasoning is in [`../BOM CAL/README.md`](../BOM%20CAL/README.md).
+
+Both the writer and the 2.8 MB template are loaded on demand, so nothing about
+the calculators is fetched until someone exports one.
+
 ## The spreadsheet export is in the bid team's own format
 
 Not a generic dump. `src/export-xlsx.ts` reproduces the layout of sheet

@@ -178,9 +178,30 @@ export function materialise(
   let pscLeft = Math.min(pscCount, dec.pwrCount)
   const out: PlacedBackplane[] = []
 
+  /**
+   * Evaluation boards held back for the extension backplanes' head slots.
+   *
+   * The leading 4 TE of a BP-EXB is the AEB its I/O boards extend — that is the
+   * coupling the whole decomposition is built on, and `freeSlots4` already
+   * counts those slots as evaluation-board capacity. But the power backplanes
+   * are seated first, so without a reservation they eat the evaluation boards
+   * and an extension backplane ends up carrying I/O boards under an EMPTY
+   * evaluation slot. Measured before this reservation existed: 43 of the
+   * reference project's 202 backplanes came out that way, every one of them
+   * carrying I/O boards, where the planners' own layouts do it exactly zero
+   * times in 21 locations.
+   *
+   * Reseating moves no board between backplanes and changes no count the BoQ
+   * reads — `freeSlots4` is arithmetic over the decomposition, not over these
+   * tokens. What it changes is where the empty slot falls, and therefore whether
+   * the drawn grid is a layout an engineer would sign.
+   */
+  let exbHeadsLeft = EXB_CODES.reduce((a, c) => a + (dec.counts[c] ?? 0), 0)
+
   for (const code of order) {
     for (let i = 0; i < (dec.counts[code] ?? 0); i++) {
       const s = spec(code)
+      if (s.kind === 'EXB') exbHeadsLeft--
       const contents: BoardToken[] = []
       // One PSC per group; later BP-PWRs get a blank in the power slot.
       if (s.psc > 0) {
@@ -192,9 +213,9 @@ export function materialise(
       let io = 0
       for (let k = 0; k < s.slots4; k++) {
         // COM boards take the first 4 TE slot of a BP-PWR, as the grids show.
-        if (s.kind === 'PWR' && comLeft > 0) { contents.push('COM-AdC'); comLeft--; com++ }
-        else if (aebLeft > 0) { contents.push('AEB'); aebLeft--; aeb++ }
-        else contents.push(s.kind === 'PWR' ? 'spare' : 'leer')
+        if (s.kind === 'PWR' && comLeft > 0) { contents.push('COM-AdC'); comLeft--; com++ } else if (aebLeft > (s.kind === 'PWR' ? exbHeadsLeft : 0)) {
+          contents.push('AEB'); aebLeft--; aeb++
+        } else contents.push(s.kind === 'PWR' ? 'spare' : 'leer')
       }
       for (let k = 0; k < s.slots6; k++) {
         if (ioLeft > 0) { contents.push('IO-EXB'); ioLeft--; io++ }

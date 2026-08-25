@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test'
 import assert from 'node:assert/strict'
-import { decomposeGroup } from '../src/decompose.ts'
+import { decomposeGroup, materialise } from '../src/decompose.ts'
 import { BACKPLANES, TE_OF } from '../src/types.ts'
 
 const nz = (c: Record<string, number>) =>
@@ -112,6 +112,70 @@ describe('decomposition invariants', () => {
       assert.ok(d.freeSlots4 >= 0 && d.freeSlots6 >= 0)
     })
   }
+
+  test('an extension backplane never carries I/O boards under an empty evaluation slot', () => {
+    // The leading 4 TE of a BP-EXB is the AEB its I/O boards extend, and
+    // `freeSlots4` already counts it as evaluation-board capacity. Seating the
+    // power backplanes first used to let them eat those boards, leaving 43 of
+    // the reference project's 202 backplanes with I/O under a blank — something
+    // the planners' own layouts do exactly zero times in 21 locations. Caught by
+    // reading a generated workbook back with `extract_layouts.py`.
+    let checked = 0
+    let starved = 0
+    for (let aeb = 1; aeb <= 40; aeb++) {
+      for (let io = 0; io <= 24; io += 2) {
+        for (const com of [0, 1, 2]) {
+          const d = { aeb, ioExb: io, com }
+          const dec = decomposeGroup(d)
+          const placed = materialise(dec, d, 'MAIN', 'G1')
+          checked += placed.length
+          const exb = placed.filter((b) => b.spec.kind === 'EXB')
+          const seated = exb.filter((b) => b.contents[0] === 'AEB').length
+          // Evaluation boards go to the extension heads FIRST, so every one of
+          // them is filled unless the group has fewer boards than backplanes.
+          assert.equal(seated, Math.min(exb.length, aeb),
+            `aeb=${aeb} io=${io} com=${com}: ${seated} of ${exb.length} extension heads seated`)
+          if (aeb >= exb.length) {
+            for (const b of exb) {
+              assert.equal(b.contents[0], 'AEB',
+                `aeb=${aeb} io=${io} com=${com}: ${b.spec.code} seats ${b.contents[0]}`)
+            }
+          } else starved++
+          // No power backplane may hold an evaluation board while an extension
+          // head goes without — that is the failure mode exactly.
+          if (seated < exb.length) {
+            assert.equal(placed.filter((b) => b.spec.kind === 'PWR')
+              .reduce((a, b) => a + b.aeb, 0), 0,
+            `aeb=${aeb} io=${io} com=${com}: a power backplane took a board an extension needed`)
+          }
+        }
+      }
+    }
+    assert.ok(checked > 1000, `only ${checked} backplanes exercised`)
+    // The starved case is real but degenerate — more I/O backplanes than
+    // evaluation boards. It never occurs on this tender, and `leer` is the token
+    // the workbook's own formula produces for it. Worth knowing that Gesamt's
+    // blanking-plate COUNTIF looks for "spare" and not for "leer", so such a
+    // slot would book no plate; nothing on this project exercises it.
+    assert.ok(starved > 0, 'the starved case should still be reachable and recorded')
+  })
+
+  test('reseating moves no board and changes no free-slot count', () => {
+    // The fix above is a seating change, not a hardware change: the BoQ reads
+    // `freeSlots4`, which is arithmetic over the decomposition rather than over
+    // these tokens, so it must be untouched.
+    for (let aeb = 1; aeb <= 30; aeb++) {
+      for (let io = 0; io <= 16; io += 2) {
+        const d = { aeb, ioExb: io, com: 1 }
+        const dec = decomposeGroup(d)
+        const placed = materialise(dec, d, 'MAIN', 'G1')
+        assert.equal(placed.reduce((a, b) => a + b.aeb, 0), aeb, `aeb ${aeb}/${io}`)
+        assert.equal(placed.reduce((a, b) => a + b.ioExb, 0), io, `io ${aeb}/${io}`)
+        assert.equal(placed.reduce((a, b) => a + b.freeSlots4, 0), dec.freeSlots4)
+        assert.equal(placed.reduce((a, b) => a + b.freeSlots6, 0), dec.freeSlots6)
+      }
+    }
+  })
 
   test('never emits a variant without a part number', () => {
     const orderable = new Set(BACKPLANES.filter((b) => b.partCode).map((b) => b.code))
