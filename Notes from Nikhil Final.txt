@@ -1,0 +1,47 @@
+Bid wins tender when: 
+
+IR asks for a quotation of material and price , at the time of releasing tender. 
+IR will provide : Locations - Relevant DP and TS per location and bifurcation of evaluators(evaluators  = COM / CAN Segment) per location. 
+
+For eg: 
+
+Tender X requires MSDAC part quantity and price quotation for : Loc A @ 100 DP , 50 TS 3 Evaluators, Loc B @ 110 DP, 55 TS, 4 Evaluators  ( will specify Reset Cubicle )
+
+
+OBJECTIVE : 
+
+Estimate the price and bill of quantity with spare margins ( custom ) , the AEBs + Sensors + patch cables, + COM cards + FADC euipment  for this tender
+
+
+
+BID wins  -> Handsover project BoQ and application requirements to project team -> Project builds baseline FCT and handsover to AE for processing further -> 
+
+
+BiD handover =Cubicle Definition -> BoardRack Definition -> Backplane Definition -> { Children - PSC, COM, AEB , IOEXB}
+
+ 
+Project handover = Project engineer collects Track layout(DP name, AEB name, Track Section name) info and network info and builds the board rack definition recieved from BID, to a baseline FCT. 
+
+
+
+
+
+Handover sheet will contain  : DP TS details to be estimated by BiD engineer, while Project Questionnaire determines the application type of MSDAC, Reset Box 
+
+
+
+
+10/09 Notes : 
+
+
+Process: 
+
+So, the bid team extracts the tender details and begins working on them, while the Project team simultaneously targets the project for sales. When the bid team starts its work, the BID team requires pricing for negotiations; this price is derived from the BOM (Bill of Materials), which in turn is generated from the BRC (Bill of Quantities/Requirements). To work on the tender, we first determine the application details—such as the number of evaluators, architecture type/s, station layout, locations, and block sections—based on the tender specifications. We then prepare a technical project questionaire based on these criteria containing all site details and a summary of the tender. Based on this technical summary and the technical criteria (number of locations, evaluators, and network, tentative station layout), we create a BRC for each location. To create this BRC For each location, I first prepare a DP (Detection Point) and track section detail using the tentative SIP (Station Interlocking Plan), I calculate the number of DPs and TS required per location. Through manual calculation, based on these DP and track section details, we generate a BRC essentially a replica in the cubical format. Once this cubical format is ready, it provides comprehensive details regarding DPs, track sections, the number of cards used, wheel sensors, and other components; a single summary sheet captures all these details. Finally, we take that calculation—the entire BOM—and proceed with calculating material cost. For costing purposes, I need to determine the material estimation. This involves factoring in supervision, overheads, and other expenses. Crucially, I need to create a Bill of Materials (BOM) and perform a material estimation. This requires preparing a BRC (Board Rack Layout), which is a time-consuming process. If I do this in a tool like FCT, there are significant limitations—editing as well as auditing is difficult, and the risk of human error if say someone doesnt add an IO EXB card or adds more than needed. Similarly, if we prepare via excel sheet , the risk of human error is higher due to the complexity of the number of sheets involved and if we miss a formula then BoM is wrong and our margins are directly affected. Mistakes can easily happen; for instance, one might miscount components or miscalculate quantities—like selecting 41 DPs (Detection points) when the cubicle capacity is only 40—which leads to production issues later. Similarily, say we are calculating BoM for a tender that has 1000Dps. Here, first we will calculate the DP and TS table first. We will take say, Station A, then see how many evaluators are required, then based on the number of evaluators , architecture and tentative station layout, we will determine the which evaluator will contain how many DPs and Track Section. Then using this DP and TS table, we will create BRC and we will assess how many Power Supply modules, COM boards are required(often mistaken) are required     These are the kinds of challenges we face. 
+
+Therefore, as you can see, DP and TS table estimate generates a BRC sheet which is then used to determine BoM estimate. This is used to then generate a material cost and a bid is submitted to our vendor/s. This is the BiD process. Now, the tender opens three months later and the details are forgotten and only exist in the sheet the engineer created three months ago. After the tender opens and it is awarded to our vendor. 90% of the time, the vendor will come to us with an approved SIP which is a little different from the tentative SIP. We now need to work on files manually once again. Manual edits are required for BRC , BoM and material cost estimation. 
+
+This reworked sheets including BRC, BoM and material cost estimation is handed over to Project team. 
+
+This comprehensive entirely manual process is why we need a software that allows us to generate a BRC and BoM once we feed it a DP and TS table for any given project. 
+
+Currently the rules for generating BRC are referred to via documents and thus the process is dependent on the engineer that applies these rules. We need a system that acts as a single source of truth for such rules and allows the BiD engineer to process such work in a more effective and efficient manner. 
