@@ -1,0 +1,1499 @@
+{
+  "ABS": [
+    {
+      "id": "L01",
+      "name": "Jaipur JN",
+      "sheet": "01",
+      "groups": [
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 0,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        }
+      ],
+      "actual": {
+        "racks": 1,
+        "backplanes": {
+          "BP-PWR-4": 2,
+          "BP-EXB-1": 2
+        },
+        "psc": 2,
+        "sparePsc": 0,
+        "com": 1,
+        "aeb": 4,
+        "io": 2,
+        "te": 68
+      },
+      "gesamt": {
+        "racks": 1,
+        "psc": 2,
+        "com": 1,
+        "aeb": 4,
+        "io": 2,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 2,
+        "BP-PWR-8": 0,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 0,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        68
+      ]
+    },
+    {
+      "id": "L02",
+      "name": "ALH-1",
+      "sheet": "02",
+      "groups": [
+        {
+          "aeb": 12,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 108
+        },
+        {
+          "aeb": 12,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 108
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 2,
+          "BP-EXB-4": 2,
+          "BP-EXB-2": 2,
+          "BP-PWR-4": 2
+        },
+        "psc": 2,
+        "sparePsc": 2,
+        "com": 2,
+        "aeb": 24,
+        "io": 12,
+        "te": 216
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 2,
+        "aeb": 24,
+        "io": 12,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 2,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 2,
+        "BP-EXB-4": 2
+      },
+      "rackTe": [
+        84,
+        64,
+        68
+      ]
+    },
+    {
+      "id": "L03",
+      "name": "Durgapura",
+      "sheet": "03",
+      "groups": [
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 0,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 6,
+          "ioExb": 3,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        },
+        {
+          "aeb": 6,
+          "ioExb": 3,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-4": 2,
+          "BP-EXB-1": 2,
+          "BP-PWR-8": 2,
+          "BP-EXB-4": 2
+        },
+        "psc": 4,
+        "sparePsc": 0,
+        "com": 3,
+        "aeb": 16,
+        "io": 8,
+        "te": 204
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 4,
+        "com": 3,
+        "aeb": 16,
+        "io": 8,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 2,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 0,
+        "BP-EXB-4": 2
+      },
+      "rackTe": [
+        68,
+        68,
+        68
+      ]
+    },
+    {
+      "id": "L04",
+      "name": "Sanganer",
+      "sheet": "04",
+      "groups": [
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 0,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 6,
+          "ioExb": 3,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        },
+        {
+          "aeb": 6,
+          "ioExb": 3,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-4": 2,
+          "BP-EXB-1": 2,
+          "BP-PWR-8": 2,
+          "BP-EXB-4": 2
+        },
+        "psc": 4,
+        "sparePsc": 0,
+        "com": 3,
+        "aeb": 16,
+        "io": 8,
+        "te": 204
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 4,
+        "com": 3,
+        "aeb": 16,
+        "io": 8,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 2,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 0,
+        "BP-EXB-4": 2
+      },
+      "rackTe": [
+        68,
+        68,
+        68
+      ]
+    },
+    {
+      "id": "L05",
+      "name": "ALH-2",
+      "sheet": "05",
+      "groups": [
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 4,
+          "BP-EXB-2": 8,
+          "BP-EXB-1": 4
+        },
+        "psc": 4,
+        "sparePsc": 0,
+        "com": 4,
+        "aeb": 40,
+        "io": 20,
+        "te": 328
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 4,
+        "com": 4,
+        "aeb": 40,
+        "io": 20,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 4,
+        "BP-EXB-1": 4,
+        "BP-EXB-2": 8,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        82,
+        82,
+        82,
+        82
+      ]
+    },
+    {
+      "id": "L06",
+      "name": "ALH-3",
+      "sheet": "06",
+      "groups": [
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        },
+        {
+          "aeb": 10,
+          "ioExb": 5,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-1"
+          ],
+          "te": 82
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 4,
+          "BP-EXB-2": 8,
+          "BP-EXB-1": 4
+        },
+        "psc": 4,
+        "sparePsc": 0,
+        "com": 4,
+        "aeb": 40,
+        "io": 20,
+        "te": 328
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 4,
+        "com": 4,
+        "aeb": 40,
+        "io": 20,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 4,
+        "BP-EXB-1": 4,
+        "BP-EXB-2": 8,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        82,
+        82,
+        82,
+        82
+      ]
+    },
+    {
+      "id": "L07",
+      "name": "ALH-4",
+      "sheet": "07",
+      "groups": [
+        {
+          "aeb": 8,
+          "ioExb": 4,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        },
+        {
+          "aeb": 8,
+          "ioExb": 4,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        },
+        {
+          "aeb": 8,
+          "ioExb": 4,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        },
+        {
+          "aeb": 8,
+          "ioExb": 4,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-4"
+          ],
+          "te": 68
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 4,
+          "BP-EXB-4": 4
+        },
+        "psc": 4,
+        "sparePsc": 0,
+        "com": 4,
+        "aeb": 32,
+        "io": 16,
+        "te": 272
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 4,
+        "com": 4,
+        "aeb": 32,
+        "io": 16,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 4,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 0,
+        "BP-EXB-4": 4
+      },
+      "rackTe": [
+        68,
+        68,
+        68,
+        68
+      ]
+    },
+    {
+      "id": "L08",
+      "name": "Sheodaspura",
+      "sheet": "08",
+      "groups": [
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        },
+        {
+          "aeb": 2,
+          "ioExb": 1,
+          "com": 0,
+          "psc": 1,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-4",
+            "BP-EXB-1"
+          ],
+          "te": 34
+        }
+      ],
+      "actual": {
+        "racks": 1,
+        "backplanes": {
+          "BP-PWR-4": 2,
+          "BP-EXB-1": 2
+        },
+        "psc": 2,
+        "sparePsc": 0,
+        "com": 1,
+        "aeb": 4,
+        "io": 2,
+        "te": 68
+      },
+      "gesamt": {
+        "racks": 1,
+        "psc": 2,
+        "com": 1,
+        "aeb": 4,
+        "io": 2,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 2,
+        "BP-PWR-8": 0,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 0,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        68
+      ]
+    }
+  ],
+  "Yard": [
+    {
+      "id": "L01",
+      "name": "Chaksu",
+      "sheet": "01",
+      "groups": [
+        {
+          "aeb": 17,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        },
+        {
+          "aeb": 14,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 112
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 3,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 31,
+        "io": 13,
+        "te": 250
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 3,
+        "com": 2,
+        "aeb": 31,
+        "io": 13,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        66,
+        72,
+        40
+      ]
+    },
+    {
+      "id": "L02",
+      "name": "Channani",
+      "sheet": "02",
+      "groups": [
+        {
+          "aeb": 16,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        },
+        {
+          "aeb": 14,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 112
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 3,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "te": 250
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 3,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        66,
+        72,
+        40
+      ]
+    },
+    {
+      "id": "L03",
+      "name": "Banasthali",
+      "sheet": "03",
+      "groups": [
+        {
+          "aeb": 22,
+          "ioExb": 9,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 178
+        },
+        {
+          "aeb": 17,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 4,
+          "BP-EXB-2": 7,
+          "BP-EXB-1": 2,
+          "BP-PWR-4": 1
+        },
+        "psc": 4,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 39,
+        "io": 16,
+        "te": 316
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 4,
+        "com": 2,
+        "aeb": 39,
+        "io": 16,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 4,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 7,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        82,
+        80,
+        82
+      ]
+    },
+    {
+      "id": "L04",
+      "name": "Sirsa",
+      "sheet": "04",
+      "groups": [
+        {
+          "aeb": 16,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        },
+        {
+          "aeb": 14,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 112
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 3,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "te": 250
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 3,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        66,
+        72,
+        40
+      ]
+    },
+    {
+      "id": "L05",
+      "name": "Irsada",
+      "sheet": "05",
+      "groups": [
+        {
+          "aeb": 23,
+          "ioExb": 9,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 178
+        },
+        {
+          "aeb": 16,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 4,
+          "BP-EXB-2": 7,
+          "BP-EXB-1": 2,
+          "BP-PWR-4": 1
+        },
+        "psc": 4,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 39,
+        "io": 16,
+        "te": 316
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 4,
+        "com": 2,
+        "aeb": 39,
+        "io": 16,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 4,
+        "BP-EXB-1": 2,
+        "BP-EXB-2": 7,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        82,
+        80,
+        82
+      ]
+    },
+    {
+      "id": "L06",
+      "name": "Chauth",
+      "sheet": "06",
+      "groups": [
+        {
+          "aeb": 17,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        },
+        {
+          "aeb": 14,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 112
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 3,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 31,
+        "io": 13,
+        "te": 250
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 3,
+        "com": 2,
+        "aeb": 31,
+        "io": 13,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        66,
+        72,
+        40
+      ]
+    },
+    {
+      "id": "L07",
+      "name": "Devpura Acc-1",
+      "sheet": "07",
+      "groups": [
+        {
+          "aeb": 22,
+          "ioExb": 8,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 178
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 2,
+          "BP-EXB-2": 4,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 2,
+        "sparePsc": 1,
+        "com": 1,
+        "aeb": 22,
+        "io": 8,
+        "te": 178
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 1,
+        "aeb": 22,
+        "io": 8,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 4,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        82,
+        24
+      ]
+    },
+    {
+      "id": "L08",
+      "name": "Devpura Acc-2",
+      "sheet": "08",
+      "groups": [
+        {
+          "aeb": 29,
+          "ioExb": 12,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8"
+          ],
+          "te": 216
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6
+        },
+        "psc": 2,
+        "sparePsc": 1,
+        "com": 1,
+        "aeb": 29,
+        "io": 12,
+        "te": 216
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 1,
+        "aeb": 29,
+        "io": 12,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        72,
+        72
+      ]
+    },
+    {
+      "id": "L09",
+      "name": "Snaganer Acc-1",
+      "sheet": "09",
+      "groups": [
+        {
+          "aeb": 21,
+          "ioExb": 8,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 178
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 2,
+          "BP-EXB-2": 4,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 2,
+        "sparePsc": 1,
+        "com": 1,
+        "aeb": 21,
+        "io": 8,
+        "te": 178
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 1,
+        "aeb": 21,
+        "io": 8,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 4,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        82,
+        24
+      ]
+    },
+    {
+      "id": "L10",
+      "name": "Devpura Acc-2",
+      "sheet": "10",
+      "groups": [
+        {
+          "aeb": 27,
+          "ioExb": 11,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8"
+          ],
+          "te": 216
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6
+        },
+        "psc": 2,
+        "sparePsc": 1,
+        "com": 1,
+        "aeb": 27,
+        "io": 11,
+        "te": 216
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 1,
+        "aeb": 27,
+        "io": 11,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        72,
+        72
+      ]
+    },
+    {
+      "id": "L11",
+      "name": "Sheodaspura",
+      "sheet": "11",
+      "groups": [
+        {
+          "aeb": 16,
+          "ioExb": 7,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-1"
+          ],
+          "te": 138
+        },
+        {
+          "aeb": 14,
+          "ioExb": 6,
+          "com": 1,
+          "psc": 1,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-4"
+          ],
+          "te": 112
+        }
+      ],
+      "actual": {
+        "racks": 4,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6,
+          "BP-EXB-1": 1,
+          "BP-PWR-4": 1
+        },
+        "psc": 3,
+        "sparePsc": 1,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "te": 250
+      },
+      "gesamt": {
+        "racks": 4,
+        "psc": 3,
+        "com": 2,
+        "aeb": 30,
+        "io": 13,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 1,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 1,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        66,
+        72,
+        40
+      ]
+    },
+    {
+      "id": "L12",
+      "name": "Durgapur Acc-1",
+      "sheet": "12",
+      "groups": [
+        {
+          "aeb": 19,
+          "ioExb": 8,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 0,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-2"
+          ],
+          "te": 144
+        }
+      ],
+      "actual": {
+        "racks": 2,
+        "backplanes": {
+          "BP-PWR-8": 2,
+          "BP-EXB-2": 4
+        },
+        "psc": 2,
+        "sparePsc": 0,
+        "com": 1,
+        "aeb": 19,
+        "io": 8,
+        "te": 144
+      },
+      "gesamt": {
+        "racks": 2,
+        "psc": 2,
+        "com": 1,
+        "aeb": 19,
+        "io": 8,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 2,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 4,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        72
+      ]
+    },
+    {
+      "id": "L13",
+      "name": "Durgapur Acc-2",
+      "sheet": "13",
+      "groups": [
+        {
+          "aeb": 26,
+          "ioExb": 12,
+          "com": 1,
+          "psc": 2,
+          "sparePsc": 1,
+          "backplanes": [
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-EXB-2",
+            "BP-PWR-8"
+          ],
+          "te": 216
+        }
+      ],
+      "actual": {
+        "racks": 3,
+        "backplanes": {
+          "BP-PWR-8": 3,
+          "BP-EXB-2": 6
+        },
+        "psc": 2,
+        "sparePsc": 1,
+        "com": 1,
+        "aeb": 26,
+        "io": 12,
+        "te": 216
+      },
+      "gesamt": {
+        "racks": 3,
+        "psc": 2,
+        "com": 1,
+        "aeb": 26,
+        "io": 12,
+        "BP-PWR-0": 0,
+        "BP-PWR-4": 0,
+        "BP-PWR-8": 3,
+        "BP-EXB-1": 0,
+        "BP-EXB-2": 6,
+        "BP-EXB-4": 0
+      },
+      "rackTe": [
+        72,
+        72,
+        72
+      ]
+    }
+  ]
+}

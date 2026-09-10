@@ -1,0 +1,21 @@
+stages:
+  - deploy
+
+deploy-pages:
+  stage: deploy
+
+  image: node:24
+
+  script:
+    - cd demo
+    - npm ci
+    - cd ../app
+    - npm install
+    - npm run build
+    - cd ..
+    - mv app/dist public
+
+  pages: true
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

@@ -1,0 +1,321 @@
+{
+  "source": "NWR Jaipur-Sawai Madhopur (entered by hand)",
+  "cableSource": "guideline",
+  "stated": {
+    "Total DP ABS": 176,
+    "Total TS ABS": 164,
+    "Total DP YARD": 374,
+    "Total TS YARD": 303,
+    "Total DP": 550,
+    "Total TS": 467,
+    "No of Location": 18
+  },
+  "locations": [
+    {
+      "name": "Chaksu",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 17, "ts": 13 },
+              "up": { "dp": 14, "ts": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Channani",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 16, "ts": 13 },
+              "up": { "dp": 14, "ts": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Banasthali",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 22, "ts": 17 },
+              "up": { "dp": 17, "ts": 14 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sirsa",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 16, "ts": 13 },
+              "up": { "dp": 14, "ts": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Irsada",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 23, "ts": 18 },
+              "up": { "dp": 16, "ts": 13 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chauth",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 17, "ts": 13 },
+              "up": { "dp": 14, "ts": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Devpura",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 22, "ts": 16 },
+              "up": { "dp": 29, "ts": 24 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Snaganer",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 21, "ts": 16 },
+              "up": { "dp": 27, "ts": 22 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sheodaspura",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 16, "ts": 13 },
+              "up": { "dp": 14, "ts": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Durgapura",
+      "scope": "YARD",
+      "detection": "SINGLE",
+      "application": "STATION",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "dn": { "dp": 19, "ts": 15 },
+              "up": { "dp": 26, "ts": 23 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jaipur JN",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Jaipur-Durgapura",
+              "dn": { "dp": 1, "ts": 1 },
+              "up": { "dp": 1, "ts": 0 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ALH-1",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Jaipur-Durgapura",
+              "dn": { "dp": 6, "ts": 6 },
+              "up": { "dp": 6, "ts": 6 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Durgapura",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Jaipur-Durgapura",
+              "dn": { "dp": 1, "ts": 0 },
+              "up": { "dp": 1, "ts": 1 }
+            },
+            {
+              "name": "Durgapura-Sanganer",
+              "dn": { "dp": 5, "ts": 5 },
+              "up": { "dp": 1, "ts": 0 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sanganer",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Durgapura-Sanganer",
+              "dn": { "dp": 1, "ts": 0 },
+              "up": { "dp": 5, "ts": 5 }
+            },
+            {
+              "name": "Sanganer-Sheodaspura",
+              "dn": { "dp": 1, "ts": 1 },
+              "up": { "dp": 1, "ts": 0 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ALH-2",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Sanganer-Sheodaspura",
+              "dn": { "dp": 10, "ts": 10 },
+              "up": { "dp": 10, "ts": 10 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ALH-3",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Sanganer-Sheodaspura",
+              "dn": { "dp": 10, "ts": 10 },
+              "up": { "dp": 10, "ts": 10 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ALH-4",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Sanganer-Sheodaspura",
+              "dn": { "dp": 8, "ts": 8 },
+              "up": { "dp": 8, "ts": 8 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sheodaspura",
+      "scope": "ABS",
+      "detection": "DUAL",
+      "application": "AUTO_BLOCK",
+      "rooms": [
+        {
+          "sections": [
+            {
+              "name": "Sanganer-Sheodaspura",
+              "dn": { "dp": 1, "ts": 0 },
+              "up": { "dp": 1, "ts": 1 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1058 @@
+<title>Jaipur–Sawai Madhopur BoQ Run</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f1f1f3; --surface:#fbfbfc; --sunk:#e7e7ea; --line:#d3d4d9; --line-soft:#e2e3e7;
+  --ink:#1b1d21; --ink-2:#4d5058; --ink-3:#7e828c;
+  --accent:#3f6690; --accent-soft:#dfe8f2;
+  --ok:#3d7a52; --ok-soft:#dceadf;
+  --warn:#9a6a17; --warn-soft:#f2e7cd;
+  --bad:#a03f36; --bad-soft:#f4dedb;
+  --psc:#8a6d3b; --aeb:#3f6690; --com:#6b4f86; --io:#2f7168; --blank:#b6b8bf;
+  --f-disp:'Barlow Condensed','Barlow',system-ui,sans-serif;
+  --f-body:'Barlow',system-ui,-apple-system,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15171a; --surface:#1d1f23; --sunk:#111316; --line:#32353b; --line-soft:#26292e;
+  --ink:#e9eaec; --ink-2:#a8acb4; --ink-3:#767b84;
+  --accent:#7ea6d0; --accent-soft:#22303f;
+  --ok:#7cb98f; --ok-soft:#1c2c22;
+  --warn:#d6ac5c; --warn-soft:#302716;
+  --bad:#dd8b81; --bad-soft:#331f1d;
+  --psc:#c2a06a; --aeb:#7ea6d0; --com:#a98cc4; --io:#68b0a4; --blank:#4a4e56;
+}}
+:root[data-theme="dark"]{
+  --bg:#15171a; --surface:#1d1f23; --sunk:#111316; --line:#32353b; --line-soft:#26292e;
+  --ink:#e9eaec; --ink-2:#a8acb4; --ink-3:#767b84;
+  --accent:#7ea6d0; --accent-soft:#22303f;
+  --ok:#7cb98f; --ok-soft:#1c2c22;
+  --warn:#d6ac5c; --warn-soft:#302716;
+  --bad:#dd8b81; --bad-soft:#331f1d;
+  --psc:#c2a06a; --aeb:#7ea6d0; --com:#a98cc4; --io:#68b0a4; --blank:#4a4e56;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.dim{color:var(--ink-3)}
+.num{text-align:right}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--sunk);padding:1px 5px;border:1px solid var(--line-soft)}
+
+/* masthead ---------------------------------------------------------------- */
+header{border-bottom:2px solid var(--ink);padding:40px 0 18px;margin-bottom:34px}
+.eyebrow{font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h1{font-family:var(--f-disp);font-size:clamp(34px,5.5vw,54px);font-weight:700;
+  letter-spacing:-.01em;line-height:1.02}
+.sub{color:var(--ink-2);max-width:62ch;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+
+/* scoreboard -------------------------------------------------------------- */
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin:0 0 40px}
+.score div{background:var(--surface);padding:15px 16px}
+.score b{display:block;font-family:var(--f-mono);font-size:27px;font-weight:500;
+  line-height:1.1;letter-spacing:-.02em}
+.score span{font-family:var(--f-disp);font-size:12px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3)}
+.score .hi b{color:var(--ok)} .score .lo b{color:var(--warn)} .score .no b{color:var(--bad)}
+
+/* sections ---------------------------------------------------------------- */
+section{margin:0 0 52px}
+h2{font-family:var(--f-disp);font-size:26px;font-weight:600;letter-spacing:.01em;
+  padding-bottom:7px;border-bottom:1px solid var(--line);margin-bottom:6px;
+  display:flex;align-items:baseline;gap:12px}
+h2 em{font-family:var(--f-mono);font-size:11px;font-style:normal;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-left:auto}
+.lede{color:var(--ink-2);max-width:68ch;margin:10px 0 20px}
+
+/* tables ------------------------------------------------------------------ */
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{font-family:var(--f-disp);font-size:12px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);text-align:left;
+  padding:9px 11px;border-bottom:1px solid var(--line);white-space:nowrap;
+  position:sticky;top:0;background:var(--surface)}
+th.num{text-align:right}
+td{padding:6px 11px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tr.grp th{background:var(--sunk);font-size:11.5px;color:var(--ink-2);
+  letter-spacing:.13em;padding:7px 11px;border-bottom:1px solid var(--line);position:static}
+.desc{max-width:40ch}
+.note{display:block;font-size:11.5px;color:var(--ink-3);margin-top:1px}
+.id{color:var(--ink-3)}
+.delta{font-weight:600}
+.bp{font-size:11.5px;white-space:nowrap}
+.tag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;
+  color:var(--ink-3);border:1px solid var(--line);padding:0 5px}
+
+/* provenance + verdict pills ---------------------------------------------- */
+.pill{font-family:var(--f-disp);font-size:11.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 7px;white-space:nowrap;display:inline-block;
+  border:1px solid var(--line);color:var(--ink-3)}
+.pill.derived,.pill.match{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+.pill.override{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.pill.stale,.pill.differs{color:var(--warn);border-color:var(--warn);background:var(--warn-soft)}
+.pill.manual,.pill.blank{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
+.pill.dormant,.pill.missing{color:var(--ink-3);background:var(--sunk)}
+tr.p-blank td,tr.p-manual td,tr.v-blank td{background:color-mix(in srgb,var(--bad-soft) 40%,transparent)}
+tr.p-dormant td,tr.v-missing td{color:var(--ink-3)}
+
+/* rack elevation ---------------------------------------------------------- */
+.rack{margin:0 0 10px}
+.rack figcaption{display:flex;gap:14px;align-items:baseline;font-size:12px;margin-bottom:4px}
+.rk{font-family:var(--f-disp);font-weight:600;letter-spacing:.09em;text-transform:uppercase;font-size:12px}
+.rack figcaption .dim{font-size:11.5px}
+.rack figcaption .dim:last-child{margin-left:auto}
+.slots{display:flex;gap:2px;height:58px;background:var(--sunk);
+  border:1px solid var(--line);padding:3px}
+.s{display:flex;align-items:center;justify-content:center;min-width:0;
+  border:1px solid transparent;overflow:hidden}
+.s b{font-family:var(--f-mono);font-size:9.5px;font-weight:500;letter-spacing:.02em;
+  writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;
+  color:#fff;mix-blend-mode:normal}
+.s.psc{background:var(--psc)} .s.aeb{background:var(--aeb)}
+.s.com{background:var(--com)} .s.io{background:var(--io)}
+.s.blank{background:var(--blank)} .s.blank b{color:var(--surface)}
+.s.free{background:repeating-linear-gradient(45deg,transparent,transparent 4px,var(--line) 4px,var(--line) 5px);
+  border:1px dashed var(--line)}
+.s.free b{color:var(--ink-3);writing-mode:horizontal-tb;transform:none}
+.key{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:12px;color:var(--ink-2)}
+.key i{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px}
+
+/* callout ----------------------------------------------------------------- */
+.call{border:1px solid var(--line);border-left:3px solid var(--accent);
+  background:var(--surface);padding:18px 22px}
+.call h3{font-family:var(--f-disp);font-size:19px;font-weight:600;margin-bottom:8px}
+.calc{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;color:var(--ink-2);
+  background:var(--sunk);padding:12px 14px;margin:14px 0;overflow-x:auto;
+  border:1px solid var(--line-soft)}
+.calc b{color:var(--ink);font-weight:600}
+
+/* open questions ---------------------------------------------------------- */
+.q{border:1px solid var(--line);background:var(--surface);padding:15px 18px;
+  display:grid;grid-template-columns:1fr auto;gap:4px 22px;align-items:baseline}
+.q + .q{border-top:0}
+.q h3{font-family:var(--f-body);font-size:15px;font-weight:600}
+.q .fig{font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+.q .fig s{color:var(--ink-3);text-decoration:none}
+.q .fig b{color:var(--warn)}
+.q p{grid-column:1/-1;margin:2px 0 0;font-size:13.5px;color:var(--ink-2);max-width:74ch}
+footer{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--ink-3)}
+@media (max-width:640px){.q{grid-template-columns:1fr}.slots{height:46px}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Frauscher FAdC R2 · bid estimation</div>
+  <h1>Jaipur–Sawai Madhopur</h1>
+  <p class="sub">The handover sheet goes in, a Bill of Quantities comes out, and the result is
+  diffed against the BoQ the bid team actually submitted. Every figure below is from a real run.</p>
+  <div class="meta">
+    <span>18 locations</span>
+    <span>550 detection points</span>
+    <span>467 track sections</span>
+    <span>57 rules</span>
+    <span>source · 16.DP TS details</span>
+  </div>
+</header>
+
+<div class="score">
+  <div class="hi"><b>11</b><span>match</span></div>
+  <div class="lo"><b>10</b><span>differ</span></div>
+  <div class="no"><b>4</b><span>blank</span></div>
+  <div><b>16</b><span>no rule</span></div>
+  <div><b>66</b><span>racks packed</span></div>
+  <div><b>46</b><span>eval groups</span></div>
+</div>
+
+<section>
+  <h2>Demand and packing <em>stages 1–3</em></h2>
+  <p class="lede">Detection points and track sections per location, split into independent
+  evaluation groups, then packed into 84&nbsp;TE racks. Sixteen of the eighteen locations
+  reproduce the planner's own rack count exactly.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Location</th><th>Detection</th><th class="num">DP</th><th class="num">TS</th>
+      <th class="num">Groups</th><th class="num">Racks</th><th>Backplanes</th></tr></thead>
+    <tbody><tr>
+  <td>Chaksu</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">31</td>
+  <td class="num mono">25</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  3×PWR-8  1×EXB-1  6×EXB-2</td>
+</tr><tr>
+  <td>Channani</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">30</td>
+  <td class="num mono">25</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  3×PWR-8  1×EXB-1  6×EXB-2</td>
+</tr><tr>
+  <td>Banasthali</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">39</td>
+  <td class="num mono">31</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  4×PWR-8  2×EXB-1  7×EXB-2</td>
+</tr><tr>
+  <td>Sirsa</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">30</td>
+  <td class="num mono">25</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  3×PWR-8  1×EXB-1  6×EXB-2</td>
+</tr><tr>
+  <td>Irsada</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">39</td>
+  <td class="num mono">31</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  4×PWR-8  2×EXB-1  7×EXB-2</td>
+</tr><tr>
+  <td>Chauth</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">31</td>
+  <td class="num mono">25</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  3×PWR-8  1×EXB-1  6×EXB-2</td>
+</tr><tr>
+  <td>Devpura</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">51</td>
+  <td class="num mono">40</td>
+  <td class="num mono">2</td>
+  <td class="num mono">5</td>
+  <td class="mono dim bp">1×PWR-4  5×PWR-8  10×EXB-2</td>
+</tr><tr>
+  <td>Snaganer</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">48</td>
+  <td class="num mono">38</td>
+  <td class="num mono">2</td>
+  <td class="num mono">5</td>
+  <td class="mono dim bp">1×PWR-4  5×PWR-8  1×EXB-1  9×EXB-2</td>
+</tr><tr>
+  <td>Sheodaspura</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">30</td>
+  <td class="num mono">25</td>
+  <td class="num mono">2</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">1×PWR-4  3×PWR-8  1×EXB-1  6×EXB-2</td>
+</tr><tr>
+  <td>Durgapura</td>
+  <td><span class="tag">SINGLE</span></td>
+  <td class="num mono">45</td>
+  <td class="num mono">38</td>
+  <td class="num mono">2</td>
+  <td class="num mono">5</td>
+  <td class="mono dim bp">5×PWR-8  10×EXB-2</td>
+</tr><tr>
+  <td>Jaipur JN</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">4</td>
+  <td class="num mono">2</td>
+  <td class="num mono">2</td>
+  <td class="num mono">1</td>
+  <td class="mono dim bp">2×PWR-4  2×EXB-1</td>
+</tr><tr>
+  <td>ALH-1</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">24</td>
+  <td class="num mono">24</td>
+  <td class="num mono">2</td>
+  <td class="num mono">3</td>
+  <td class="mono dim bp">2×PWR-4  2×PWR-8  2×EXB-2  2×EXB-4</td>
+</tr><tr>
+  <td>Durgapura</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">16</td>
+  <td class="num mono">12</td>
+  <td class="num mono">4</td>
+  <td class="num mono">3</td>
+  <td class="mono dim bp">2×PWR-4  2×PWR-8  2×EXB-1  2×EXB-4</td>
+</tr><tr>
+  <td>Sanganer</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">16</td>
+  <td class="num mono">12</td>
+  <td class="num mono">4</td>
+  <td class="num mono">3</td>
+  <td class="mono dim bp">2×PWR-4  2×PWR-8  2×EXB-1  2×EXB-4</td>
+</tr><tr>
+  <td>ALH-2</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">40</td>
+  <td class="num mono">40</td>
+  <td class="num mono">4</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">4×PWR-8  4×EXB-1  8×EXB-2</td>
+</tr><tr>
+  <td>ALH-3</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">40</td>
+  <td class="num mono">40</td>
+  <td class="num mono">4</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">4×PWR-8  4×EXB-1  8×EXB-2</td>
+</tr><tr>
+  <td>ALH-4</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">32</td>
+  <td class="num mono">32</td>
+  <td class="num mono">4</td>
+  <td class="num mono">4</td>
+  <td class="mono dim bp">4×PWR-8  4×EXB-4</td>
+</tr><tr>
+  <td>Sheodaspura</td>
+  <td><span class="tag">DUAL</span></td>
+  <td class="num mono">4</td>
+  <td class="num mono">2</td>
+  <td class="num mono">2</td>
+  <td class="num mono">1</td>
+  <td class="mono dim bp">2×PWR-4  2×EXB-1</td>
+</tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Rack elevation · ALH-2 <em>the drawing nobody makes by hand</em></h2>
+  <p class="lede">Four identical racks, ten counting points each, one COM board per group.
+  Slot widths are true to their TE pitch — PSC 8, AEB and COM 4, IO-EXB 6 — so what you see is
+  the physical subrack, not a schematic.</p>
+  <figure class="rack">
+      <figcaption><span class="rk">BGT07 · rack 1</span>
+        <span class="mono dim">BP-PWR-8 · BP-EXB-2 · BP-EXB-1</span>
+        <span class="mono dim">82/84 TE</span></figcaption>
+      <div class="slots"><i class="s psc" style="flex:8" title="PSC · 8 TE · BP-PWR-8 · group DN-M"><b>PSC</b></i><i class="s com" style="flex:4" title="COM-AdC · 4 TE · BP-PWR-8 · group DN-M"><b>COM-AdC</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group DN-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-M"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-M"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group DN-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-M"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-M"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-1 · group DN-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-1 · group DN-M"><b>IO-EXB</b></i><i class="s free" style="flex:2" title="2 TE unused"><b>2 TE</b></i></div>
+    </figure><figure class="rack">
+      <figcaption><span class="rk">BGT07 · rack 2</span>
+        <span class="mono dim">BP-PWR-8 · BP-EXB-2 · BP-EXB-1</span>
+        <span class="mono dim">82/84 TE</span></figcaption>
+      <div class="slots"><i class="s psc" style="flex:8" title="PSC · 8 TE · BP-PWR-8 · group UP-M"><b>PSC</b></i><i class="s com" style="flex:4" title="COM-AdC · 4 TE · BP-PWR-8 · group UP-M"><b>COM-AdC</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-M"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group UP-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-M"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-M"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group UP-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-M"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-M"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-1 · group UP-M"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-1 · group UP-M"><b>IO-EXB</b></i><i class="s free" style="flex:2" title="2 TE unused"><b>2 TE</b></i></div>
+    </figure><figure class="rack">
+      <figcaption><span class="rk">BGT07 · rack 3</span>
+        <span class="mono dim">BP-PWR-8 · BP-EXB-2 · BP-EXB-1</span>
+        <span class="mono dim">82/84 TE</span></figcaption>
+      <div class="slots"><i class="s psc" style="flex:8" title="PSC · 8 TE · BP-PWR-8 · group DN-R"><b>PSC</b></i><i class="s com" style="flex:4" title="COM-AdC · 4 TE · BP-PWR-8 · group DN-R"><b>COM-AdC</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group DN-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group DN-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-R"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-R"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group DN-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-R"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group DN-R"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-1 · group DN-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-1 · group DN-R"><b>IO-EXB</b></i><i class="s free" style="flex:2" title="2 TE unused"><b>2 TE</b></i></div>
+    </figure><figure class="rack">
+      <figcaption><span class="rk">BGT07 · rack 4</span>
+        <span class="mono dim">BP-PWR-8 · BP-EXB-2 · BP-EXB-1</span>
+        <span class="mono dim">82/84 TE</span></figcaption>
+      <div class="slots"><i class="s psc" style="flex:8" title="PSC · 8 TE · BP-PWR-8 · group UP-R"><b>PSC</b></i><i class="s com" style="flex:4" title="COM-AdC · 4 TE · BP-PWR-8 · group UP-R"><b>COM-AdC</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-PWR-8 · group UP-R"><b>AEB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group UP-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-R"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-R"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-2 · group UP-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-R"><b>IO-EXB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-2 · group UP-R"><b>IO-EXB</b></i><i class="s aeb" style="flex:4" title="AEB · 4 TE · BP-EXB-1 · group UP-R"><b>AEB</b></i><i class="s io" style="flex:6" title="IO-EXB · 6 TE · BP-EXB-1 · group UP-R"><b>IO-EXB</b></i><i class="s free" style="flex:2" title="2 TE unused"><b>2 TE</b></i></div>
+    </figure>
+  <div class="key">
+    <span><i style="background:var(--psc)"></i>PSC · 8 TE</span>
+    <span><i style="background:var(--aeb)"></i>AEB · 4 TE</span>
+    <span><i style="background:var(--com)"></i>COM-AdC · 4 TE</span>
+    <span><i style="background:var(--io)"></i>IO-EXB · 6 TE</span>
+    <span><i style="background:var(--blank)"></i>blank</span>
+  </div>
+</section>
+
+<section>
+  <h2>Generated BoQ <em>39 derived · 4 manual · 2 blank · 1 dormant</em></h2>
+  <p class="lede">Every line carries where its number came from. A rule that cannot resolve
+  produces a flagged blank, never a silent zero — a zero would read as a real answer of
+  “none required”.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Rule</th><th>Code</th><th>Description</th>
+      <th class="num">Main</th><th class="num">Spare</th><th>Provenance</th></tr></thead>
+    <tbody><tr class="grp"><th colspan="6">OUTDOOR</th></tr><tr class="p-derived">
+      <td class="mono id">G05</td>
+      <td class="mono">102207</td>
+      <td class="desc">Wheel sensor RSR180-001 GS05 5m cable</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim">28</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G06a</td>
+      <td class="mono">100605</td>
+      <td class="desc">IN Protection tube 4.8m</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-blank">
+      <td class="mono id">G06b</td>
+      <td class="mono">100609</td>
+      <td class="desc">IN Protection tube 9.8m<span class="note">referenced part has no quantity: BD006</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill blank">blank</span></td>
+    </tr><tr class="p-blank">
+      <td class="mono id">G06c</td>
+      <td class="mono">102423</td>
+      <td class="desc">IN Protection tube 14.8 m<span class="note">referenced part has no quantity: BD007</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill blank">blank</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G07</td>
+      <td class="mono">102411</td>
+      <td class="desc">IN Rail claw SK140-011 w/o m. plate FSTI - RM</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G07b</td>
+      <td class="mono">100534</td>
+      <td class="desc">IN Rail claw plate SK140-011 (60kg)</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G08</td>
+      <td class="mono">101431</td>
+      <td class="desc">IN Clamping bolt BBIK M12-22 GS02</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G09</td>
+      <td class="mono">100004</td>
+      <td class="desc">Track lead junction box TLJB-01</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G09b</td>
+      <td class="mono">101950</td>
+      <td class="desc">IN Frauscher Rail Deflector FRD001 GS02 60kg</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G09c</td>
+      <td class="mono">102763</td>
+      <td class="desc">Strain relief clamp SRC-IN Make</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G10</td>
+      <td class="mono">101770</td>
+      <td class="desc">Testing plate PB200-TS GS01</td>
+      <td class="num mono">32</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G12</td>
+      <td class="mono">100386</td>
+      <td class="desc">Advanced service display ASD101 GS01</td>
+      <td class="num mono">32</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">K01</td>
+      <td class="mono">102058</td>
+      <td class="desc">SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN Protection tube 4.8m</td>
+      <td class="num mono">369</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">K02</td>
+      <td class="mono">101880</td>
+      <td class="desc">SK140-011, RSR180-001 GS05, BBIK M12-22 GS02 , IN Protection tube 9.8m</td>
+      <td class="num mono">144</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">K03</td>
+      <td class="mono">102428</td>
+      <td class="desc">SK140-011, RSR180-001 GS05, BBIK M12-22 GS02, IN protection tube 14.8m</td>
+      <td class="num mono">37</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-manual">
+      <td class="mono id">M04</td>
+      <td class="mono">100008</td>
+      <td class="desc">Line Verification Box LVB-01<span class="note">no rule exists</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill manual">manual</span></td>
+    </tr><tr class="grp"><th colspan="6">INDOOR</th></tr><tr class="p-derived">
+      <td class="mono id">G13</td>
+      <td class="mono">100013</td>
+      <td class="desc">Overvoltage protection board BSI004 GS01 CC</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim">6</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G14</td>
+      <td class="mono">100049</td>
+      <td class="desc">Board rack BGT07 84TE</td>
+      <td class="num mono">66</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G15</td>
+      <td class="mono">100948</td>
+      <td class="desc">Board rack BGT08 42TE</td>
+      <td class="num mono">0</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G16</td>
+      <td class="mono">100031</td>
+      <td class="desc">Backplane BP-PWR101-0 8TE GS01</td>
+      <td class="num mono">0</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G20</td>
+      <td class="mono">100391</td>
+      <td class="desc">Backplane BP-PWR101-4 24TE GS01</td>
+      <td class="num mono">19</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G22</td>
+      <td class="mono">100030</td>
+      <td class="desc">Backplane BP-PWR101-8 40TE GS01</td>
+      <td class="num mono">56</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G29</td>
+      <td class="mono">100028</td>
+      <td class="desc">Backplane BP-EXB101-1 10TE GS01</td>
+      <td class="num mono">26</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G30</td>
+      <td class="mono">100392</td>
+      <td class="desc">Backplane BP-EXB101-2 16TE GS01</td>
+      <td class="num mono">91</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G32</td>
+      <td class="mono">100393</td>
+      <td class="desc">Backplane BP-EXB101-4 28TE GS01</td>
+      <td class="num mono">10</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G35</td>
+      <td class="mono">100027</td>
+      <td class="desc">Supply board PSC101 GS01</td>
+      <td class="num mono">46</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G36</td>
+      <td class="mono">101228</td>
+      <td class="desc">Communication Board COM-AdC101 GS02</td>
+      <td class="num mono">46</td>
+      <td class="num mono dim">1</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G39</td>
+      <td class="mono">102573</td>
+      <td class="desc">Evaluation board AEB101 GS07</td>
+      <td class="num mono">550</td>
+      <td class="num mono dim">6</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G40</td>
+      <td class="mono">100029</td>
+      <td class="desc">In-/Output board IO-EXB101 GS01</td>
+      <td class="num mono">244</td>
+      <td class="num mono dim">3</td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G41</td>
+      <td class="mono">100024</td>
+      <td class="desc">Backplane connector BP-EXB crimp version</td>
+      <td class="num mono">248</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G45</td>
+      <td class="mono">—</td>
+      <td class="desc">4 TE blanking plate for spare PSC slots</td>
+      <td class="num mono">58</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G46</td>
+      <td class="mono">—</td>
+      <td class="desc">4 TE blanking plate for spare AEB slots</td>
+      <td class="num mono">55</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G47</td>
+      <td class="mono">—</td>
+      <td class="desc">6 TE blanking plate for spare IO slots</td>
+      <td class="num mono">4</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G59</td>
+      <td class="mono">—</td>
+      <td class="desc">Patch cable</td>
+      <td class="num mono">358</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="grp"><th colspan="6">CUBICAL</th></tr><tr class="p-derived">
+      <td class="mono id">G55</td>
+      <td class="mono">100002</td>
+      <td class="desc">Axle counter cubicle FAR-002 with glass door and fan - IP 60 -35U</td>
+      <td class="num mono">18</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-dormant">
+      <td class="mono id">G56</td>
+      <td class="mono">—</td>
+      <td class="desc">Active fan<span class="note">powerAbove120W is off</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill dormant">dormant</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G57</td>
+      <td class="mono">—</td>
+      <td class="desc">19in slot fan</td>
+      <td class="num mono">29</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G58</td>
+      <td class="mono">—</td>
+      <td class="desc">Wiring, one per cubicle</td>
+      <td class="num mono">18</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="grp"><th colspan="6">RESET</th></tr><tr class="p-manual">
+      <td class="mono id">M01</td>
+      <td class="mono">100052</td>
+      <td class="desc">Reset box RSTBOXV01<span class="note">no rule exists</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill manual">manual</span></td>
+    </tr><tr class="p-manual">
+      <td class="mono id">M02</td>
+      <td class="mono">101951</td>
+      <td class="desc">Reset cubicle GS02<span class="note">no rule exists</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill manual">manual</span></td>
+    </tr><tr class="p-manual">
+      <td class="mono id">M03</td>
+      <td class="mono">101919</td>
+      <td class="desc">Co-operation reset panel GS02<span class="note">no rule exists</span></td>
+      <td class="num mono">—</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill manual">manual</span></td>
+    </tr><tr class="grp"><th colspan="6">MISC</th></tr><tr class="p-derived">
+      <td class="mono id">G53</td>
+      <td class="mono">102644</td>
+      <td class="desc">FDS102 GS01 for FAdC</td>
+      <td class="num mono">18</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G54</td>
+      <td class="mono">—</td>
+      <td class="desc">Wiring FDS, only where cubicles exist</td>
+      <td class="num mono">8</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="grp"><th colspan="6">SERVICE</th></tr><tr class="p-derived">
+      <td class="mono id">G49</td>
+      <td class="mono">—</td>
+      <td class="desc">Planning basic cost</td>
+      <td class="num mono">18</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G50</td>
+      <td class="mono">—</td>
+      <td class="desc">Configuration file creation, per board</td>
+      <td class="num mono">596</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr><tr class="p-derived">
+      <td class="mono id">G51</td>
+      <td class="mono">—</td>
+      <td class="desc">Configuration, labelling and testing, per board</td>
+      <td class="num mono">596</td>
+      <td class="num mono dim"></td>
+      <td><span class="pill derived">derived</span></td>
+    </tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>The cable-length split <em>a rule from outside the calculator</em></h2>
+  <div class="call">
+    <h3>369 / 144 / 37 — exactly the hidden BoQ sheet</h3>
+    <p>Neither calculator carries a cable-length dimension. The rule is prose, in the handover
+    questionnaire at cell <code>B151</code> item 16: station work takes 75&nbsp;% of 5&nbsp;m,
+    15&nbsp;% of 10&nbsp;m and 10&nbsp;% of 15&nbsp;m; auto block splits 50/50.</p>
+    <div class="calc">
+      5 m &nbsp; 0.75 × 374 &nbsp;+&nbsp; 0.50 × 176 &nbsp;=&nbsp; 368.5 &nbsp;→&nbsp; <b>369</b><br>
+      10 m &nbsp;0.15 × 374 &nbsp;+&nbsp; 0.50 × 176 &nbsp;=&nbsp; 144.1 &nbsp;→&nbsp; <b>144</b><br>
+      15 m &nbsp;0.10 × 374 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp; 37.4 &nbsp;&nbsp;→&nbsp; <b>37</b>
+    </div>
+    <p>That is what the older hidden sheet books. The shipped sheet reads 350 / 163 / 37 —
+    nineteen units moved from 5&nbsp;m to 10&nbsp;m by hand, after the fact, with no reason
+    recorded anywhere.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Diff against the submitted BoQ <em>sheet “10.&nbsp; BOQ”</em></h2>
+  <p class="lede">Quantities are compared main-to-main: the submitted BoQ leaves its Spare
+  column empty on all 41 lines, so comparing totals would show a difference on
+  every spared line that is really about spares policy.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Code</th><th>Description</th><th class="num">Submitted</th>
+      <th class="num">Generated</th><th class="num">Δ</th><th>Verdict</th></tr></thead>
+    <tbody><tr class="v-differs">
+  <td class="mono">102058</td>
+  <td class="desc">SK140-011RSR180GS05BBIKM12-22GS02,IN4.8m</td>
+  <td class="num mono">350</td>
+  <td class="num mono">369</td>
+  <td class="num mono delta">+19</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">101880</td>
+  <td class="desc">SK140-011RSR180GS05BBIKM12-22GS02,IN9.8m</td>
+  <td class="num mono">163</td>
+  <td class="num mono">144</td>
+  <td class="num mono delta">-19</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-match">
+  <td class="mono">102428</td>
+  <td class="desc">SK140-011,RSR180GS05,BBIK M12-22,IN14.8m</td>
+  <td class="num mono">37</td>
+  <td class="num mono">37</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">100004</td>
+  <td class="desc">Track lead junction box TLJB-01</td>
+  <td class="num mono">550</td>
+  <td class="num mono">550</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">24422</td>
+  <td class="desc">Frauscher Rail Deflector FRD001 GS02 60kg</td>
+  <td class="num mono">550</td>
+  <td class="num mono">550</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">102763</td>
+  <td class="desc">Strain relief clamp SRC- IN make</td>
+  <td class="num mono">550</td>
+  <td class="num mono">550</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-blank">
+  <td class="mono">100008</td>
+  <td class="desc">Line Verification Box LVB-01</td>
+  <td class="num mono">189</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill blank">blank</span></td>
+</tr><tr class="v-match">
+  <td class="mono">18571</td>
+  <td class="desc">Overvoltage protection BSI004 GS01 CC !</td>
+  <td class="num mono">550</td>
+  <td class="num mono">550</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">17390</td>
+  <td class="desc">Board rack BGT07 84TE</td>
+  <td class="num mono">68</td>
+  <td class="num mono">66</td>
+  <td class="num mono delta">-2</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-match">
+  <td class="mono">19952</td>
+  <td class="desc">Backplane BP-PWR-0</td>
+  <td class="num mono">0</td>
+  <td class="num mono">0</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">19953</td>
+  <td class="desc">Backplane BP-PWR-4</td>
+  <td class="num mono">19</td>
+  <td class="num mono">19</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">19954</td>
+  <td class="desc">Backplane BP-PWR-8</td>
+  <td class="num mono">56</td>
+  <td class="num mono">56</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">19956</td>
+  <td class="desc">Backplane BP-EXB101-1</td>
+  <td class="num mono">27</td>
+  <td class="num mono">26</td>
+  <td class="num mono delta">-1</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">19957</td>
+  <td class="desc">Backplane BP-EXB101-2</td>
+  <td class="num mono">92</td>
+  <td class="num mono">91</td>
+  <td class="num mono delta">-1</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-match">
+  <td class="mono">19958</td>
+  <td class="desc">Backplane BP-EXB101-4</td>
+  <td class="num mono">10</td>
+  <td class="num mono">10</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-match">
+  <td class="mono">20864</td>
+  <td class="desc">Extension Board IO-EXB</td>
+  <td class="num mono">244</td>
+  <td class="num mono">244</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">21441</td>
+  <td class="desc">Backplane connector</td>
+  <td class="num mono">244</td>
+  <td class="num mono">248</td>
+  <td class="num mono delta">+4</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">19949</td>
+  <td class="desc">Power supply and Fuse Board PSC</td>
+  <td class="num mono">61</td>
+  <td class="num mono">46</td>
+  <td class="num mono delta">-15</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">23152</td>
+  <td class="desc">Communication Board COM-AdC101 GS02</td>
+  <td class="num mono">42</td>
+  <td class="num mono">46</td>
+  <td class="num mono delta">+4</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-match">
+  <td class="mono">26534</td>
+  <td class="desc">Evaluation board AEB101 GS07</td>
+  <td class="num mono">550</td>
+  <td class="num mono">550</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill match">match</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">26795</td>
+  <td class="desc">FDS102 GS01 for FAdC</td>
+  <td class="num mono">12</td>
+  <td class="num mono">18</td>
+  <td class="num mono delta">+6</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-differs">
+  <td class="mono">100002</td>
+  <td class="desc">Axle counter cubicle FAR-002 with glass door and fan- 35 U Cubicle</td>
+  <td class="num mono">22</td>
+  <td class="num mono">18</td>
+  <td class="num mono delta">-4</td>
+  <td><span class="pill differs">differs</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101416</td>
+  <td class="desc">Axle counter cubicle - 20U (Half cubicle) FAR-004</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101872</td>
+  <td class="desc">Axle counter cubicle FAR-007 wall mount 15UH , IP-50</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101194</td>
+  <td class="desc">Wiring and Spares Materials</td>
+  <td class="num mono">22,50,000</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-blank">
+  <td class="mono">100052</td>
+  <td class="desc">Reset box RSTBOXV01</td>
+  <td class="num mono">315</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill blank">blank</span></td>
+</tr><tr class="v-blank">
+  <td class="mono">101951</td>
+  <td class="desc">Reset cubicle GS02 with name plate and serial number plate</td>
+  <td class="num mono">16</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill blank">blank</span></td>
+</tr><tr class="v-blank">
+  <td class="mono">101919</td>
+  <td class="desc">Co-operation reset panel GS02</td>
+  <td class="num mono">11</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill blank">blank</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102901</td>
+  <td class="desc">Etherwan L3 Managed Switch Part ref: Etherwan/EX73934E-0VB</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102900</td>
+  <td class="desc">Etherwan L2 Managed switch</td>
+  <td class="num mono">28</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102902</td>
+  <td class="desc">Etherwan SFP</td>
+  <td class="num mono">56</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102645</td>
+  <td class="desc">Phoenix Modem TC Extender 6004 ETH-2S</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102250</td>
+  <td class="desc">Surge arrester module DEHN , BXT ML4 BE 180 for DDW-225</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102252</td>
+  <td class="desc">Surge arrester module DEHN , DG S 275 for DDW-225</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101375+102299+102300</td>
+  <td class="desc">Base Part + Rail Adapters + Protective Conductor Terminal</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102503</td>
+  <td class="desc">Surge Protector 24V DC</td>
+  <td class="num mono">93</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101958</td>
+  <td class="desc">ON Delay Timer (External)( EAPL MAKE)</td>
+  <td class="num mono">606</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">102474</td>
+  <td class="desc">RESET Relay OEN</td>
+  <td class="num mono">630</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">18060</td>
+  <td class="desc">Patch Cables (average for 0.5m to 2m) (Straight)</td>
+  <td class="num mono">408</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">101350</td>
+  <td class="desc">Rack-mounted fan 24 V (DC) for 482.6 mm (19&quot;) air throughput 320 – 480m³/h</td>
+  <td class="num mono">46</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr><tr class="v-missing">
+  <td class="mono">110911</td>
+  <td class="desc">Mainline Toolkit+ASD101+Multimeter Fluke</td>
+  <td class="num mono">0</td>
+  <td class="num mono">—</td>
+  <td class="num mono delta"></td>
+  <td><span class="pill missing">missing</span></td>
+</tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Open questions <em>7 to settle</em></h2>
+  <p class="lede">Each difference below is the engine disagreeing with the tender for a stated
+  reason, not failing. Several are cases where the tender looks wrong.</p>
+  <div class="q">
+    <h3>Kit 4.8 m / 9.8 m</h3>
+    <div class="fig"><s>350 / 163</s> &nbsp;→&nbsp; <b>369 / 144</b></div>
+    <p>Ours is the questionnaire guideline, and reproduces the hidden BoQ sheet exactly. Nineteen units were moved 5 m → 10 m by hand. Measurement, or a correction to the percentages?</p>
+  </div><div class="q">
+    <h3>Racks · BP-EXB-1 · BP-EXB-2</h3>
+    <div class="fig"><s>68 · 27 · 92</s> &nbsp;→&nbsp; <b>66 · 26 · 91</b></div>
+    <p>Sixteen of eighteen locations match. Devpura and Snaganer each come out one rack short because the workbook gives them two Gesamt columns and we pack them as one location. Two equipment rooms?</p>
+  </div><div class="q">
+    <h3>Backplane connector</h3>
+    <div class="fig"><s>244</s> &nbsp;→&nbsp; <b>248</b></div>
+    <p>Three numbers exist: the BoQ 244, Gesamt 251, ours 248. Per IO-EXB board, or per IO-EXB slot including empty ones?</p>
+  </div><div class="q">
+    <h3>Supply board PSC</h3>
+    <div class="fig"><s>61</s> &nbsp;→&nbsp; <b>46</b></div>
+    <p>Exactly one per group across all eight ABS locations, never on Yard, where it tracks BP-PWR count instead. What decides which power slots get a PSC rather than a blank?</p>
+  </div><div class="q">
+    <h3>Communication board COM-AdC</h3>
+    <div class="fig"><s>42</s> &nbsp;→&nbsp; <b>46</b></div>
+    <p>One per evaluation group, exact at 17 of 21 locations. The four short ones each omit the redundant COM. Under-book, or a legitimate shared case?</p>
+  </div><div class="q">
+    <h3>FDS102</h3>
+    <div class="fig"><s>12</s> &nbsp;→&nbsp; <b>18</b></div>
+    <p>Ours is one per location. Gesamt gives 21, BD BOM gives 0. Nothing in the files produces 12.</p>
+  </div><div class="q">
+    <h3>Axle counter cubicle</h3>
+    <div class="fig"><s>22</s> &nbsp;→&nbsp; <b>18</b></div>
+    <p><code>ceil(racks/6)</code> gives 18, the capacity table gives 21. Neither gives 22.</p>
+  </div>
+</section>
+
+<footer>
+  Generated from a live pipeline run · 57 rules ·
+  2 unresolved references ·
+  packing verified against 21 reference locations
+</footer>
+</div>

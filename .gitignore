@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+*.tsbuildinfo
+
+# generated artefacts — regenerate with the scripts that make them
+app/BoQ.xlsx
+
+# byte-identical copies of BOM CAL/ and BOM CAL DESIGN/, 5.2 MB of duplication
+Zipped Source Files/
+
+# excel lock files
+~$*
+.DS_Store
+Thumbs.db
+
+Notes from Nikhil.txt
